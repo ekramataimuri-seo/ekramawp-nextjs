@@ -1,4 +1,4 @@
-// Force Refresh Build - Next.js 16 Bypass
+// BUILD RESET: Vercel Bypass - Jan 2026
 import { print } from "graphql/language/printer";
 import { ContentNode } from "@/gql/graphql"; 
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
@@ -25,19 +25,12 @@ export async function GET(request: Request) {
       password: "${process.env.WP_APP_PASS}"
     } ) {
       authToken
-      user {
-        id
-        name
-      }
     }
   }
 `;
 
-  const { login } = await fetchGraphQL<{ login: any }>(
-    print(mutation),
-  );
-
-  const authToken = login?.authToken;
+  const loginData = await fetchGraphQL<any>(print(mutation));
+  const authToken = loginData?.login?.authToken;
 
   (await draftMode()).enable();
 
@@ -53,9 +46,7 @@ export async function GET(request: Request) {
 
   const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
     print(query),
-    {
-      id,
-    },
+    { id },
     { Authorization: `Bearer ${authToken}` },
   );
 
