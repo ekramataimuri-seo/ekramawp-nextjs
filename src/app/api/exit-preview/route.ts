@@ -5,8 +5,10 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const path = searchParams.get("path");
 
-(await draftMode()).disable();
-  
+  // FORCE UPDATE: We assign it to a variable first
+  const draft = await draftMode();
+  draft.disable();
+
   const response = NextResponse.redirect(
     `${process.env.NEXT_PUBLIC_BASE_URL}${path}`,
   );
