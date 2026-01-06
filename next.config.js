@@ -4,9 +4,10 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: process.env.NEXT_PUBLIC_WORDPRESS_API_HOSTNAME,
+        protocol: "https",
+        hostname: "admin.ekramaiseo.com",
         port: "",
+        pathname: "/**",
       },
     ],
   },
