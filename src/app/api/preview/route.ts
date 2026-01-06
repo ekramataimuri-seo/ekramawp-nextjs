@@ -1,6 +1,5 @@
+// Force Refresh Build - Next.js 16 Bypass
 import { print } from "graphql/language/printer";
-
-// WE REMOVED "LoginPayload" FROM THIS LIST TO FIX THE ERROR:
 import { ContentNode } from "@/gql/graphql"; 
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
 import { draftMode } from "next/headers";
@@ -34,12 +33,11 @@ export async function GET(request: Request) {
   }
 `;
 
-  // WE CHANGED "LoginPayload" TO "any" SO IT DOES NOT CRASH:
   const { login } = await fetchGraphQL<{ login: any }>(
     print(mutation),
   );
 
-  const authToken = login.authToken;
+  const authToken = login?.authToken;
 
   (await draftMode()).enable();
 
