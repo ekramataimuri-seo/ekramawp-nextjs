@@ -1,3 +1,4 @@
+// Fixing the Next.js 16 build error
 import { draftMode } from "next/headers";
 import { NextResponse } from "next/server";
 
