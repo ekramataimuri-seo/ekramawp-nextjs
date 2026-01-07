@@ -1,36 +1,68 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { print } from "graphql/language/printer";
+import gql from "graphql-tag";
 
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
 import { ContentNode } from "@/gql/graphql";
-import PageTemplate from "@/components/Templates/Page/PageTemplate";
-import { ContentInfoQuery } from "@/queries/general/ContentInfoQuery";
-import { SeoQuery } from "@/queries/general/SeoQuery";
 import { setSeoData } from "@/utils/seoData";
 
-// This tells the code to fetch the content from the WordPress page with slug 'home'
-const HOMEPAGE_SLUG = "/home/"; 
+// 1. Define the Query specifically to get CONTENT
+const HOME_QUERY = gql`
+  query HomeQuery($uri: ID!) {
+    contentNode(id: $uri, idType: URI) {
+      ... on Page {
+        id
+        title
+        content
+        seo {
+          fullHead
+          title
+          metaDesc
+        }
+      }
+    }
+  }
+`;
 
 export async function generateMetadata(): Promise<Metadata> {
   const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
-    print(SeoQuery),
-    { slug: HOMEPAGE_SLUG, idType: "URI" }
+    print(HOME_QUERY),
+    { uri: "/home/" }
   );
 
   if (!contentNode) return { title: "Home" };
-
   return setSeoData({ seo: contentNode.seo });
 }
 
 export default async function Home() {
-  const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
-    print(ContentInfoQuery),
-    { slug: HOMEPAGE_SLUG, idType: "URI" }
+  // 2. Try fetching with Slashes (Standard WPGraphQL)
+  let { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
+    print(HOME_QUERY),
+    { uri: "/home/" }
   );
 
-  // If the 'home' page doesn't exist in WordPress, this will show 404
+  // 3. Fallback: If failed, try without slashes
+  if (!contentNode) {
+    console.log("Retrying home query without slashes...");
+    const retry = await fetchGraphQL<{ contentNode: ContentNode }>(
+      print(HOME_QUERY),
+      { uri: "home" }
+    );
+    contentNode = retry.contentNode;
+  }
+
+  // 4. If still nothing, show 404
   if (!contentNode) return notFound();
 
-  return <PageTemplate node={contentNode} />;
+  // 5. RENDER DIRECTLY (Bypassing Template to ensure content shows)
+  return (
+    <main className="container mx-auto py-10 px-5">
+      <h1 className="text-4xl font-bold mb-6">{contentNode.title}</h1>
+      <div 
+        className="prose max-w-none"
+        dangerouslySetInnerHTML={{ __html: contentNode.content || "<p>No content found in WordPress editor.</p>" }} 
+      />
+    </main>
+  );
 }
