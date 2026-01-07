@@ -1,4 +1,4 @@
-// FINAL FIX: Array to String Conversion
+// FINAL FIX: Array to String Conversion + 404 Crash Prevention
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { print } from "graphql/language/printer";
@@ -19,9 +19,13 @@ type Props = {
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
-  // FIX 1: Convert Array to String
   const path = params.slug?.join("/") || "";
   const slug = nextSlugToWpSlug(path);
+
+  // CRITICAL FIX: Stop 404 crash immediately
+  if (slug === "_not-found" || slug === "404") {
+    return { title: "Page Not Found" };
+  }
 
   const isPreview = slug.includes("preview");
 
@@ -33,8 +37,9 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     },
   );
 
+  // CRITICAL FIX: Return default metadata instead of crashing
   if (!contentNode) {
-    return notFound();
+    return { title: "Page Not Found" };
   }
 
   const metadata = setSeoData({ seo: contentNode.seo });
@@ -53,7 +58,6 @@ export function generateStaticParams() {
 
 export default async function Page(props: Props) {
   const params = await props.params;
-  // FIX 2: Convert Array to String here too
   const path = params.slug?.join("/") || "";
   const slug = nextSlugToWpSlug(path);
 
