@@ -10,7 +10,7 @@ import { SeoQuery } from "@/queries/general/SeoQuery";
 import { setSeoData } from "@/utils/seoData";
 
 // This tells the code to fetch the content from the WordPress page with slug 'home'
-const HOMEPAGE_SLUG = "home"; 
+const HOMEPAGE_SLUG = "/home/"; 
 
 export async function generateMetadata(): Promise<Metadata> {
   const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
