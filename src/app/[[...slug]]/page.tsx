@@ -1,3 +1,4 @@
+// FINAL FIX: Array to String Conversion
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { print } from "graphql/language/printer";
@@ -12,17 +13,16 @@ import { nextSlugToWpSlug } from "@/utils/nextSlugToWpSlug";
 import PostTemplate from "@/components/Templates/Post/PostTemplate";
 import { SeoQuery } from "@/queries/general/SeoQuery";
 
-// Updated type for catch-all route
 type Props = {
   params: Promise<{ slug?: string[] }>;
 };
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
-  // FIX: Join the array into a string string
+  // FIX 1: Convert Array to String
   const path = params.slug?.join("/") || "";
   const slug = nextSlugToWpSlug(path);
-  
+
   const isPreview = slug.includes("preview");
 
   const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
@@ -53,7 +53,7 @@ export function generateStaticParams() {
 
 export default async function Page(props: Props) {
   const params = await props.params;
-  // FIX: Join the array here too
+  // FIX 2: Convert Array to String here too
   const path = params.slug?.join("/") || "";
   const slug = nextSlugToWpSlug(path);
 
