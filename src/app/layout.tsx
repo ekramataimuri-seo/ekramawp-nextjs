@@ -8,12 +8,14 @@ import { PreviewNotice } from "@/components/Globals/PreviewNotice/PreviewNotice"
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function RootLayout({
+// CHANGE 1: Added "async" here
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { isEnabled } = draftMode();
+  // CHANGE 2: Added "await" here
+  const { isEnabled } = await draftMode();
 
   return (
     <html lang="en">
