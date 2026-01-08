@@ -3,25 +3,35 @@ import { Inter } from "next/font/google";
 
 import "@/app/globals.css";
 
-import Navigation from "@/components/Globals/Navigation/Navigation";
+// CHANGE 1: Import the new Navbar we just created
+import Navbar from "@/components/Navbar"; 
 import { PreviewNotice } from "@/components/Globals/PreviewNotice/PreviewNotice";
 
 const inter = Inter({ subsets: ["latin"] });
 
-// CHANGE 1: Added "async" here
 export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // CHANGE 2: Added "await" here
   const { isEnabled } = await draftMode();
 
   return (
     <html lang="en">
+      {/* CHANGE 2: Add the <head> section with FontAwesome for the icons */}
+      <head>
+        <link 
+          rel="stylesheet" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+        />
+      </head>
+
       <body className={inter.className}>
         {isEnabled && <PreviewNotice />}
-        <Navigation />
+        
+        {/* CHANGE 3: Swap <Navigation /> with your new <Navbar /> */}
+        <Navbar />
+        
         {children}
       </body>
     </html>
