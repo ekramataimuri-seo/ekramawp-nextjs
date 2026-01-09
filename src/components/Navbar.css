@@ -28,7 +28,6 @@ button { border: none; background: none; cursor: pointer; }
     z-index: 1000;
     box-shadow: none; 
     border-bottom: 1px solid #f0f0f0;
-    /* FIX: Allow menu to overflow */
     overflow: visible !important;
 }
 
@@ -65,8 +64,7 @@ button { border: none; background: none; cursor: pointer; }
     display: flex;
     align-items: center;
     height: 70px;
-    position: relative; /* Anchor for dropdown */
-    /* FIX: Allow menu to overflow */
+    position: relative; 
     overflow: visible !important;
 }
 
@@ -81,37 +79,39 @@ button { border: none; background: none; cursor: pointer; }
     display: flex;
     align-items: center;
     height: 100%;
+    margin-left: 0; /* Ensures it starts exactly after logo */
 }
 
 .nav > li {
     height: 100%;
     display: flex;
     align-items: center;
-    padding: 0 10px;
+    /* FIX: Remove left padding so titles align left, keep right padding for space */
+    padding: 0 25px 0 0; 
     cursor: pointer;
-    position: static; /* Allows menu to stretch full screen */
-    border-bottom: 3px solid transparent; /* Prepare for hover effect */
+    position: static; 
     transition: all 0.2s;
-
 }
+
 .nav > li > a {
     font-family: 'Roboto Flex', sans-serif;
-    margin: 0 0 1em;
-    font-family: inherit;
     font-size: 14px;
-    font-weight: 400;
-    letter-spacing: -.0055em;
+    font-weight: 500; /* Made slightly bolder for readability */
     color: #263A5F; 
-    line-height: 12px;
+    line-height: 1.2;
     transition: color 0.2s;
-    padding: 0 15px;
-    color: #000000;
+    /* FIX: Remove inner padding to tighten alignment */
+    padding: 0; 
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
-/* --- HOVER EFFECT: The Connected Tab --- */
+/* --- HOVER EFFECT: Clean Tab (No Blue Line) --- */
 .nav > li:hover {
-    background-color: #fff; /* White background matches the dropdown */
-    border-bottom: 3px solid #207DE9; /* Blue Line Connection */
+    background-color: #fff; 
+    /* FIX: Removed the border-bottom here */
 }
 
 .nav-arrow { font-size: 11px; color: #889bb0; transition: transform 0.3s ease; }
@@ -123,40 +123,32 @@ button { border: none; background: none; cursor: pointer; }
    1. MEGA MENU (Full Screen Width Fix)
    ========================================= */
 .mega-menu {
-    /* POSITIONING: Sticks exactly to the bottom of the nav bar */
-    position: fixed;
-    top: 100px;
+    position: absolute; /* Changed back to absolute for better flow */
+    top: 100%;
     left: 50%;
     transform: translateX(-50%);
     
-    /* SIZE: 100vw makes it cover the full screen width (left & right) */
     width: 100vw;
-    max-width: none; /* Remove any width limits */
+    max-width: none; 
     
-    /* PADDING: This calculation centers your content to 1400px 
-       while allowing the background to stretch edge-to-edge */
     padding: 30px max(24px, calc((100vw - 1400px) / 2));
     
-    /* VISUALS */
     background-color: #fff;
     border-radius: 0 0 4px 4px;
     
-    /* CONNECTION: Matches the nav hover border */
-    border-top: 3px solid #207DE9;
+    /* FIX: Removed the blue top border */
+    border-top: 1px solid #f0f0f0; 
     
     box-shadow: 0 20px 50px rgba(0,0,0,0.15);
     
-    /* LAYOUT */
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     
-    /* ANIMATION */
     opacity: 0;
     visibility: hidden;
     transition: all 0.2s ease;
     
-    /* LAYERING */
     z-index: 99999;
     max-height: calc(100vh - 80px);
     overflow-y: auto;
@@ -189,6 +181,8 @@ button { border: none; background: none; cursor: pointer; }
     display: flex;
     flex-direction: column;
     transition: all 0.3s ease;
+    /* FIX: Ensure left alignment inside cards */
+    text-align: left; 
 }
 .menu-column-list:hover, .menu-column-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
 
@@ -199,9 +193,9 @@ button { border: none; background: none; cursor: pointer; }
 .link-list a:hover { color: #207DE9; padding-left: 5px; }
 
 .menu-column-card { justify-content: space-between; }
-.card-content h3 { font-size: 18px; font-weight: 800; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 2px solid; line-height: 1.4; }
-.card-content h4 { font-size: 14px; font-weight: 600; margin-bottom: 15px; padding-bottom: 12px; text-align: center; }
-.card-content p { font-size: 13px; color: #4a5568; margin-bottom: 10px; }
+.card-content h3 { font-size: 18px; font-weight: 800; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 2px solid; line-height: 1.4; text-align: left; }
+.card-content h4 { font-size: 14px; font-weight: 600; margin-bottom: 15px; padding-bottom: 12px; text-align: left; /* FIX: Aligned left */ }
+.card-content p { font-size: 13px; color: #4a5568; margin-bottom: 10px; text-align: left; }
 .section-icon { font-size: 32px; margin-bottom: 15px; display: inline-block; }
 
 /* Themes */
