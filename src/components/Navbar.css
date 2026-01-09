@@ -14,6 +14,7 @@ body {
     font-family: var(--font-base-default);
     font-size: 14px;
     font-weight: 400;
+    line-height: 1.5;
     color: var(--dark-blue);
 }
 
@@ -49,6 +50,7 @@ button { border: none; background: none; cursor: pointer; }
     font-size: 10px;
     font-weight: 500;
     color: #ffffff;
+    border-bottom: none;
 }
 
 .top-info-content {
@@ -57,7 +59,10 @@ button { border: none; background: none; cursor: pointer; }
     align-items: center;
 }
 
-.revenue-driven .value { color: #41D48C; font-weight: 700; margin-left: 5px; }
+.revenue-driven .label { color: rgba(255,255,255,0.9); }
+.revenue-driven .value { color: #41D48C; font-weight: 700; margin-left: 5px; } 
+.info-icon { color: rgba(255,255,255,0.7); }
+
 .contact-info .phone-number { color: #ffffff; font-weight: 700; }
 .contact-info .client-login {
     border-right: 1px solid rgba(255,255,255,0.3);
@@ -99,14 +104,14 @@ button { border: none; background: none; cursor: pointer; }
     padding: 0 40px 0 0; /* Right spacing only */
     cursor: pointer;
     position: static; 
-    transition: opacity 0.2s; /* Fade effect instead of background */
+    transition: opacity 0.2s; 
 }
 
 /* Navigation Title Styles */
 .nav > li > a {
     font-family: var(--font-base-default);
     
-    /* CHANGE: Matched font size and weight to list items (14px, 400) */
+    /* Matches list item font weight */
     font-size: 14px;
     font-weight: 400; 
     
@@ -119,16 +124,16 @@ button { border: none; background: none; cursor: pointer; }
     align-items: center;
     gap: 12px; 
     
-    /* CHANGE: Forces single line (No wrapping) */
+    /* Forces single line (No wrapping) */
     white-space: nowrap;
 }
 
 /* Hover State - Clean (No Background) */
 .nav > li:hover {
-    background-color: transparent; /* Removed white background */
+    background-color: transparent; 
 }
 .nav > li:hover > a {
-    color: #207DE9; /* Just change text color to blue */
+    color: #207DE9; /* Blue text on hover */
 }
 .nav-arrow { font-size: 11px; color: #889bb0; transition: transform 0.3s ease; }
 .nav > li:hover .nav-arrow { transform: rotate(180deg); color: #207DE9; }
@@ -148,6 +153,7 @@ button { border: none; background: none; cursor: pointer; }
     
     padding: 45px max(24px, calc((100vw - 1400px) / 2));
     
+    /* Dark Blue Background to match top bar */
     background-color: var(--dark-blue);
     
     border-radius: 0 0 4px 4px;
@@ -209,15 +215,12 @@ button { border: none; background: none; cursor: pointer; }
 }
 .menu-header i { color: #41D48C; }
 
-/* Links (Font Matched to Nav) */
+/* Links (Light Gray) */
 .link-list a { 
     display: block; padding: 10px 0; 
     color: #cbd5e0; 
-    
-    /* CHANGE: Matches Nav Font Settings */
     font-size: 14px; 
     font-weight: 400; 
-    
     transition: 0.2s; 
 }
 .link-list a:hover { color: #ffffff; padding-left: 5px; }
