@@ -102,8 +102,6 @@ button { border: none; background: none; cursor: pointer; }
     letter-spacing: -0.015em;
     line-height: 1.5;
     color: #000000;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
 /* --- HOVER EFFECT: The Connected Tab --- */
