@@ -109,17 +109,13 @@ button { border: none; background: none; cursor: pointer; }
     color: var(--dark-blue); 
     line-height: 1.2;
     transition: color 0.2s;
-    padding: 0;
+    padding: 0 15px;
     text-decoration: none;
     display: flex;
     align-items: center;
     gap: 12px; 
 }
 
-/* Hover State */
-.nav > li:hover {
-    background-color: var(--dark-blue); /* Match the dropdown color */
-}
 .nav > li:hover > a {
     color: #ffffff; /* Text turns white on hover */
 }
