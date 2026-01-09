@@ -156,7 +156,7 @@ font-size: 16px;
 
 
 
-    /* --- Navigatio	n Links (Desktop) --- */
+    /* --- Navigation Links (Desktop) --- */
 
     .nav {
 
@@ -176,7 +176,7 @@ font-size: 16px;
 
         align-items: center;
 
-        padding: 0 15px;
+        padding: 0 20px;
 
         cursor: pointer;
 
@@ -184,25 +184,28 @@ font-size: 16px;
 
     }
 
-/* Update this existing class */
-
 .nav > li > a {
 
    font-family: 'Roboto Flex', sans-serif;
 
-    font-size: 12px;
+    font-size: 16px;
 
     font-weight: 400;
 
     color: #263A5F; 
-line-height: 1.6;
+    
+    line-height: 1.6;
+   
     transition: color 0.2s;
 
     padding: 0 15px;
 
     text-decoration: none;
+    
     display: flex;
-align-items: center;
+    
+    align-items: center;
+    
     gap: 8px;
 
 }
