@@ -97,16 +97,17 @@ button { border: none; background: none; cursor: pointer; }
 
 .nav > li > a {
     font-family: 'Roboto Flex', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
+    font-size: 15px;      /* Reduced from 16px to fit better */
+    font-weight: 500;     /* Made slightly bolder for readability */
     color: #263A5F; 
     line-height: 1.6;
     transition: color 0.2s;
-    padding: 0 15px;
+    padding: 0 12px;      /* Reduced padding from 15px */
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;             /* Reduced gap */
+    white-space: nowrap;  /* <--- CRITICAL: Prevents text from breaking into 2 lines */
 }
 
 /* Arrow Icon */
@@ -131,13 +132,12 @@ button { border: none; background: none; cursor: pointer; }
 /* --- MEGA MENU --- */
 .mega-menu {
     position: absolute;
-    top: 100%;
+    top: 100%;             /* Starts exactly at the bottom of the 70px header */
     left: 50%;
-    transform: translateX(-50%) translateY(10px);
+    transform: translateX(-50%) translateY(0); /* Removed the 10px offset for smoother alignment */
     width: 98vw;            
     max-width: 1250px;      
     padding: 30px;          
-    border: 0px solid #eaeaea;
     border-radius: 4px;
     box-shadow: 0 20px 50px rgba(0,0,0,0.1); 
     display: grid;
@@ -148,9 +148,8 @@ button { border: none; background: none; cursor: pointer; }
     transition: all 0.3s ease;
     z-index: 999;
     background-color: #fff;
-    overflow: visible;         /* Was 'hidden'. Set to visible or auto */
-    overflow-y: auto;          /* Allow vertical scrolling */
-    max-height: calc(100vh - 100px); /* Stop before hitting bottom of screen */
+    overflow-y: auto;                  /* Adds a scrollbar if the menu is too tall */
+    max-height: calc(100vh - 80px);    /* Caps height to screen size minus header */
 }
 
 .mega-menu::before {
