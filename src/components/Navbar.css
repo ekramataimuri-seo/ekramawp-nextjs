@@ -60,7 +60,7 @@ button { border: none; background: none; cursor: pointer; }
 }
 
 .revenue-driven .label { color: var(--dark-blue); }
-.revenue-driven .value { color: var(--dark-blue); font-weight: 900; margin-left: 5px; } 
+.revenue-driven .value { color: #4299e1; font-weight: 900; margin-left: 5px; } 
 .info-icon { color: var(--dark-blue); }
 
 .contact-info .phone-number { color: var(--dark-blue); font-weight: 900; }
@@ -218,7 +218,7 @@ button { border: none; background: none; cursor: pointer; }
 /* Links (Light Gray) */
 .link-list a { 
     display: block; padding: 10px 0; 
-    color: #cbd5e0; 
+    color: #ffffff; 
     font-size: 14px; 
     font-weight: 400; 
     transition: 0.2s; 
@@ -239,7 +239,7 @@ button { border: none; background: none; cursor: pointer; }
 }
 .card-content p { 
     font-size: 13px; 
-    color: #cbd5e0; 
+    color: #ffffff; 
     margin-bottom: 10px; 
 }
 .section-icon { font-size: 32px; margin-bottom: 15px; display: inline-block; color: #41D48C; }
