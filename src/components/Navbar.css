@@ -4,7 +4,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: 'Roboto Flex', sans-serif;
+    font-family: 'Roboto Flex', sans-serif; /* Ensure quotes are used */
     font-size: 16px;
     font-weight: 400;
     line-height: 1.5;
@@ -18,32 +18,33 @@ button { border: none; background: none; cursor: pointer; }
 /* =========================================
    2. HEADER CONTAINER (The "Cut Off" Fix)
    ========================================= */
+/* --- STICKY HEADER --- */
 #ekrama-header-gif-style {
     position: sticky;
     top: 0;
     width: 100%;
     background-color: #ffffff;
-    z-index: 9999; 
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    z-index: 1000;
+    box-shadow: none; 
+    border-bottom: none;
     
-    /* NUCLEAR FIX: Allows the dropdown to spill out of the header */
+    /* NUCLEAR FIX: Allow the menu to hang out of the box */
     overflow: visible !important; 
 }
 
-/* Container for logo and nav */
+/* --- MAIN NAV BAR --- */
 .nav-content-wrapper {
     display: flex;
     align-items: center;
     height: 70px;
-    position: relative; /* This acts as the anchor for the dropdown */
+    position: relative; /* This is the ANCHOR for the menu */
     margin: 0 auto;
     padding: 0 24px;
     max-width: 1400px;
     
-    /* NUCLEAR FIX: Prevents clipping */
-    overflow: visible !important; 
+    /* NUCLEAR FIX: Allow the menu to hang out of the box */
+    overflow: visible !important;
 }
-
 /* =========================================
    3. NAVIGATION LINKS (The "Wrapping" Fix)
    ========================================= */
@@ -57,15 +58,15 @@ button { border: none; background: none; cursor: pointer; }
     height: 100%;
     display: flex;
     align-items: center;
-    padding: 0 12px;
+    padding: 0 10px; /* Reduced padding to fit screen */
     cursor: pointer;
-    position: static; /* Required for the Mega Menu to go full width */
+    position: static; /* Allows mega menu to go full width */
 }
 
 .nav > li > a {
     font-family: 'Roboto Flex', sans-serif;
-    font-size: 15px; 
-    font-weight: 600;
+    font-size: 15px;      /* Slightly smaller to prevent wrapping */
+    font-weight: 600;     /* Bolder for visibility */
     color: #263A5F; 
     line-height: 1.6;
     transition: color 0.2s;
@@ -74,7 +75,7 @@ button { border: none; background: none; cursor: pointer; }
     align-items: center;
     gap: 6px;
     
-    /* PREVENTS TEXT WRAPPING / OVERLAPPING */
+    /* CRITICAL FIX: Forces text to stay on ONE line */
     white-space: nowrap !important; 
 }
 
@@ -91,42 +92,48 @@ button { border: none; background: none; cursor: pointer; }
 }
 
 /* =========================================
-   4. MEGA MENU DROPDOWN (The "Visibility" Fix)
+   4. MEGA MENU DROPDOWN (The "Half Visible" Fix)
    ========================================= */
+
 .mega-menu {
+    /* 1. POSITIONING: Stick to the bottom of the Nav Wrapper */
     position: absolute;
-    top: 100%;              /* Starts exactly at the bottom of the nav bar */
+    top: 100%;              /* 100% means "Start exactly at the bottom edge" */
     left: 50%;
     transform: translateX(-50%);
-    width: 95vw;            
+    
+    /* 2. SIZE & STYLE */
+    width: 98vw;            
     max-width: 1250px;      
     padding: 30px;          
     background-color: #fff;
-    border-radius: 0 0 8px 8px;
+    border-radius: 0 0 4px 4px;
     box-shadow: 0 20px 50px rgba(0,0,0,0.15); 
     
-    /* Layout */
+    /* 3. LAYOUT */
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
     gap: 20px;              
     
-    /* Visibility States */
+    /* 4. ANIMATION */
     opacity: 0;
     visibility: hidden;
-    transition: all 0.25s ease-out;
-    z-index: 10000; 
-
-    /* SCROLL FIX: Prevents menu from being cut off at bottom of screen */
-    max-height: calc(100vh - 120px); 
-    overflow-y: auto; 
+    transition: all 0.2s ease;
+    
+    /* 5. Z-INDEX: Must be higher than the titles */
+    z-index: 99999;
+    
+    /* 6. SCROLLING (Prevent Cut-off) */
+    max-height: calc(100vh - 150px); 
+    overflow-y: auto;
 }
-
 /* Background Image */
 .mega-menu::before {
     content: "";
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(rgba(244, 249, 255, 0.92), rgba(244, 249, 255, 0.92)), 
+    /* Update this image path if needed */
+    background: linear-gradient(rgba(244, 249, 255, 0.9), rgba(244, 249, 255, 0.9)), 
                 url('/SEO-Doodle-ekrama-SEO-Real-Estate.webp');
     background-size: cover;
     z-index: -1;
@@ -137,7 +144,6 @@ button { border: none; background: none; cursor: pointer; }
 .nav > li:hover .mega-menu {
     opacity: 1;
     visibility: visible;
-    transform: translateX(-50%) translateY(0);
 }
 
 /* =========================================
@@ -148,6 +154,7 @@ button { border: none; background: none; cursor: pointer; }
     flex-direction: column;
     margin-right: 30px;
     min-width: 150px;
+    z-index: 1001;
 }
 .logo-text { font-size: 24px; font-weight: 900; color: #263A5F; white-space: nowrap; }
 .tagline { font-size: 10px; font-weight: 500; color: #888; letter-spacing: 0.5px; white-space: nowrap; }
@@ -155,7 +162,7 @@ button { border: none; background: none; cursor: pointer; }
 .top-info-bar {
     background-color: #263A5F;
     padding: 8px 0;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 500;
     color: #ffffff;
 }
@@ -167,6 +174,7 @@ button { border: none; background: none; cursor: pointer; }
     padding: 0 24px;
     max-width: 1400px;
 }
+/* Helper classes for Top Bar text */
 .revenue-driven .value { color: #41D48C; font-weight: 700; margin-left: 5px; }
 .contact-info .client-login {
     border-right: 1px solid rgba(255,255,255,0.3);
@@ -182,56 +190,61 @@ button { border: none; background: none; cursor: pointer; }
 .menu-column-list, .menu-column-card {
     background: #fff;                 
     padding: 20px;
-    border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     height: 100%;                     
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 
 .menu-header {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 800;
     margin-bottom: 15px;
     display: flex;
     align-items: center;
     gap: 10px;
-    color: #263A5F;
+    color: #333;
 }
 .menu-header i { color: #207DE9; }
 
 .link-list a {
     display: block;
     padding: 8px 0;
-    color: #4a5568;
+    color: #555;
     font-size: 14px;
     font-weight: 500;
     transition: 0.2s;
 }
 .link-list a:hover { color: #207DE9; padding-left: 5px; }
 
-.card-content h3 { font-size: 16px; font-weight: 800; margin-bottom: 10px; border-bottom: 2px solid #f7fafc; padding-bottom: 10px; color: #263A5F; }
-.card-content p { font-size: 13px; color: #718096; margin-bottom: 15px; line-height: 1.5; }
+/* Card Content */
+.card-content h3 { font-size: 16px; font-weight: 800; margin-bottom: 10px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+.card-content p { font-size: 13px; color: #4a5568; margin-bottom: 10px; line-height: 1.4; }
+.section-icon { font-size: 24px; margin-bottom: 10px; color: #207DE9; }
 
+/* Buttons */
 .btn-blue, .btn-orange {
     display: block;
     width: 100%;
-    padding: 12px 0;
+    padding: 10px 0;
     border-radius: 4px;
     font-weight: 700;
     font-size: 13px;
     text-align: center;
     color: #fff;
-    margin-top: auto;
+    margin-top: 10px;
 }
-.btn-blue { background-color: #207DE9; }
+.btn-blue { background-color: #1D4ED8; }
 .btn-orange { background-color: #3B82F6; }
 
+/* CTA Button in Header */
 .cta-button-nav {
     margin-left: auto;
     background-color: #41D48C;
-    color: #fff !important;
-    padding: 10px 22px;
+    color: #fff;
+    padding: 10px 20px;
     border-radius: 4px;
     font-weight: 700;
     font-size: 14px;
@@ -239,29 +252,31 @@ button { border: none; background: none; cursor: pointer; }
 }
 
 /* =========================================
-   7. MOBILE STYLES
+   7. MOBILE STYLES (Hidden on Desktop)
    ========================================= */
 .hamburger, .mobile-nav-container { display: none; }
 
 @media (max-width: 1024px) {
-    .nav, .cta-button-nav { display: none; } 
+    .nav, .cta-button-nav { display: none; } /* Hide Desktop items */
     .hamburger { display: flex; margin-left: auto; flex-direction: column; gap: 5px; cursor: pointer; }
     .hamburger span { width: 25px; height: 3px; background: #263A5F; }
     
     .mobile-nav-container {
         display: block;
         position: fixed;
-        top: 105px; bottom: 0; left: 0; right: 0;
+        top: 100px; bottom: 0; left: 0; right: 0;
         background: #fff;
         transform: translateX(100%);
-        transition: transform 0.3s ease;
+        transition: transform 0.3s;
         overflow-y: auto;
         padding: 20px;
         z-index: 9999;
     }
     .mobile-nav-container.active { transform: translateX(0); }
-    .mobile-accordion-header { padding: 18px 0; font-weight: 700; display: flex; justify-content: space-between; border-bottom: 1px solid #edf2f7; color: #263A5F; }
-    .mobile-accordion-content { max-height: 0; overflow: hidden; transition: 0.3s; background: #f8fafc; }
-    .mobile-link { display: block; padding: 12px 20px; color: #4a5568; font-size: 14px; }
-    .mobile-btn { background: #41D48C; color: #fff; text-align: center; padding: 15px; border-radius: 4px; margin-top: 20px; display: block; font-weight: 700; }
+    
+    /* Mobile Accordion Logic */
+    .mobile-accordion-header { padding: 15px 0; font-weight: 700; display: flex; justify-content: space-between; border-bottom: 1px solid #eee; }
+    .mobile-accordion-content { max-height: 0; overflow: hidden; transition: 0.3s; }
+    .mobile-link { display: block; padding: 10px 15px; color: #555; }
+    .mobile-btn { background: #41D48C; color: #fff; text-align: center; padding: 12px; border-radius: 4px; margin-top: 20px; display: block; font-weight: 700; }
 }
