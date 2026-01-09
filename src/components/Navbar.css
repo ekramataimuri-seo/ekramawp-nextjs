@@ -123,8 +123,8 @@ button { border: none; background: none; cursor: pointer; }
    1. MEGA MENU (Full Screen Width Fix)
    ========================================= */
 .mega-menu {
-    position: absolute; /* Changed back to absolute for better flow */
-    top: 100%;
+    position: fixed; /* Changed back to absolute for better flow */
+    top: 100px;
     left: 50%;
     transform: translateX(-50%);
     
