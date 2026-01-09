@@ -145,9 +145,7 @@ button { border: none; background: none; cursor: pointer; }
 .mega-menu {
     /* POSITION FIX: Use absolute + top 100% to snap exactly to the header bottom */
     position: fixed;        
-    top: 100%;
     left: 50%;
-    transform: translateX(-50%);
     
     /* SIZING */
     width: 98vw;            
