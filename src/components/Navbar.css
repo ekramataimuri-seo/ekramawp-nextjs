@@ -93,21 +93,15 @@ button { border: none; background: none; cursor: pointer; }
     position: static; /* Allows menu to stretch full screen */
     border-bottom: 3px solid transparent; /* Prepare for hover effect */
     transition: all 0.2s;
+
 }
 
 .nav > li > a {
     font-family: 'Roboto Flex', sans-serif;
-    font-size: 15px;
-    font-weight: 500;
-    color: #263A5F; 
-    line-height: 1.6;
-    transition: color 0.2s;
-    padding: 0;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    white-space: nowrap;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #263A5F;
 }
 
 /* --- HOVER EFFECT: The Connected Tab --- */
