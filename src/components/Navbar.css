@@ -126,10 +126,10 @@ button { border: none; background: none; cursor: pointer; }
    ========================================= */
 .mega-menu {
     /* POSITIONING: Sticks exactly to the bottom of the nav bar */
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: 100px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-100%);
     
     /* SIZE: 100vw makes it cover the full screen width (left & right) */
     width: 100vw;
