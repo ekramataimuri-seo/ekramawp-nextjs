@@ -38,7 +38,7 @@ export default function Navbar() {
 
   return (
     <>
-      header id="ekrama-header-gif-style">
+      <header id="ekrama-header-gif-style">
 
     <div classname="top-info-bar">
 
