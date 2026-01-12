@@ -3,8 +3,8 @@ import "./globals.css";
 import Navbar from "@/components/Navbar"; // <--- 1. IMPORT NAVBAR
 
 export const metadata: Metadata = {
-  title: "Ekrama SEO",
-  description: "Digital Marketing That Drives Revenue",
+  title: "Ekrama Front-End Developement",
+  description: "Web Pixels That Drives Revenue",
 };
 
 export default function RootLayout({
