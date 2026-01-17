@@ -2,13 +2,12 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { print } from "graphql/language/printer";
 import gql from "graphql-tag";
-
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
 import { setSeoData } from "@/utils/seoData";
+import BlockRenderer from "@/components/BlockRenderer"; 
 
-// 1. Define the Query specifically to get CONTENT
-const HOME_QUERY = gql`
-  query HomeQuery($uri: ID!) {
+const PAGE_QUERY = gql`
+  query PageQuery($uri: ID!) {
     contentNode(id: $uri, idType: URI) {
       ... on Page {
         id
@@ -25,42 +24,31 @@ const HOME_QUERY = gql`
 `;
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { contentNode } = await fetchGraphQL<{ contentNode: any }>(
-    print(HOME_QUERY),
-    { uri: "/home/" }
-  );
-
+  const uri = "/home"; 
+  const { contentNode } = await fetchGraphQL<{ contentNode: any }>(print(PAGE_QUERY), { uri });
   if (!contentNode) return { title: "Home" };
   return setSeoData({ seo: contentNode.seo });
 }
 
-export default async function Home() {
-  // 2. Try fetching with Slashes
-  let { contentNode } = await fetchGraphQL<{ contentNode: any }>(
-    print(HOME_QUERY),
-    { uri: "/home/" }
-  );
+export default async function HomePage() {
+  const uri = "/home"; 
 
-  // 3. Fallback: If failed, try without slashes
-  if (!contentNode) {
-    const retry = await fetchGraphQL<{ contentNode: any }>(
-      print(HOME_QUERY),
-      { uri: "home" }
-    );
-    contentNode = retry.contentNode;
-  }
+  const { contentNode } = await fetchGraphQL<{ contentNode: any }>(print(PAGE_QUERY), { uri });
 
-  // 4. If still nothing, show 404
   if (!contentNode) return notFound();
 
-  // 5. RENDER DIRECTLY
   return (
-    <main className="container mx-auto py-10 px-5">
-      <h1 className="text-4xl font-bold mb-6">{contentNode.title}</h1>
-      <div 
-        className="prose max-w-none"
-        dangerouslySetInnerHTML={{ __html: contentNode.content || "<p>No content found in WordPress editor.</p>" }} 
-      />
+    // ✅ FIX: Removed 'container', 'mx-auto', and 'px-5'
+    // Now the Main tag is 100% wide.
+    <main className="w-full min-h-screen">
+      
+      {/* Note: We hid the H1 title because your Hero Section likely has its own H1 */}
+      
+      {/* ✅ FIX: Removed 'prose' wrapper so the Hero can stretch */}
+      <div className="w-full">
+        <BlockRenderer htmlContent={contentNode.content} />
+      </div>
+      
     </main>
   );
 }

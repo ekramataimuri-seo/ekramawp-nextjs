@@ -5,6 +5,7 @@ import gql from "graphql-tag";
 
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
 import { setSeoData } from "@/utils/seoData";
+import BlockRenderer from "@/components/BlockRenderer";
 
 const PAGE_QUERY = gql`
   query PageQuery($uri: ID!) {
@@ -48,12 +49,18 @@ export default async function Page({ params }: { params: any }) {
   if (!contentNode) return notFound();
 
   return (
-    <main className="container mx-auto py-10 px-5">
-      <h1 className="text-4xl font-bold mb-6">{contentNode.title}</h1>
-      <div 
-        className="prose max-w-none"
-        dangerouslySetInnerHTML={{ __html: contentNode.content }} 
-      />
+    // ✅ FIX: Changed to "w-full" (Full Width)
+    // Removed: 'container', 'mx-auto', 'py-10', 'px-5'
+    <main className="w-full min-h-screen">
+      
+      {/* Optional: You can uncomment this if you want standard titles on non-hero pages */}
+      {/* <h1 className="text-4xl font-bold mb-6 px-5 container mx-auto">{contentNode.title}</h1> */}
+      
+      {/* ✅ FIX: Removed 'prose' wrapper so blocks can be full width */}
+      <div className="w-full">
+        <BlockRenderer htmlContent={contentNode.content} />
+      </div>
+      
     </main>
   );
 }
