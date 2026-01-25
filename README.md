@@ -27,10 +27,6 @@ The goal was to move away from heavy, plugin-reliant WordPress themes and build 
 - [The AI-Augmented Engineering Process](#-the-ai-augmented-engineering-process-challenges--solutions)
 - [Installation & Setup](#-installation--setup)
 - [Key Components](#-key-components-implemented)
-- [Contributing](#-contributing)
-- [License](#-license)
-- [Author](#-author)
-
 ---
 
 ##  Tech Stack
@@ -85,7 +81,7 @@ Deploying a Next.js app that relies on a dynamic WordPress backend comes with sp
 
 ---
 
-## ⚡ Installation & Setup
+##  Installation & Setup
 
 Follow these steps to run the project locally.
 
@@ -115,7 +111,7 @@ Follow these steps to run the project locally.
 
 ---
 
-## 🧩 Key Components Implemented
+##  Key Components Implemented
 
 * **`MixedArrowEngine.tsx`**: A mathematical visualization engine that calculates SVG paths for retention/revenue models using trigonometry.
 * **`PentagonServices.tsx`**: An interactive 5-point navigation system with rotating SVG dashed lines.
@@ -124,28 +120,12 @@ Follow these steps to run the project locally.
 
 ---
 
-## 🤝 Contributing
 
-Contributions are welcome!
-1.  Fork the project.
-2.  Create your feature branch (`git checkout -b feature/AmazingFeature`).
-3.  Commit your changes (`git commit -m 'Add some AmazingFeature'`).
-4.  Push to the branch (`git push origin feature/AmazingFeature`).
-5.  Open a Pull Request.
-
----
-
-## 📄 License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
----
 
 ## ✍️ Author
 
 **Ekrama Taimuri**
 * **Role:** Web App & Headless WordPress Front-end Developer
 * **Website:** [https://www.wpfedev.com/](https://www.wpfedev.com/)
-* **Focus:** Bridging the gap between Technical SEO and Modern Web Architecture.
 
 ---
