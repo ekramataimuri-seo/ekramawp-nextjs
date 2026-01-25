@@ -8,28 +8,33 @@
 
 **Live Demo:** [https://www.wpfedev.com/](https://www.wpfedev.com/)
 
-##  Project Overview
+## Project Overview
 
 This project represents a modern, decoupled web architecture designed to combine the content management capabilities of **WordPress** with the performance and interactivity of **Next.js**.
 
 The goal was to move away from heavy, plugin-reliant WordPress themes and build a lean, high-performance frontend that scores 100/100 on Core Web Vitals while retaining the ease of editing for the marketing team.
 
+
+
 ## Key Features
 * **Decoupled CMS:** WordPress (Hostinger) acts strictly as an API; Next.js (Vercel) handles the frontend.
+* **GraphQL-Driven Navigation:** The main menu is not hardcoded. It is fetched dynamically from WordPress (`Appearance > Menus`) via WPGraphQL. This allows the admin to reorder nav items in the CMS and have them instantly update on the Next.js frontend without a rebuild.
 * **Dynamic Component Mapping:** A custom `BlockRenderer` engine converts specific WordPress Gutenberg blocks into interactive React components.
 * **Complex Data Visualization:** Custom-built React engines for interactive graphs (Pentagon, Mixed-Arrow).
 * **Responsive Design:** Fully fluid layouts using Tailwind CSS and `react-slick`.
 
 ---
 
-##  Table of Contents
+## Table of Contents
 - [Tech Stack](#-tech-stack)
 - [The AI-Augmented Engineering Process](#-the-ai-augmented-engineering-process-challenges--solutions)
 - [Installation & Setup](#-installation--setup)
 - [Key Components](#-key-components-implemented)
+- [Author](#-author)
+
 ---
 
-##  Tech Stack
+## Tech Stack
 
 * **Frontend Framework:** Next.js 14 (App Router)
 * **Language:** TypeScript
@@ -43,7 +48,7 @@ The goal was to move away from heavy, plugin-reliant WordPress themes and build 
 
 ## The AI-Augmented Engineering Process (Challenges & Solutions)
 
-This project was built using an **AI-Collaborative workflow**. As the Front-End Engineer, I solve specific migration challenges. Here is a breakdown of the complex technical issues we faced and how we solved them:
+This project was built using an **AI-Collaborative workflow**. As the Front-End Engineer, I solved specific migration challenges. Here is a breakdown of the complex technical issues we faced and how we solved them:
 
 ### 1. The "jQuery to React" Migration
 **The Issue:**
@@ -54,7 +59,7 @@ We needed to port legacy high-fidelity animations (The "Pentagon Engine" and "Mi
 * **SVG Re-architecture:** We converted HTML5 Canvas logic into pure SVG paths calculated dynamically via TypeScript functions, ensuring crisp rendering on all devices.
 * **Result:** A 100% visual match with zero external jQuery dependencies and full type safety.
 
-## 2. The Dynamic Block Renderer
+### 2. The Dynamic Block Renderer
 **The Issue:**
 WordPress sends content as raw HTML strings. We needed a way to inject our complex React components (like the Carousel or Book Flip) into the middle of a blog post or page without hard-coding the page layout in Next.js.
 
@@ -63,25 +68,50 @@ WordPress sends content as raw HTML strings. We needed a way to inject our compl
 * **Interceptor Pattern:** Next.js intercepts this class during the render phase and swaps the HTML `<div>` for the fully interactive `<MixedArrowEngine />` React component.
 * **Result:** The marketing team can drag-and-drop complex interactive apps using the standard WordPress editor.
 
-## 3. CSS Scope Leakage
+### 3. CSS Scope Leakage
 **The Issue:**
 Importing legacy CSS snippets resulted in global namespace pollution, where styles from the "Book Component" were breaking the "Navbar" layout.
 
 **The Solution:**
 * **Scoped Styling:** We utilized Next.js `styled-jsx` and CSS Modules to encapsulate styles. This ensures that class names like `.card` or `.active` only apply to the specific component they belong to, preventing regression bugs.
 
-## 4. Deployment Challenges & Solutions (DevOps)
+### 4. Cloud Development & GitHub Integration (VS Code Online)
+**The Workflow:**
+This entire project was developed using a cloud-native workflow, connecting **VS Code Online (Web)** directly to the **GitHub** repository. This allowed for coding from any device without a local Node.js environment.
+
 **The Issue:**
-Deploying a Next.js app that relies on a dynamic WordPress backend comes with specific production hurdles.
+Connecting a browser-based IDE to a secured GitHub repo caused authentication friction. I frequently faced "Permission Denied" errors when trying to push commits because the browser session would lose the auth token.
 
 **The Solution:**
-* **Image Domain Security:** Configured `next.config.js` to strictly whitelist the Hostinger backend domain to prevent build failures.
-* **Mixed Content (HTTP/HTTPS):** Implemented a regex utility in the API fetcher to force all incoming media URLs to `https`, preventing security blocking on Vercel.
-* **Static Timeout Management:** Implemented `generateStaticParams` for critical pages only, allowing less critical pages to build on-demand (ISR) to avoid hitting Vercel's build timeout limits.
+* **Auth Persistence:** I had to explicitly re-authenticate the GitHub extension in VS Code Web and ensure the repository permissions were set to "Read/Write" in the GitHub OAuth settings.
+* **Result:** A seamless CI/CD pipeline where code written in the browser is pushed to GitHub, which automatically triggers a Vercel deployment.
+
+### 5. Deployment Challenges & The Road to Success (DevOps)
+**The Reality:**
+Deployment was not instant. We faced multiple "Build Failed" errors on Vercel due to the complexity of connecting a secure Headless CMS to a serverless frontend. It took multiple iterations to stabilize the pipeline.
+
+
+
+**The Failures & Fixes:**
+* **The "Missing Variable" Crash:** Initial builds failed silently because the API could not locate the WordPress endpoint.
+    * *The Fix:* We had to manually synchronize 6 specific environment variables (listed below) between the local `.env` and Vercel's production settings.
+* **Image Domain Security:** Next.js refused to optimize images from Hostinger, breaking the build.
+    * *The Fix:* We configured `next.config.js` to strictly whitelist the `NEXT_PUBLIC_WORDPRESS_API_HOSTNAME` to authorize the remote patterns.
+* **Mixed Content (HTTP/HTTPS):** The WPGraphQL API returned `http` links, which Vercel (strictly `https`) blocked.
+    * *The Fix:* I implemented a custom Regex utility in the fetcher to force-rewrite all incoming media URLs to `https` before they hit the frontend.
+* **Static Timeout Management:** Large pages caused build timeouts.
+    * *The Fix:* Implemented `generateStaticParams` for critical pages only, shifting non-critical pages to **ISR (Incremental Static Regeneration)**.
+
+**Custom Domain Configuration (The Switch to Live):**
+* **The Issue:** Vercel assigns a default `project-name.vercel.app` URL, but we needed the site to live at `wpfedev.com` while keeping the WordPress admin at `admin.wpfedev.com`.
+* **The Fix:**
+    1.  I updated the **A Record** in Hostinger's DNS settings to point `wpfedev.com` (root) to Vercel's IP address (`76.76.21.21`).
+    2.  I configured the `admin` subdomain to point strictly to the Hostinger WordPress server.
+    3.  In Vercel Settings > Domains, I added `wpfedev.com` and verified the SSL certificate generation. This successfully decoupled the Frontend (Vercel) from the Backend (Hostinger) on the same domain namespace.
 
 ---
 
-##  Installation & Setup
+## Installation & Setup
 
 Follow these steps to run the project locally.
 
@@ -98,10 +128,28 @@ Follow these steps to run the project locally.
     ```
 
 3.  **Configure Environment Variables**
-    Create a `.env.local` file in the root directory:
+    To connect to the Headless CMS, you must create a `.env.local` file with the following keys.
+    *(Note: In production, these are stored securely in Vercel's Environment Variables panel)*.
+
     ```env
-    NEXT_PUBLIC_WORDPRESS_API_URL=[https://admin.wpfedev.com/graphql](https://admin.wpfedev.com/graphql)
+    # The full URL to your GraphQL endpoint
+    WORDPRESS_API_URL=[https://admin.wpfedev.com/graphql](https://admin.wpfedev.com/graphql)
+    
+    # The backend domain (for Image Optimization whitelist)
+    NEXT_PUBLIC_WORDPRESS_API_HOSTNAME=admin.wpfedev.com
+    
+    # The main WP installation URL
+    NEXT_PUBLIC_WORDPRESS_URL=[https://admin.wpfedev.com](https://admin.wpfedev.com)
+    
+    # The Frontend URL (Vercel)
+    NEXT_PUBLIC_BASE_URL=[https://www.wpfedev.com](https://www.wpfedev.com)
+    
+    # Auth Secrets (Generate random secure strings)
+    HEADLESS_SECRET=your_generated_secret_here
+    WORDPRESS_PREVIEW_SECRET=your_generated_preview_secret
     ```
+    
+    
 
 4.  **Run Development Server**
     ```bash
@@ -111,7 +159,7 @@ Follow these steps to run the project locally.
 
 ---
 
-##  Key Components Implemented
+## Key Components Implemented
 
 * **`MixedArrowEngine.tsx`**: A mathematical visualization engine that calculates SVG paths for retention/revenue models using trigonometry.
 * **`PentagonServices.tsx`**: An interactive 5-point navigation system with rotating SVG dashed lines.
@@ -119,8 +167,6 @@ Follow these steps to run the project locally.
 * **`WPDevCarousel.tsx`**: A responsive `react-slick` slider optimized for "snappy" UX (500ms transition).
 
 ---
-
-
 
 ## ✍️ Author
 
