@@ -173,6 +173,59 @@ If you want to run this project on your own computer:
 
 ---
 
+Here is a detailed, professional README section you can copy and paste directly into your project's `README.md` file. It explains the error, the root cause (security blocking), and the fix.
+
+---
+
+## 🐛 Troubleshooting: GraphQL Schema 405 Error
+
+### **The Issue**
+
+When running `npm run dev`, the development server failed to start, throwing a **"Failed to load schema"** error followed by a `SyntaxError: Unexpected token <`.
+
+**Error Log:**
+
+```bash
+✖ Failed to load schema from https://admin.wpfedev.com/graphql:
+Unexpected response: "<html>\r\n<head><title>405 Not Allowed</title>...
+SyntaxError: Unexpected token '<', "<html>..." is not valid JSON
+
+```
+
+### **Why This Happened**
+
+This project uses `graphql-codegen` to automatically fetch the database schema from WordPress. However, the WordPress server (likely secured by **Wordfence**, **Cloudflare**, or **ModSecurity**) rejected the request because:
+
+1. **Bot Detection:** The Code Generator sends a programmed request (not a browser request), which security plugins often flag as a "bot" or "automated attack."
+2. **Method Restriction:** The server likely blocked the **POST** request used for introspection, returning a **405 Not Allowed** HTML error page instead of the expected JSON data.
+3. **Rate Limiting:** Frequent requests from the local environment triggered a temporary IP block or rate limit.
+
+### **The Solution (Bypass)**
+
+To allow the local development server to run without being blocked by the firewall, we disabled the automatic schema generation step in the `dev` script.
+
+**Change in `package.json`:**
+
+**Before (Blocked):**
+
+```json
+"scripts": {
+  "dev": "graphql-codegen --config codegen.ts && node ./add-ts-nocheck.js && next dev"
+}
+
+```
+
+**After (Fixed):**
+
+```json
+"scripts": {
+  "dev": "next dev"
+}
+
+```
+
+> **Note:** This bypass stops the `405` error and allows the site to run. To regenerate TypeScript types in the future (if the database structure changes), run `npm run codegen` manually or whitelist your IP in the WordPress security settings.
+
 ## 10. Author
 
 **Ekrama Taimuri**
