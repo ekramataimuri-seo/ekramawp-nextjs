@@ -4,8 +4,8 @@
 
 /* Force Light Mode */
 body {
-  background-color: #ffffff;
-  color: #000000;
+background-color: #0E1623; /* Deep Navy/Dark Background */
+  color: #FFFFFF;            /* Base text color becomes white */
 }
 
 /* Optional: Fallback style if Tailwind misses the class */
