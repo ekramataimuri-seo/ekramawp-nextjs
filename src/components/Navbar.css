@@ -1,36 +1,19 @@
 /* =========================================
-   1. FONT IMPORT & VARIABLES
+   NAVBAR SPECIFIC STYLES
+   (Relies on globals.css for fonts and resets)
    ========================================= */
-/* We import the font here so it works immediately */
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@300;400;500;700;900&display=swap');
 
-:root {
-    /* Updated to use Roboto Flex first */
-    --font-base-default: "Roboto Flex", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    --dark-blue: #263A5F; 
-    --light-text: #ffffff;
-    --gray-text: #cbd5e0;
+/* Local Variables for Navbar consistency */
+.nav-container-scope {
+    --nav-bg: #0E1623;        /* Matches Global Dark */
+    --nav-border: rgba(255, 255, 255, 0.1);
+    --nav-text: #ffffff;
+    --nav-text-muted: #cbd5e0;
+    --nav-highlight: #3F5CE0; /* Cobalt */
 }
 
 /* =========================================
-   2. GLOBAL RESET
-   ========================================= */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-    font-family: var(--font-base-default);
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.5;
-    color: var(--dark-blue);
-}
-
-a { text-decoration: none; color: inherit; }
-ul { list-style: none; }
-button { border: none; background: none; cursor: pointer; }
-
-/* =========================================
-   3. HEADER CONTAINERS
+   1. HEADER CONTAINERS
    ========================================= */
 .top-info-content, .nav-content-wrapper {
     margin: 0 auto;
@@ -43,21 +26,21 @@ button { border: none; background: none; cursor: pointer; }
     position: sticky;
     top: 0;
     width: 100%;
-    background-color: #ffffff;
+    background-color: #0E1623; /* Hardcoded to match dark theme */
     z-index: 1000;
     box-shadow: none; 
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     overflow: visible !important; 
 }
 
-/* Top Blue Bar */
+/* Top Bar (Slightly Darker) */
 .top-info-bar {
-    background-color: #ffffff;
+    background-color: #0b111b; 
     padding: 8px 0;
     font-size: 14px;
     font-weight: 900;
-    color: var(--dark-blue);
-    border-bottom: none;
+    color: #cbd5e0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .top-info-content {
@@ -66,20 +49,20 @@ button { border: none; background: none; cursor: pointer; }
     align-items: center;
 }
 
-.revenue-driven .label { color: var(--dark-blue); }
-.revenue-driven .value { color: #4299e1; font-weight: 900; margin-left: 5px; } 
-.info-icon { color: var(--dark-blue); }
+.revenue-driven .label { color: #cbd5e0; }
+.revenue-driven .value { color: #3F5CE0; font-weight: 900; margin-left: 5px; } 
+.info-icon { color: #3F5CE0; }
 
-.contact-info .phone-number { color: var(--dark-blue); font-weight: 900; }
+.contact-info .phone-number { color: #ffffff; font-weight: 900; }
 .contact-info .client-login {
-    border-right: 1px solid var(--dark-blue);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
     padding-right: 15px;
     margin-right: 15px;
-    color: var(--dark-blue);
+    color: #ffffff;
 }
 
 /* =========================================
-   4. NAVIGATION BAR (Restored)
+   2. NAVIGATION BAR
    ========================================= */
 .nav-content-wrapper {
     display: flex;
@@ -92,8 +75,8 @@ button { border: none; background: none; cursor: pointer; }
 .logo-brand {
     display: flex; flex-direction: column; line-height: 1.1; margin-right: 40px; min-width: 180px; z-index: 1001;
 }
-.logo-text { font-size: 24px; font-weight: 900; color: var(--dark-blue); }
-.tagline { font-size: 10px; font-weight: 500; color: #888; letter-spacing: 0.5px; }
+.logo-text { font-size: 24px; font-weight: 900; color: #ffffff; }
+.tagline { font-size: 10px; font-weight: 500; color: #3F5CE0; letter-spacing: 0.5px; }
 
 /* The Nav Container */
 .nav {
@@ -116,14 +99,13 @@ button { border: none; background: none; cursor: pointer; }
 
 /* Navigation Title Styles */
 .nav > li > a {
-    font-family: var(--font-base-default);
-    /* Matching typography */
+    /* Inherit font from globals.css */
     font-size: 14px;
     font-weight: 500;        
     letter-spacing: -0.005em; 
     line-height: 1.5;
     
-    color: var(--dark-blue); 
+    color: #ffffff; 
     transition: color 0.2s;
     padding: 0;
     display: flex;
@@ -134,13 +116,13 @@ button { border: none; background: none; cursor: pointer; }
 
 /* Hover State */
 .nav > li:hover { background-color: transparent; }
-.nav > li:hover > a { color: #207DE9; }
-.nav-arrow { font-size: 11px; color: #889bb0; transition: transform 0.3s ease; }
-.nav > li:hover .nav-arrow { transform: rotate(180deg); color: #207DE9; }
+.nav > li:hover > a { color: #3F5CE0; }
+.nav-arrow { font-size: 11px; color: #cbd5e0; transition: transform 0.3s ease; }
+.nav > li:hover .nav-arrow { transform: rotate(180deg); color: #3F5CE0; }
 
 
 /* =========================================
-   5. MEGA MENU
+   3. MEGA MENU
    ========================================= */
 .mega-menu {
     position: fixed;
@@ -152,11 +134,11 @@ button { border: none; background: none; cursor: pointer; }
     max-width: none;
     padding: 45px max(24px, calc((100vw - 1400px) / 2));
     
-    background-color: var(--dark-blue);
+    background-color: #0E1623; 
     
     border-radius: 0 0 4px 4px;
-    border-top: 1px solid rgba(255,255,255,0.1); 
-    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.1); 
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5); 
     
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -175,7 +157,7 @@ button { border: none; background: none; cursor: pointer; }
     content: "";
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(rgba(38, 58, 95, 0.97), rgba(38, 58, 95, 0.97)), 
+    background: linear-gradient(rgba(14, 22, 35, 0.98), rgba(14, 22, 35, 0.98)), 
                 url('/SEO-Doodle-ekrama-SEO-Real-Estate.webp');
     background-size: cover;
     background-position: center;
@@ -186,11 +168,11 @@ button { border: none; background: none; cursor: pointer; }
 .nav > li:hover .mega-menu { opacity: 1; visibility: visible; }
 
 /* =========================================
-   6. INNER CONTENT
+   4. INNER CONTENT
    ========================================= */
 .menu-column-list, .menu-column-card {
     background: transparent; 
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 4px;
     padding: 25px;
     height: 100%;
@@ -200,19 +182,18 @@ button { border: none; background: none; cursor: pointer; }
     transition: all 0.2s;
 }
 
-.menu-column-list:hover, .menu-column-card:hover { background: rgba(255,255,255,0.05); }
+.menu-column-list:hover, .menu-column-card:hover { background: rgba(255,255,255,0.03); }
 
 .menu-header { 
     font-size: 22px; font-weight: 800; margin-bottom: 25px; 
     display: flex; align-items: center; gap: 10px; 
     color: #ffffff; 
 }
-.menu-header i { color: #41D48C; }
+.menu-header i { color: #3F5CE0; }
 
 .link-list a { 
     display: block; padding: 10px 0; 
-    color: #ffffff; 
-    font-family: var(--font-base-default);
+    color: #cbd5e0; 
     font-size: 14px; 
     font-weight: 500;        
     letter-spacing: -0.005em; 
@@ -225,33 +206,33 @@ button { border: none; background: none; cursor: pointer; }
 
 .card-content h3 { 
     font-size: 18px; font-weight: 800; margin-bottom: 15px; padding-bottom: 15px; 
-    border-bottom: 1px solid rgba(255,255,255,0.2); 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
     color: #ffffff; 
 }
 .card-content h4 { 
     font-size: 14px; font-weight: 600; margin-bottom: 15px; padding-bottom: 12px; 
     color: #ffffff; 
 }
-.card-content p { font-size: 13px; color: #ffffff; margin-bottom: 10px; }
-.section-icon { font-size: 32px; margin-bottom: 15px; display: inline-block; color: #41D48C; }
+.card-content p { font-size: 13px; color: #cbd5e0; margin-bottom: 10px; }
+.section-icon { font-size: 32px; margin-bottom: 15px; display: inline-block; color: #3F5CE0; }
 
 /* Buttons */
 .btn-blue, .btn-orange {
     display: block; width: 100%; padding: 12px 0; margin-top: auto; border-radius: 4px;
     font-weight: 700; font-size: 14px; text-align: center; transition: background 0.3s ease;
 }
-.btn-blue { background-color: #4299e1; color: #fff; }
+.btn-blue { background-color: #3F5CE0; color: #fff; }
 .btn-orange { background-color: #3B82F6; color: #fff; }
 .btn-blue:hover, .btn-orange:hover { filter: brightness(1.1); }
 
 .cta-button-nav {
-    margin-left: auto; background-color: #41D48C !important; color: #fff !important;
+    margin-left: auto; background-color: #3F5CE0 !important; color: #fff !important;
     padding: 10px 24px; border-radius: 4px; font-weight: 700; font-size: 14px; white-space: nowrap; display: inline-block;
 }
-.cta-button-nav:hover { background-color: #36b575 !important; }
+.cta-button-nav:hover { background-color: #344dbd !important; }
 
 /* =========================================
-   7. MOBILE MENU (REPAIRED)
+   5. MOBILE MENU
    ========================================= */
 .hamburger, .mobile-nav-container { display: none; }
 
@@ -259,15 +240,16 @@ button { border: none; background: none; cursor: pointer; }
     .nav, .cta-button-nav { display: none; }
     
     .hamburger { display: flex; flex-direction: column; gap: 5px; margin-left: auto; cursor: pointer; }
-    .hamburger span { width: 25px; height: 3px; background-color: #263A5F; }
+    .hamburger span { width: 25px; height: 3px; background-color: #ffffff; }
     
     .mobile-nav-container {
         display: block; position: fixed; 
-        top: 105px; /* Adjust this if your header height changes */
+        top: 105px; 
         left: 0; width: 100%; height: calc(100vh - 105px);
-        background: #ffffff; overflow-y: auto; padding-bottom: 40px; 
+        background: #0E1623; 
+        overflow-y: auto; padding-bottom: 40px; 
         transform: translateX(100%);
-        transition: transform 0.3s ease; z-index: 998; border-top: 1px solid #eee;
+        transition: transform 0.3s ease; z-index: 998; border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
     .mobile-nav-container.active { transform: translateX(0); }
 
@@ -277,33 +259,30 @@ button { border: none; background: none; cursor: pointer; }
         display: flex; 
         justify-content: space-between; 
         font-weight: 700; 
-        color: #263A5F; 
-        border-bottom: 1px solid #f0f0f0;
-        background: #ffffff; /* Ensures text is readable */
+        color: #ffffff; 
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        background: #0E1623; 
     }
 
-    /* THE FIX: Dropdown content logic */
+    /* Dropdown content logic */
     .mobile-accordion-content {
-        display: none;      /* Hidden by default */
-        background: #f9f9f9; /* Contrast color so it looks like a sub-menu */
+        display: none;      
+        background: #0b111b; 
     }
 
-    /* This class is added by React when you click the header */
-    .mobile-accordion-content.open {
-        display: block;     /* Forces the menu to push items below it down */
-    }
+    .mobile-accordion-content.open { display: block; }
 
     .mobile-link { 
         display: block; 
         padding: 12px 40px; 
-        color: #555; 
+        color: #cbd5e0; 
         font-size: 14px; 
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
     }
 
     .mobile-cta-wrapper { padding: 24px; text-align: center; }
     .mobile-btn { 
-        display: block; width: 100%; background-color: #41D48C; 
+        display: block; width: 100%; background-color: #3F5CE0; 
         color: #fff; padding: 14px; font-weight: 700; 
         border-radius: 4px; margin-top: 10px; 
     }
@@ -316,8 +295,8 @@ button { border: none; background: none; cursor: pointer; }
 }
 .header-scrolled {
     position: fixed !important; top: 0; left: 0; width: 100%; 
-    background-color: #ffffff;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important; 
+    background-color: #0E1623; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2) !important; 
     animation: slideDownFade 0.4s ease-out forwards;
 }
 .header-scrolled .top-info-bar { display: none; }
