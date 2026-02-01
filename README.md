@@ -173,10 +173,6 @@ If you want to run this project on your own computer:
 
 ---
 
-Here is a detailed, professional README section you can copy and paste directly into your project's `README.md` file. It explains the error, the root cause (security blocking), and the fix.
-
----
-
 ## 🐛 Troubleshooting: GraphQL Schema 405 Error
 
 ### **The Issue**
