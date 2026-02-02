@@ -43,8 +43,7 @@ const approachData = {
 
 export const EngineeringApproach = () => {
   const [activeTab, setActiveTab] = useState("performance");
-  const activeContent = approachData[activeTab];
-
+const activeContent = approachData[activeTab as keyof typeof approachData];
   return (
     <section 
       className="w-full pt-16 pb-16 relative overflow-hidden"
