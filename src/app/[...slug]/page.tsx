@@ -24,14 +24,25 @@ const PAGE_QUERY = gql`
   }
 `;
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string[] }> }): Promise<Metadata> {
-  const resolvedParams = await params;
-  const uri = `/${resolvedParams.slug.join("/")}/`;
-  
+async function getPageData(uri: string) {
   const { contentNode } = await fetchGraphQL<{ contentNode: any }>(
     print(PAGE_QUERY),
     { uri }
   );
+  return contentNode;
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string[] }> }): Promise<Metadata> {
+  const resolvedParams = await params;
+  const slugPath = resolvedParams.slug.join("/");
+  const uri = `/${slugPath}/`;
+  
+  let contentNode = await getPageData(uri);
+  
+  // Fallback for metadata if trailing slash fails
+  if (!contentNode) {
+    contentNode = await getPageData(`/${slugPath}`);
+  }
 
   if (!contentNode) return { title: "Page Not Found" };
   return setSeoData({ seo: contentNode.seo });
@@ -39,28 +50,28 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function Page({ params }: { params: Promise<{ slug: string[] }> }) {
   const resolvedParams = await params;
-  const uri = `/${resolvedParams.slug.join("/")}/`;
+  const slugPath = resolvedParams.slug.join("/");
+  
+  // 1. Try with trailing slash (Matching your WordPress settings)
+  const uriWithSlash = `/${slugPath}/`;
+  let contentNode = await getPageData(uriWithSlash);
 
-  const { contentNode } = await fetchGraphQL<{ contentNode: any }>(
-    print(PAGE_QUERY),
-    { uri }
-  );
+  // 2. Fallback: Try without trailing slash if first attempt returns null
+  if (!contentNode) {
+    console.log(`Retrying without slash for: /${slugPath}`);
+    contentNode = await getPageData(`/${slugPath}`);
+  }
 
-  // --- DEBUG LOG START ---
-  // This will show up in your VS Code terminal when you visit the page
-  console.log(`--- DEBUG FOR URI: ${uri} ---`);
-  console.log("DATA RECEIVED:", JSON.stringify(contentNode, null, 2));
-  // --- DEBUG LOG END ---
+  // --- DEBUG LOG ---
+  console.log(`--- FETCHING CONTENT FOR: ${slugPath} ---`);
+  console.log("FINAL RESULT:", contentNode ? "✅ DATA FOUND" : "❌ STILL NULL");
 
   if (!contentNode) return notFound();
 
   return (
-    <main className="w-full min-h-screen">
+    <main className="w-full min-h-screen bg-[#0a192f]">
       <div className="w-full">
-        {/* Note: If your BlockRenderer uses structured blocks, 
-            passing htmlContent might still result in a blank screen.
-            We are passing contentNode.content (the raw HTML string).
-        */}
+        {/* We pass the content string to your updated BlockRenderer with Fallback support */}
         <BlockRenderer htmlContent={contentNode.content} />
       </div>
     </main>
