@@ -4,7 +4,7 @@ import parse, { domToReact, Element } from 'html-react-parser';
 import Image from 'next/image';
 import React from 'react';
 
-// 👇 IMPORT YOUR NEW HERO COMPONENT
+// Import All Components
 import { HeroHome } from "./HeroHome"; 
 import { AiShiftSection } from "./AiShiftSection";
 import { GeoOverlapSection } from "./GeoOverlapSection";
@@ -20,19 +20,18 @@ import { CodePortfolio } from "./CodePortfolio";
 import { EngineeringSuccess } from "./EngineeringSuccess";
 import { EngineeringApproach } from "./EngineeringApproach";
 import { EngineeringProcess } from "./EngineeringProcess";
-// 1. Define options for the parser
+
 const options = {
   replace: (domNode: any) => {
-    // Check if domNode is an element to access attributes
     if (!(domNode instanceof Element)) return;
 
     const attribs = domNode.attribs;
+    if (!attribs) return;
 
-    // 👇 ADD THIS LINE TEMPORARILY
-if (attribs && attribs.class) { console.log("Found class:", attribs.class); }
+    const className = attribs.class || "";
 
     // --- CASE A: Optimize WordPress Images ---
-    if (domNode.name === 'img' && attribs) {
+    if (domNode.name === 'img') {
       const { src, alt, width, height } = attribs;
       return (
         <Image
@@ -46,96 +45,43 @@ if (attribs && attribs.class) { console.log("Found class:", attribs.class); }
       );
     }
 
-    // --- CASE B: Custom Interactive Blocks (Alert) ---
-    if (attribs && attribs.class && attribs.class.includes('custom-alert')) {
+    // --- CASE B: Custom Sections Mapping ---
+    // These specifically look for your unique section classes
+    if (className.includes('home-hero')) return <HeroHome />;
+    if (className.includes('section-ai-shift')) return <AiShiftSection />;
+    if (className.includes('section-geo-overlap')) return <GeoOverlapSection />;
+    if (className.includes('section-services-tabs')) return <ServicesTabs />;
+    if (className.includes('section-wpdev-carousel')) return <WPDevCarousel />;
+    if (className.includes('section-pentagon-growth')) return <PentagonGrowthEngine />;
+    if (className.includes('section-stats')) return <StatsSection />;
+    if (className.includes('section-aifrontendeveloper-book')) return <AIfrontendeveloperBook />;
+    if (className.includes('section-evolution')) return <EvolutionServices />;
+    if (className.includes('section-market-intel')) return <MarketIntelligence />;
+    if (className.includes('section-master-services')) return <MasterServices />;
+    if (className.includes('section-code-portfolio')) return <CodePortfolio />;
+    if (className.includes('section-engineering-success')) return <EngineeringSuccess />;
+    if (className.includes('section-engineering-approach')) return <EngineeringApproach />;
+    if (className.includes('section-engineering-process')) return <EngineeringProcess />;
+
+    // --- CASE C: THE GLOBAL FIX (Fallback) ---
+    // If it's a standard WordPress block or container, render it normally
+    // This prevents pages from being blank if they don't use custom sections
+    if (domNode.name === 'div' || domNode.name === 'section' || domNode.name === 'p') {
       return (
-        <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 my-4" role="alert">
-          <p className="font-bold">Attention!</p>
-          <p>{domToReact(domNode.children as any)}</p>
-          <button 
-            onClick={() => alert('You clicked the alert!')}
-            className="mt-2 bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-700"
-          >
-            Click Me (JS Test)
-          </button>
-        </div>
+        <domNode.name className={className}>
+          {domToReact(domNode.children as any, options)}
+        </domNode.name>
       );
     }
-
-    // 👇 --- CASE C: HERO HOME SECTION (NEW) ---
-    // If we find a block with class "home-hero", we ignore the text inside
-    // and render your full React Hero Design instead.
-    if (attribs && attribs.class && attribs.class.includes('home-hero')) {
-      return <HeroHome />;
-    }
-    // --- CASE D: AI SHIFT SECTION ---
-// Trigger with class: "section-ai-shift"
-if (attribs && attribs.class && attribs.class.includes('section-ai-shift')) {
-  return <AiShiftSection />;
-}
-// --- CASE E: GEO OVERLAP SECTION ---
-// Trigger with class: "section-geo-overlap"
-if (attribs && attribs.class && attribs.class.includes('section-geo-overlap')) {
-  return <GeoOverlapSection />;
-}
-// --- CASE F: SERVICES TABS ---
-// Trigger with class: "section-services-tabs"
-if (attribs && attribs.class && attribs.class.includes('section-services-tabs')) {
-  return <ServicesTabs />;
-}
-// --- CASE G: WP DEV CAROUSEL ---
-// Trigger with class: "section-wpdev-carousel"
-if (attribs && attribs.class && attribs.class.includes('section-wpdev-carousel')) {
-  return <WPDevCarousel />;
-}
-// --- CASE H: PENTAGON GROWTH ENGINE ---
-// Trigger with class: "section-pentagon-growth"
-if (attribs && attribs.class && attribs.class.includes('section-pentagon-growth')) {
-  return <PentagonGrowthEngine />;
-}
-// --- CASE I: STATS SECTION ---
-// Trigger with class: "section-stats"
-if (attribs && attribs.class && attribs.class.includes('section-stats')) {
-  return <StatsSection />;
-}
-// --- CASE K: AI SEO BOOK ---
-// Trigger with class: "section-aifrontendeveloper-book"
-if (attribs && attribs.class && attribs.class.includes('section-aifrontendeveloper-book')) {
-  return < AIfrontendeveloperBook/>;
-}
-// Trigger with class: "section-evolution"
-if (attribs && attribs.class && attribs.class.includes('section-evolution')) {
-  return <EvolutionServices />;
-}
-// Trigger with class: "section-market-intel"
-if (attribs && attribs.class && attribs.class.includes('section-market-intel')) {
-  return <MarketIntelligence />;
-}
-// Trigger with class: "section-master-services"
-if (attribs && attribs.class && attribs.class.includes('section-master-services')) {
-  return <MasterServices />;
-}
-// Trigger with class: "section-code-portfolio"
-if (attribs && attribs.class && attribs.class.includes('section-code-portfolio')) {
-  return <CodePortfolio />;
-}
-// Trigger with class: "section-engineering-success"
-if (attribs && attribs.class && attribs.class.includes('section-engineering-success')) {
-  return <EngineeringSuccess />;
-}
-// Trigger with class: "section-engineering-approach"
-if (attribs && attribs.class && attribs.class.includes('section-engineering-approach')) {
-  return <EngineeringApproach />;
-}
-// Inside your class checking logic
-if (attribs && attribs.class && attribs.class.includes('section-engineering-process')) {
-  return <EngineeringProcess />;
-}
   },
 };
 
-// 2. Export the component
 export default function BlockRenderer({ htmlContent }: { htmlContent: string }) {
   if (!htmlContent) return null;
-  return <div className="wp-content-renderer">{parse(htmlContent, options)}</div>;
+
+  return (
+    <div className="wp-content-renderer w-full overflow-x-hidden">
+      {parse(htmlContent, options)}
+    </div>
+  );
 }

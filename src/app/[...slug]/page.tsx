@@ -24,9 +24,9 @@ const PAGE_QUERY = gql`
   }
 `;
 
-export async function generateMetadata({ params }: { params: any }): Promise<Metadata> {
-  const slug = (await params).slug;
-  const uri = `/${slug.join("/")}/`;
+export async function generateMetadata({ params }: { params: Promise<{ slug: string[] }> }): Promise<Metadata> {
+  const resolvedParams = await params;
+  const uri = `/${resolvedParams.slug.join("/")}/`;
   
   const { contentNode } = await fetchGraphQL<{ contentNode: any }>(
     print(PAGE_QUERY),
@@ -37,30 +37,32 @@ export async function generateMetadata({ params }: { params: any }): Promise<Met
   return setSeoData({ seo: contentNode.seo });
 }
 
-export default async function Page({ params }: { params: any }) {
-  const slug = (await params).slug;
-  const uri = `/${slug.join("/")}/`;
+export default async function Page({ params }: { params: Promise<{ slug: string[] }> }) {
+  const resolvedParams = await params;
+  const uri = `/${resolvedParams.slug.join("/")}/`;
 
   const { contentNode } = await fetchGraphQL<{ contentNode: any }>(
     print(PAGE_QUERY),
     { uri }
   );
 
+  // --- DEBUG LOG START ---
+  // This will show up in your VS Code terminal when you visit the page
+  console.log(`--- DEBUG FOR URI: ${uri} ---`);
+  console.log("DATA RECEIVED:", JSON.stringify(contentNode, null, 2));
+  // --- DEBUG LOG END ---
+
   if (!contentNode) return notFound();
 
   return (
-    // ✅ FIX: Changed to "w-full" (Full Width)
-    // Removed: 'container', 'mx-auto', 'py-10', 'px-5'
     <main className="w-full min-h-screen">
-      
-      {/* Optional: You can uncomment this if you want standard titles on non-hero pages */}
-      {/* <h1 className="text-4xl font-bold mb-6 px-5 container mx-auto">{contentNode.title}</h1> */}
-      
-      {/* ✅ FIX: Removed 'prose' wrapper so blocks can be full width */}
       <div className="w-full">
+        {/* Note: If your BlockRenderer uses structured blocks, 
+            passing htmlContent might still result in a blank screen.
+            We are passing contentNode.content (the raw HTML string).
+        */}
         <BlockRenderer htmlContent={contentNode.content} />
       </div>
-      
     </main>
   );
 }
