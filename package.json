@@ -1,19 +1,22 @@
 {
   "private": true,
   "scripts": {
-    "dev": "graphql-codegen --config codegen.ts && node ./add-ts-nocheck.js && next dev",
+  "dev": "next dev",
     "build": "graphql-codegen --config codegen.ts && node ./add-ts-nocheck.js && next build",
     "start": "next start",
     "lint": "eslint .",
     "codegen": "graphql-codegen --config codegen.ts && node ./add-ts-nocheck.js"
   },
   "dependencies": {
+    "@types/react-slick": "^0.23.13",
     "graphql": "^16.9.0",
     "graphql-tag": "^2.12.6",
     "html-react-parser": "^5.2.11",
     "next": "latest",
     "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react-dom": "18.3.1",
+    "react-slick": "^0.31.0",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "5.0.0",

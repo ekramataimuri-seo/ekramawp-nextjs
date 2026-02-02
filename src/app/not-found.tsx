@@ -1,59 +1,17 @@
-// FIX: Crash-Proof 404 Page
-import type { Metadata } from "next";
-import { print } from "graphql/language/printer";
-import Link from "next/link";
+import Link from 'next/link';
 
-import { setSeoData } from "@/utils/seoData";
-import { fetchGraphQL } from "@/utils/fetchGraphQL";
-import { ContentNode, Page } from "@/gql/graphql";
-import { PageQuery } from "@/components/Templates/Page/PageQuery";
-import { SeoQuery } from "@/queries/general/SeoQuery";
+export const metadata = {
+  title: "404 - Page Not Found",
+};
 
-const notFoundPageWordPressId = 501;
-
-export async function generateMetadata(): Promise<Metadata> {
-  try {
-    const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
-      print(SeoQuery),
-      { id: notFoundPageWordPressId, idType: "DATABASE_ID" },
-    );
-
-    if (!contentNode) {
-      return { title: "Page Not Found" };
-    }
-
-    const metadata = setSeoData({ seo: contentNode.seo });
-
-    return {
-      ...metadata,
-      alternates: {
-        canonical: `${process.env.NEXT_PUBLIC_BASE_URL}/404-not-found/`,
-      },
-    } as Metadata;
-  } catch (e) {
-    return { title: "Page Not Found" };
-  }
-}
-
-export default async function NotFound() {
-  try {
-    const { page } = await fetchGraphQL<{ page: Page }>(print(PageQuery), {
-      id: notFoundPageWordPressId,
-    });
-
-    if (page?.content) {
-       return <div dangerouslySetInnerHTML={{ __html: page.content }} />;
-    }
-  } catch (e) {
-    // Ignore error and show default
-  }
-
+export default function NotFound() {
   return (
-    <div style={{ padding: "100px", textAlign: "center", fontFamily: "sans-serif" }}>
-      <h1>404 - Page Not Found</h1>
-      <p>The page you are looking for does not exist.</p>
-      <Link href="/" style={{ textDecoration: "underline", color: "blue" }}>
-        Go Home
+    <div className="flex flex-col items-center justify-center min-h-screen text-center px-4">
+      <h1 className="text-6xl font-bold text-blue-600 mb-4">404</h1>
+      <h2 className="text-2xl font-semibold mb-4">Page Not Found</h2>
+      <p className="mb-8 text-gray-600">The page or image you are looking for does not exist.</p>
+      <Link href="/" className="px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition">
+        Return Home
       </Link>
     </div>
   );

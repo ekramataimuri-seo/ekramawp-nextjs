@@ -7,7 +7,19 @@ import React from 'react';
 // 👇 IMPORT YOUR NEW HERO COMPONENT
 import { HeroHome } from "./HeroHome"; 
 import { AiShiftSection } from "./AiShiftSection";
-
+import { GeoOverlapSection } from "./GeoOverlapSection";
+import { ServicesTabs } from "./ServicesTabs";
+import { WPDevCarousel } from "./WPDevCarousel";
+import { PentagonGrowthEngine } from "./PentagonGrowthEngine";
+import { StatsSection } from "./StatsSection";
+import { AIfrontendeveloperBook } from "./AIfrontendeveloperBook";
+import { EvolutionServices } from "./EvolutionServices";
+import { MarketIntelligence } from "./MarketIntelligence";
+import { MasterServices } from "./MasterServices";
+import { CodePortfolio } from "./CodePortfolio";
+import { EngineeringSuccess } from "./EngineeringSuccess";
+import { EngineeringApproach } from "./EngineeringApproach";
+import { EngineeringProcess } from "./EngineeringProcess";
 // 1. Define options for the parser
 const options = {
   replace: (domNode: any) => {
@@ -15,6 +27,9 @@ const options = {
     if (!(domNode instanceof Element)) return;
 
     const attribs = domNode.attribs;
+
+    // 👇 ADD THIS LINE TEMPORARILY
+if (attribs && attribs.class) { console.log("Found class:", attribs.class); }
 
     // --- CASE A: Optimize WordPress Images ---
     if (domNode.name === 'img' && attribs) {
@@ -57,6 +72,64 @@ const options = {
 // Trigger with class: "section-ai-shift"
 if (attribs && attribs.class && attribs.class.includes('section-ai-shift')) {
   return <AiShiftSection />;
+}
+// --- CASE E: GEO OVERLAP SECTION ---
+// Trigger with class: "section-geo-overlap"
+if (attribs && attribs.class && attribs.class.includes('section-geo-overlap')) {
+  return <GeoOverlapSection />;
+}
+// --- CASE F: SERVICES TABS ---
+// Trigger with class: "section-services-tabs"
+if (attribs && attribs.class && attribs.class.includes('section-services-tabs')) {
+  return <ServicesTabs />;
+}
+// --- CASE G: WP DEV CAROUSEL ---
+// Trigger with class: "section-wpdev-carousel"
+if (attribs && attribs.class && attribs.class.includes('section-wpdev-carousel')) {
+  return <WPDevCarousel />;
+}
+// --- CASE H: PENTAGON GROWTH ENGINE ---
+// Trigger with class: "section-pentagon-growth"
+if (attribs && attribs.class && attribs.class.includes('section-pentagon-growth')) {
+  return <PentagonGrowthEngine />;
+}
+// --- CASE I: STATS SECTION ---
+// Trigger with class: "section-stats"
+if (attribs && attribs.class && attribs.class.includes('section-stats')) {
+  return <StatsSection />;
+}
+// --- CASE K: AI SEO BOOK ---
+// Trigger with class: "section-aifrontendeveloper-book"
+if (attribs && attribs.class && attribs.class.includes('section-aifrontendeveloper-book')) {
+  return < AIfrontendeveloperBook/>;
+}
+// Trigger with class: "section-evolution"
+if (attribs && attribs.class && attribs.class.includes('section-evolution')) {
+  return <EvolutionServices />;
+}
+// Trigger with class: "section-market-intel"
+if (attribs && attribs.class && attribs.class.includes('section-market-intel')) {
+  return <MarketIntelligence />;
+}
+// Trigger with class: "section-master-services"
+if (attribs && attribs.class && attribs.class.includes('section-master-services')) {
+  return <MasterServices />;
+}
+// Trigger with class: "section-code-portfolio"
+if (attribs && attribs.class && attribs.class.includes('section-code-portfolio')) {
+  return <CodePortfolio />;
+}
+// Trigger with class: "section-engineering-success"
+if (attribs && attribs.class && attribs.class.includes('section-engineering-success')) {
+  return <EngineeringSuccess />;
+}
+// Trigger with class: "section-engineering-approach"
+if (attribs && attribs.class && attribs.class.includes('section-engineering-approach')) {
+  return <EngineeringApproach />;
+}
+// Inside your class checking logic
+if (attribs && attribs.class && attribs.class.includes('section-engineering-process')) {
+  return <EngineeringProcess />;
 }
   },
 };

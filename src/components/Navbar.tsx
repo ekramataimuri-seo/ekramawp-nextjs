@@ -70,7 +70,7 @@ export default function Navbar() {
                       <span>Languages</span>
                     </div>
                     <div className="link-list">
-                      <a href="https://wpfedev.com/front-end-technologies/HMTL">HTML</a>
+                      <a href="https://wpfedev.com/front-end-technologies/HTML">HTML</a>
                       <a href="https://wpfedev.com/front-end-technologies/CSS">CSS</a>
                       <a href="https://wpfedev.com/front-end-technologies/Javascript">Javascript</a>
                       <a href="https://wpfedev.com/front-end-technologies/page-builders">Page Builders</a>

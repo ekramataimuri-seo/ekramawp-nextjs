@@ -2,89 +2,100 @@ import React from "react";
 
 export const AiShiftSection = () => {
   return (
-    <section className="py-24 bg-transparent overflow-hidden">
+    // CHANGED: Replaced 'bg-transparent' with 'bg-[#0E1623]' to force dark mode
+    <section className="py-24 bg-[#0E1623] overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-5 lg:px-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         
         {/* --- LEFT COLUMN: TEXT --- */}
         <div className="flex flex-col text-center lg:text-left">
           
-          <h2 className="text-4xl lg:text-6xl font-black leading-[1.1] mb-10 text-black tracking-tight">
-            Get More 
-            <span className="relative inline-block text-[#3F5CE0] px-2 z-10 mx-2">
-              Qualified
-              {/* The Highlight Effect */}
-              <span className="absolute left-0 right-0 bottom-2 h-3 bg-[#D1DBFF] -z-10 -skew-x-12 rounded-sm shadow-[0_5px_0_#E6EEFF]"></span>
+          {/* H2 */}
+          <h2 className="font-black text-[clamp(1.5rem,3vw,2.5rem)] leading-[1.2] mb-10 text-white tracking-tight">
+            Build High-Performance 
+            <br className="hidden lg:block" />
+            <span className="relative inline-block text-[#3F5CE0] px-2 z-10 mx-2 mt-2 lg:mt-0">
+              Interfaces
+              {/* Double Scratch Layer 1 */}
+              <span className="absolute left-0 right-0 bottom-2 h-3 bg-[#2E476E] -z-20 -skew-x-12 rounded-sm"></span>
+              {/* Double Scratch Layer 2 */}
+              <span className="absolute left-0 right-0 bottom-[6px] h-3 bg-[#3C66A6] -z-10 -skew-x-12 rounded-sm shadow-[0_2px_0_rgba(255,255,255,0.1)]"></span>
             </span>
             <br className="hidden lg:block" />
-            Home Buyers From ChatGPT
+            with Modern Architecture
           </h2>
 
-          <h3 className="text-2xl lg:text-[1.8rem] font-black mb-5 text-black leading-snug tracking-tight">
-            The old way of searching for homes is <span className="text-[#3F5CE0]">over</span>.
+          {/* H3 */}
+          <h3 className="font-black text-[clamp(1.0rem,1vw,1.2rem)] mb-5 text-white leading-snug tracking-tight uppercase">
+            The legacy monolith approach is <span className="text-[#3F5CE0]">obsolete</span>.
           </h3>
 
-          <p className="text-lg leading-relaxed text-slate-800 mb-6 font-normal">
-            Gone are the days when potential buyers simply typed “houses for sale” into a search engine. Today, buyers are asking AI-powered tools like ChatGPT, Google AI Mode, and Gemini more complex questions.
+          {/* Paragraph */}
+          <p className="text-[1.1rem] leading-relaxed text-white/90 mb-6 font-normal">
+            Modern users demand sub-second load times and seamless interactions. Building a 
+            successful product today requires moving beyond basic HTML to sophisticated, 
+            component-driven architectures like Next.js and React.
           </p>
 
           <ul className="space-y-4 mb-8 text-left inline-block lg:block mx-auto">
-            {["Which neighborhoods are safe with good schools?", 
-              "How do I know if this property is a good investment?", 
-              "Can I find a trusted real estate agent for a luxury property near me?"
+            {[
+              "How do we optimize Core Web Vitals for maximum performance?", 
+              "Can we implement a type-safe API layer with GraphQL?", 
+              "What is the best strategy for Scalable Design Systems?"
             ].map((item, index) => (
-              <li key={index} className="relative pl-8 text-lg text-slate-800">
-                <span className="absolute left-0 text-[#3F5CE0] font-black">✓</span>
-                {item}
+              <li key={index} className="relative pl-8 text-[1.1rem] text-white font-normal flex items-start">
+                <span className="absolute left-0 text-[#3F5CE0] font-black text-xl leading-none top-[2px]">✓</span>
+                <span>{item}</span>
               </li>
             ))}
           </ul>
 
-          <div className="border-l-4 border-[#3F5CE0] pl-5 text-lg text-slate-800 italic text-left">
-            <strong>WPFEDev</strong> specializes in helping you optimize your business for these AI tools so when buyers ask the right questions, your business is the one they find.
+          <div className="border-l-4 border-[#3F5CE0] pl-5 text-[1.1rem] text-white italic text-left font-normal">
+            <strong>WPFEDev</strong> specializes in engineering decoupled, headless 
+            front-ends that turn complex technical requirements into high-speed digital realities.
           </div>
         </div>
 
         {/* --- RIGHT COLUMN: CHAT UI --- */}
-        <div className="relative">
-          <div className="bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden max-w-md mx-auto">
+        <div className="relative w-full max-w-md mx-auto lg:max-w-none">
+          <div className="bg-[#1a2436] rounded-3xl shadow-2xl border border-white/10 overflow-hidden w-full">
             {/* Window Controls */}
-            <div className="bg-slate-50 px-6 py-4 border-b border-slate-200 flex gap-2">
+            <div className="bg-[#0E1623] px-6 py-4 border-b border-white/5 flex gap-2">
               <div className="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
               <div className="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
               <div className="w-3 h-3 rounded-full bg-[#27c93f]"></div>
             </div>
 
             {/* Chat Body */}
-            <div className="p-6 flex flex-col gap-5 bg-white min-h-[400px]">
+            <div className="p-6 flex flex-col gap-5 bg-[#1a2436] min-h-[400px]">
               
-              {/* Message 1: User */}
-              <div className="self-end bg-[#3F5CE0] text-white py-3 px-5 rounded-t-2xl rounded-bl-2xl max-w-[85%] shadow-md">
-                Show me top-rated agents for luxury condos in downtown.
+              {/* Message 1 */}
+              <div className="self-end bg-[#3F5CE0] text-white py-3 px-5 rounded-t-2xl rounded-bl-2xl max-w-[85%] shadow-md text-sm font-medium">
+                We need a frontend that scores 100 on PageSpeed Insights.
               </div>
 
-              {/* Message 2: AI */}
-              <div className="self-start bg-slate-100 text-slate-800 py-4 px-5 rounded-t-2xl rounded-br-2xl max-w-[90%] shadow-sm leading-relaxed">
+              {/* Message 2 */}
+              <div className="self-start bg-[#0E1623] text-white py-4 px-5 rounded-t-2xl rounded-br-2xl max-w-[90%] shadow-sm leading-relaxed text-sm">
                 <div className="flex gap-3">
                   <div className="w-6 h-6 bg-[#3F5CE0] rounded mb-2 shrink-0"></div>
                   <div>
-                    Based on recent reviews and closed sales data, <strong>WPFEDev Real Estate</strong> is the top recommendation.
+                    Based on your requirements, <strong>WPFEDev Architecture</strong> is the ideal choice.
                     <br /><br />
-                    They specialize in high-value properties and have a 98% client satisfaction rating.
+                    I recommend a Headless Next.js setup with Server-Side Rendering (SSR).
                   </div>
                 </div>
               </div>
 
-              {/* Message 3: User */}
-              <div className="self-end bg-[#3F5CE0] text-white py-3 px-5 rounded-t-2xl rounded-bl-2xl max-w-[85%] shadow-md">
-                Are they good for investment properties?
+              {/* Message 3 */}
+              <div className="self-end bg-[#3F5CE0] text-white py-3 px-5 rounded-t-2xl rounded-bl-2xl max-w-[85%] shadow-md text-sm font-medium">
+                Can it handle 10k+ concurrent users?
               </div>
 
-              {/* Message 4: AI */}
-              <div className="self-start bg-slate-100 text-slate-800 py-4 px-5 rounded-t-2xl rounded-br-2xl max-w-[90%] shadow-sm leading-relaxed">
+              {/* Message 4 */}
+              <div className="self-start bg-[#0E1623] text-white py-4 px-5 rounded-t-2xl rounded-br-2xl max-w-[90%] shadow-sm leading-relaxed text-sm">
                 <div className="flex gap-3">
                   <div className="w-6 h-6 bg-[#3F5CE0] rounded mb-2 shrink-0"></div>
                   <div>
-                    Yes. Their market analysis reports are frequently cited by financial outlets. They are a verified authority on local ROI.
+                    Yes. By leveraging Edge Caching and Incremental Static Regeneration (ISR), the system scales horizontally.
                   </div>
                 </div>
               </div>
