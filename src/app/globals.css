@@ -1,5 +1,5 @@
 /* 1. Imports first */
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap');
 
 /* 2. Tailwind Directives */
 @tailwind base;
@@ -9,7 +9,7 @@
 /* 3. Global Variables */
 :root {
   /* Fonts */
-  --font-base-default: "Roboto Flex", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-base-default: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   
   /* Colors */
   --bg-dark: #0E1623;
