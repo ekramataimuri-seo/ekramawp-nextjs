@@ -1,3 +1,6 @@
+// 👇 1. FORCE DYNAMIC: This tells Vercel "Never cache this page, always check WordPress"
+export const dynamic = 'force-dynamic';
+
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { print } from "graphql/language/printer";
@@ -24,10 +27,15 @@ const PAGE_QUERY = gql`
   }
 `;
 
+// Helper function with anti-cache settings
 async function getPageData(uri: string) {
   const { contentNode } = await fetchGraphQL<{ contentNode: any }>(
     print(PAGE_QUERY),
-    { uri }
+    { 
+      uri,
+      // 👇 2. CACHE BUSTER: Ensures the API request itself isn't cached
+      next: { revalidate: 0 } 
+    }
   );
   return contentNode;
 }
@@ -35,11 +43,11 @@ async function getPageData(uri: string) {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string[] }> }): Promise<Metadata> {
   const resolvedParams = await params;
   const slugPath = resolvedParams.slug.join("/");
-  const uri = `/${slugPath}/`;
   
-  let contentNode = await getPageData(uri);
+  // Try with slash first
+  let contentNode = await getPageData(`/${slugPath}/`);
   
-  // Fallback for metadata if trailing slash fails
+  // Fallback
   if (!contentNode) {
     contentNode = await getPageData(`/${slugPath}`);
   }
@@ -52,26 +60,27 @@ export default async function Page({ params }: { params: Promise<{ slug: string[
   const resolvedParams = await params;
   const slugPath = resolvedParams.slug.join("/");
   
-  // 1. Try with trailing slash (Matching your WordPress settings)
+  // --- DEBUG LOG START ---
+  console.log(`\n⚡️ STARTING FRESH FETCH FOR: ${slugPath}`);
+
+  // 1. Try with trailing slash (Standard WordPress)
   const uriWithSlash = `/${slugPath}/`;
   let contentNode = await getPageData(uriWithSlash);
 
-  // 2. Fallback: Try without trailing slash if first attempt returns null
+  // 2. Fallback: Try without trailing slash
   if (!contentNode) {
-    console.log(`Retrying without slash for: /${slugPath}`);
+    console.log(`⚠️  Null with slash. Retrying clean URI: /${slugPath}`);
     contentNode = await getPageData(`/${slugPath}`);
   }
 
-  // --- DEBUG LOG ---
-  console.log(`--- FETCHING CONTENT FOR: ${slugPath} ---`);
-  console.log("FINAL RESULT:", contentNode ? "✅ DATA FOUND" : "❌ STILL NULL");
-
+  // --- DEBUG LOG RESULT ---
+  console.log(`🏁 FINAL RESULT for ${slugPath}:`, contentNode ? "✅ DATA FOUND" : "❌ STILL NULL");
+  
   if (!contentNode) return notFound();
 
   return (
     <main className="w-full min-h-screen bg-[#0a192f]">
       <div className="w-full">
-        {/* We pass the content string to your updated BlockRenderer with Fallback support */}
         <BlockRenderer htmlContent={contentNode.content} />
       </div>
     </main>
