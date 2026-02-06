@@ -173,7 +173,7 @@ If you want to run this project on your own computer:
 
 ---
 
-## 🐛 Troubleshooting: GraphQL Schema 405 Error
+## 9 🐛 Troubleshooting: GraphQL Schema 405 Error
 
 ### **The Issue**
 
@@ -221,8 +221,25 @@ To allow the local development server to run without being blocked by the firewa
 ```
 
 > **Note:** This bypass stops the `405` error and allows the site to run. To regenerate TypeScript types in the future (if the database structure changes), run `npm run codegen` manually or whitelist your IP in the WordPress security settings.
+>
+> ## 🐛 Bug Fixes & Improvements
 
-## 10. Author
+### 1. Server Crash Loop (Turbopack)
+**Issue:** The development server became unresponsive and threw "Negative Time Stamp" errors.
+**Cause:** A `Ctrl + Z` command suspended the Node.js process in the background, locking the port and corrupting the Turbopack cache.
+**Fix:** - Terminated zombie processes (`fuser -k 3000/tcp`).
+- Cleared Next.js cache (`rm -rf .next`).
+- Restarted environment.
+
+### 2. Homepage Routing Strategy
+**Issue:** The homepage (`/`) was returning 404s or incorrect content.
+**Original Approach:** The code queried the URI `/home/`. While this worked, it relied on a specific URL structure.
+**Optimization:** We transitioned to **ID-Based Fetching** for the Homepage.
+- **Old Query:** `nodeByUri(uri: "/home/")`
+- **New Query:** `page(id: "8", idType: DATABASE_ID)`
+**Why:** Fetching by Database ID is more robust. It ensures the Homepage loads the correct content regardless of WordPress permalink settings or slug changes.
+
+## 11. Author
 
 **Ekrama Taimuri**
 * **Role:** Web App & Headless WordPress Developer
