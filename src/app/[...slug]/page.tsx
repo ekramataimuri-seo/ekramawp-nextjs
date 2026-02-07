@@ -1,87 +1,67 @@
-// 👇 1. FORCE DYNAMIC: This tells Vercel "Never cache this page, always check WordPress"
-export const dynamic = 'force-dynamic';
-
-import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { print } from "graphql/language/printer";
 import gql from "graphql-tag";
+import { fetchGraphQL } from "@/lib/wordpress";
+import { BlockRenderer } from "@/components/BlockRenderer";
+import { Metadata } from "next";
 
-import { fetchGraphQL } from "@/utils/fetchGraphQL";
-import { setSeoData } from "@/utils/seoData";
-import BlockRenderer from "@/components/BlockRenderer";
-
+// 1. DYNAMIC QUERY
 const PAGE_QUERY = gql`
-  query PageQuery($uri: ID!) {
-    contentNode(id: $uri, idType: URI) {
+  query PageQuery($uri: String!) {
+    nodeByUri(uri: $uri) {
       ... on Page {
         id
         title
         content
+        slug
         seo {
-          fullHead
-          title
-          metaDesc
+            fullHead
+            title
+            metaDesc
         }
       }
     }
   }
 `;
 
-// Helper function with anti-cache settings
-async function getPageData(uri: string) {
-  const { contentNode } = await fetchGraphQL<{ contentNode: any }>(
-    print(PAGE_QUERY),
-    { 
-      uri,
-      // 👇 2. CACHE BUSTER: Ensures the API request itself isn't cached
-      next: { revalidate: 0 } 
-    }
-  );
-  return contentNode;
+// 2. FIXED INTERFACE: params is now a Promise
+type Props = {
+  params: Promise<{ slug: string[] }>;
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  // 3. FIXED: Await params before using slug
+  const { slug } = await params; 
+  const uri = `/${slug.join("/")}/`; 
+  
+  const data = await fetchGraphQL(print(PAGE_QUERY), { uri });
+  
+  if (!data?.nodeByUri?.seo) return { title: "Ekrama" };
+  return {
+    title: data.nodeByUri.seo.title,
+    description: data.nodeByUri.seo.metaDesc,
+  };
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string[] }> }): Promise<Metadata> {
-  const resolvedParams = await params;
-  const slugPath = resolvedParams.slug.join("/");
-  
-  // Try with slash first
-  let contentNode = await getPageData(`/${slugPath}/`);
-  
-  // Fallback
-  if (!contentNode) {
-    contentNode = await getPageData(`/${slugPath}`);
-  }
+export default async function DynamicPage({ params }: Props) {
+  // 4. FIXED: Await params here too
+  const { slug } = await params;
+  const uri = `/${slug.join("/")}/`;
 
-  if (!contentNode) return { title: "Page Not Found" };
-  return setSeoData({ seo: contentNode.seo });
-}
+  const data = await fetchGraphQL(print(PAGE_QUERY), { uri });
 
-export default async function Page({ params }: { params: Promise<{ slug: string[] }> }) {
-  const resolvedParams = await params;
-  const slugPath = resolvedParams.slug.join("/");
-  
-  // --- DEBUG LOG START ---
-  console.log(`\n⚡️ STARTING FRESH FETCH FOR: ${slugPath}`);
+  if (!data || !data.nodeByUri) return notFound();
 
-  // 1. Try with trailing slash (Standard WordPress)
-  const uriWithSlash = `/${slugPath}/`;
-  let contentNode = await getPageData(uriWithSlash);
-
-  // 2. Fallback: Try without trailing slash
-  if (!contentNode) {
-    console.log(`⚠️  Null with slash. Retrying clean URI: /${slugPath}`);
-    contentNode = await getPageData(`/${slugPath}`);
-  }
-
-  // --- DEBUG LOG RESULT ---
-  console.log(`🏁 FINAL RESULT for ${slugPath}:`, contentNode ? "✅ DATA FOUND" : "❌ STILL NULL");
-  
-  if (!contentNode) return notFound();
+  // ⚠️ CRITICAL FIX: Handle null content
+  // If WordPress returns null for content, we default to an empty string ""
+  // This prevents the "First argument must be a string" crash.
+  const safeContent = data.nodeByUri.content || "";
 
   return (
-    <main className="w-full min-h-screen bg-[#0a192f]">
+    <main className="w-full min-h-screen bg-[#0E1623]">
       <div className="w-full">
-        <BlockRenderer htmlContent={contentNode.content} />
+        {/* Pass the safe, non-null content string */}
+        <BlockRenderer htmlContent={safeContent} />
       </div>
     </main>
   );

@@ -12,27 +12,32 @@
     max-width: 1400px;
 }
 
-/* Sticky Header */
+/* Sticky Header with Gradient Background */
 #ekrama-header-gif-style {
     position: sticky;
     top: 0;
     width: 100%;
-    background-color: #ffffff; 
     z-index: 1000;
-    box-shadow: none; 
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    overflow: visible !important; 
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: visible !important;
+
+    /* --- THEME UPDATE: Dark Gradient --- */
+    background-color: #0E1623;
+    background-image: 
+        radial-gradient(900px 500px at 10% 0%, rgba(124, 92, 255, 0.25), transparent 60%),
+        radial-gradient(800px 500px at 90% 10%, rgba(0, 212, 255, 0.18), transparent 55%);
+    color: #FFFFFF;
 }
 
 /* Top Bar */
 .top-info-bar {
-    background-color: #ffffff;
+    background-color: transparent; /* Transparent to let gradient show */
     padding: 8px 0;
     font-size: 14px;
     font-weight: 900;
-    /* Uses global color variable if available, else hardcoded fallback */
-    color: #263A5F; 
-    border-bottom: none;
+    color: #FFFFFF; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .top-info-content {
@@ -41,16 +46,16 @@
     align-items: center;
 }
 
-.revenue-driven .label { color: #263A5F; }
-.revenue-driven .value { color: #4299e1; font-weight: 900; margin-left: 5px; } 
-.info-icon { color: #263A5F; }
+.revenue-driven .label { color: #FFFFFF; opacity: 0.9; }
+.revenue-driven .value { color: #00ffbf; font-weight: 900; margin-left: 5px; } 
+.info-icon { color: #FFFFFF; opacity: 0.7; }
 
-.contact-info .phone-number { color: #263A5F; font-weight: 900; }
+.contact-info .phone-number { color: #FFFFFF; font-weight: 900; }
 .contact-info .client-login {
-    border-right: 1px solid #263A5F;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
     padding-right: 15px;
     margin-right: 15px;
-    color: #263A5F;
+    color: #FFFFFF;
 }
 
 /* =========================================
@@ -67,9 +72,9 @@
 .logo-brand {
     display: flex; flex-direction: column; line-height: 1.1; margin-right: 40px; min-width: 180px; z-index: 1001;
 }
-/* REMOVED font-family here to inherit Global Font */
-.logo-text { font-size: 24px; font-weight: 900; color: #263A5F; }
-.tagline { font-size: 10px; font-weight: 500; color: #888; letter-spacing: 0.5px; }
+
+.logo-text { font-size: 24px; font-weight: 900; color: #FFFFFF; }
+.tagline { font-size: 10px; font-weight: 500; color: #b0b8c4; letter-spacing: 0.5px; }
 
 /* The Nav Container */
 .nav {
@@ -92,13 +97,11 @@
 
 /* Navigation Title Styles */
 .nav > li > a {
-    /* REMOVED font-family to fix the issue */
     font-size: 14px;
     font-weight: 500;        
     letter-spacing: -0.005em; 
     line-height: 1.5;
-    
-    color: #263A5F; 
+    color: #FFFFFF; 
     transition: color 0.2s;
     padding: 0;
     display: flex;
@@ -109,9 +112,9 @@
 
 /* Hover State */
 .nav > li:hover { background-color: transparent; }
-.nav > li:hover > a { color: #207DE9; }
-.nav-arrow { font-size: 11px; color: #889bb0; transition: transform 0.3s ease; }
-.nav > li:hover .nav-arrow { transform: rotate(180deg); color: #207DE9; }
+.nav > li:hover > a { color: #00ffbf; /* Light Green Accent on hover */ }
+.nav-arrow { font-size: 11px; color: #b0b8c4; transition: transform 0.3s ease; }
+.nav > li:hover .nav-arrow { transform: rotate(180deg); color: #00ffbf; }
 
 
 /* =========================================
@@ -127,11 +130,12 @@
     max-width: none;
     padding: 45px max(24px, calc((100vw - 1400px) / 2));
     
-    background-color: #263A5F;
+    /* Dark Background matching header */
+    background-color: #0E1623;
     
     border-radius: 0 0 4px 4px;
     border-top: 1px solid rgba(255,255,255,0.1); 
-    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -143,19 +147,6 @@
     z-index: 99999;
     max-height: calc(100vh - 80px);
     overflow-y: auto;
-}
-
-/* Background Overlay */
-.mega-menu::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(rgba(38, 58, 95, 0.97), rgba(38, 58, 95, 0.97)), 
-                url('/SEO-Doodle-ekrama-SEO-Real-Estate.webp');
-    background-size: cover;
-    background-position: center;
-    z-index: -1;
-    pointer-events: none;
 }
 
 .nav > li:hover .mega-menu { opacity: 1; visibility: visible; }
@@ -180,34 +171,33 @@
 .menu-header { 
     font-size: 22px; font-weight: 800; margin-bottom: 25px; 
     display: flex; align-items: center; gap: 10px; 
-    color: #ffffff; 
+    color: #FFFFFF; 
 }
 .menu-header i { color: #41D48C; }
 
 .link-list a { 
     display: block; padding: 10px 0; 
-    color: #ffffff; 
-    /* REMOVED font-family here */
+    color: #b0b8c4; 
     font-size: 14px; 
     font-weight: 500;        
     letter-spacing: -0.005em; 
     line-height: 1.5;
     transition: 0.2s; 
 }
-.link-list a:hover { color: #ffffff; padding-left: 5px; }
+.link-list a:hover { color: #FFFFFF; padding-left: 5px; }
 
 .menu-column-card { justify-content: space-between; }
 
 .card-content h3 { 
     font-size: 18px; font-weight: 800; margin-bottom: 15px; padding-bottom: 15px; 
     border-bottom: 1px solid rgba(255,255,255,0.2); 
-    color: #ffffff; 
+    color: #FFFFFF; 
 }
 .card-content h4 { 
     font-size: 14px; font-weight: 600; margin-bottom: 15px; padding-bottom: 12px; 
-    color: #ffffff; 
+    color: #FFFFFF; 
 }
-.card-content p { font-size: 13px; color: #ffffff; margin-bottom: 10px; }
+.card-content p { font-size: 13px; color: #b0b8c4; margin-bottom: 10px; }
 .section-icon { font-size: 32px; margin-bottom: 15px; display: inline-block; color: #41D48C; }
 
 /* Buttons */
@@ -220,10 +210,10 @@
 .btn-blue:hover, .btn-orange:hover { filter: brightness(1.1); }
 
 .cta-button-nav {
-    margin-left: auto; background-color: #41D48C !important; color: #fff !important;
+    margin-left: auto; background-color: #3F5CE0 !important; color: #fff !important;
     padding: 10px 24px; border-radius: 4px; font-weight: 700; font-size: 14px; white-space: nowrap; display: inline-block;
 }
-.cta-button-nav:hover { background-color: #36b575 !important; }
+.cta-button-nav:hover { background-color: #2b41a3 !important; }
 
 /* =========================================
    5. MOBILE MENU
@@ -234,15 +224,23 @@
     .nav, .cta-button-nav { display: none; }
     
     .hamburger { display: flex; flex-direction: column; gap: 5px; margin-left: auto; cursor: pointer; }
-    .hamburger span { width: 25px; height: 3px; background-color: #263A5F; }
+    .hamburger span { width: 25px; height: 3px; background-color: #FFFFFF; }
     
     .mobile-nav-container {
         display: block; position: fixed; 
         top: 105px; 
         left: 0; width: 100%; height: calc(100vh - 105px);
-        background: #ffffff; overflow-y: auto; padding-bottom: 40px; 
+        
+        /* Dark Gradient Mobile BG */
+        background-color: #0E1623;
+        background-image: 
+            radial-gradient(900px 500px at 10% 0%, rgba(124, 92, 255, 0.25), transparent 60%),
+            radial-gradient(800px 500px at 90% 10%, rgba(0, 212, 255, 0.18), transparent 55%);
+            
+        overflow-y: auto; padding-bottom: 40px; 
         transform: translateX(100%);
-        transition: transform 0.3s ease; z-index: 998; border-top: 1px solid #eee;
+        transition: transform 0.3s ease; z-index: 998; 
+        border-top: 1px solid rgba(255,255,255,0.1);
     }
     .mobile-nav-container.active { transform: translateX(0); }
 
@@ -252,15 +250,15 @@
         display: flex; 
         justify-content: space-between; 
         font-weight: 700; 
-        color: #263A5F; 
-        border-bottom: 1px solid #f0f0f0;
-        background: #ffffff; 
+        color: #FFFFFF; 
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        background: transparent; 
     }
 
     /* Dropdown content logic */
     .mobile-accordion-content {
         display: none;      
-        background: #f9f9f9; 
+        background: rgba(0,0,0,0.2); 
     }
 
     .mobile-accordion-content.open { display: block; }
@@ -268,14 +266,18 @@
     .mobile-link { 
         display: block; 
         padding: 12px 40px; 
-        color: #555; 
+        color: #b0b8c4; 
         font-size: 14px; 
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .mobile-link:hover {
+        color: #FFFFFF;
+        background: rgba(255,255,255,0.05);
     }
 
     .mobile-cta-wrapper { padding: 24px; text-align: center; }
     .mobile-btn { 
-        display: block; width: 100%; background-color: #41D48C; 
+        display: block; width: 100%; background-color: #3F5CE0; 
         color: #fff; padding: 14px; font-weight: 700; 
         border-radius: 4px; margin-top: 10px; 
     }
@@ -288,8 +290,8 @@
 }
 .header-scrolled {
     position: fixed !important; top: 0; left: 0; width: 100%; 
-    background-color: #ffffff;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important; 
+    background-color: #0E1623;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important; 
     animation: slideDownFade 0.4s ease-out forwards;
 }
 .header-scrolled .top-info-bar { display: none; }

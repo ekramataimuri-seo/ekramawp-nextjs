@@ -1,10 +1,19 @@
 import type { Metadata } from "next";
+import { Roboto_Flex } from "next/font/google"; // 1. USE NEXT FONT
 import "./globals.css";
-import Navbar from "@/components/Navbar"; // <--- 1. IMPORT NAVBAR
+import Navbar from "@/components/Navbar"; 
+import SmoothScroll from "@/components/SmoothScroll"; 
+
+// 2. CONFIGURE FONT (Prevents White Flashes)
+const roboto = Roboto_Flex({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-roboto",
+});
 
 export const metadata: Metadata = {
-  title: "Ekrama Front-End Developement",
-  description: "Web Pixels That Drives Revenue",
+  title: "Ekrama Front-End Development",
+  description: "Web Pixels That Drive Revenue",
 };
 
 export default function RootLayout({
@@ -13,29 +22,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${roboto.variable}`}>
       <head>
-        {/* --- GOOGLE FONTS --- */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@300;400;500;700;900&display=swap"
-          rel="stylesheet"
-        />
-
-        {/* --- FONT AWESOME ICONS --- */}
+        {/* Font Awesome is fine here, but consider using a React library for icons later */}
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         />
       </head>
       
-      <body>
-        {/* --- 2. DISPLAY NAVBAR HERE --- */}
-        <Navbar />
-        
-        {children}
+      <body className="antialiased bg-[#0E1623] text-white">
+        {/* 3. WRAP CONTENT - If SmoothScroll is the issue, try commenting this out temporarily */}
+        <SmoothScroll>
+          <Navbar />
+          <main>
+            {children}
+          </main>
+        </SmoothScroll>
       </body>
     </html>
   );
 }
+

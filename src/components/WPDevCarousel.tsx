@@ -10,13 +10,13 @@ import "slick-carousel/slick/slick-theme.css";
 export const WPDevCarousel = () => {
   // Slider Settings
   const settings = {
-    dots: true, // Enabled dots for better navigation on dark mode
+    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 2,
     slidesToScroll: 1,
     arrows: true,
-    cssEase: "ease-out",
+    cssEase: "cubic-bezier(0.25, 0.1, 0.25, 1)",
     responsive: [
       {
         breakpoint: 1024,
@@ -24,7 +24,7 @@ export const WPDevCarousel = () => {
       },
       {
         breakpoint: 768,
-        settings: { slidesToShow: 1, arrows: false } // Hide arrows on mobile for cleaner look
+        settings: { slidesToShow: 1, arrows: false }
       }
     ]
   };
@@ -32,45 +32,35 @@ export const WPDevCarousel = () => {
   return (
     <section 
       id="strategy-carousel-isolated"
-      className="relative overflow-hidden"
-      style={{
-        backgroundColor: '#0E1623',
-        backgroundImage: `
-          radial-gradient(900px 500px at 10% 0%, rgba(124, 92, 255, 0.25), transparent 60%),
-          radial-gradient(800px 500px at 90% 10%, rgba(0, 212, 255, 0.18), transparent 55%)
-        `,
-        backgroundAttachment: 'fixed',
-        backgroundRepeat: 'no-repeat'
-      }}
+      className="relative overflow-hidden hardware-accelerated"
     >
-      {/* --- CSS BLOCK --- */}
       <style jsx global>{`
-        /* BRAND SPECIFICATIONS (Dark Theme) */
+        .hardware-accelerated {
+            will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+
         :root { 
             --brand-blue: #3F5CE0; 
             --scratch-1: #2E476E; 
             --scratch-2: #3C66A6; 
             --text-white: #ffffff;
+            --sc-brand: #3F5CE0; 
+            --sc-card-bg: #1a2436; 
+            --sc-text: #ffffff;
+            --sc-border: rgba(255, 255, 255, 0.1); 
+            --sc-radius: 20px;
         }
         
-        /* --- ISOLATION CONTAINER --- */
         #strategy-carousel-isolated {
           display: block; width: 100%; margin: 0 auto; padding: 80px 20px 100px;
           color: var(--text-white);
           box-sizing: border-box; position: relative;
-          
-          /* Dark Mode Variables */
-          --sc-brand: #3F5CE0; 
-          --sc-brand-dark: #2a41a8; 
-          --sc-card-bg: #1a2436; 
-          --sc-text: #ffffff;
-          --sc-border: rgba(255, 255, 255, 0.1); 
-          --sc-radius: 20px;
         }
         
         .header-section { max-width: 900px; margin: 0 auto 60px; text-align: center; padding: 0 20px; position: relative; z-index: 10; }
 
-        /* Main Heading (H2) */
         .main-heading { 
             font-weight: 900; 
             font-size: clamp(2.5rem, 4vw, 3.5rem); 
@@ -79,7 +69,6 @@ export const WPDevCarousel = () => {
             color: var(--brand-blue); 
         }
         
-        /* Highlight Span within H2 */
         .white-highlight {
             position: relative;
             display: inline-block;
@@ -88,7 +77,6 @@ export const WPDevCarousel = () => {
             padding: 0 5px;
         }
 
-        /* Double Scratch Effect */
         .white-highlight::before, 
         .white-highlight::after {
             content: ''; position: absolute; left: 0; width: 100%; z-index: -1; border-radius: 4px;
@@ -98,39 +86,36 @@ export const WPDevCarousel = () => {
         
         .intro-text { font-size: 1.1rem; font-weight: 400; line-height: 1.6; color: var(--text-white); max-width: 700px; margin: 0 auto; }
 
-        /* --- CAROUSEL TRACK --- */
         #strategy-carousel-isolated .slick-list { margin: 0 -15px; padding-top: 25px; padding-bottom: 30px; }
         #strategy-carousel-isolated .slick-slide { padding: 0 15px; height: auto; display: flex !important; }
         #strategy-carousel-isolated .slick-track { display: flex !important; }
 
-        /* --- CARD STYLING (Dark Mode) --- */
         #strategy-carousel-isolated .sc-card {
           background: var(--sc-card-bg); 
           border: 1px solid var(--sc-border); 
-          box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+          box-shadow: 0 4px 10px rgba(0,0,0,0.2); 
           border-radius: var(--sc-radius); 
           padding: 30px; padding-top: 75px; 
           width: 100%; min-height: 520px; height: 100%;
           display: flex; flex-direction: column; justify-content: space-between; position: relative;
-          transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+          transition: transform 0.3s ease, border-color 0.3s ease;
+          transform: translateZ(0); 
+          will-change: transform; 
         }
+
         #strategy-carousel-isolated .sc-card:hover { 
             transform: translateY(-5px); 
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); 
             border-color: var(--sc-brand);
         }
 
-        /* --- BADGE --- */
         #strategy-carousel-isolated .sc-badge {
           position: absolute; top: 0; left: 0; right: 0; margin: 0; padding: 16px 10px;
           background: var(--sc-brand);
           color: #ffffff !important; font-size: 13px; font-weight: 800; text-transform: uppercase;
           letter-spacing: 1.5px; text-align: center; z-index: 10;
           border-radius: var(--sc-radius) var(--sc-radius) 0 0; 
-          box-shadow: 0 4px 15px rgba(63, 92, 224, 0.4);
         }
 
-        /* --- LIST CONTENT --- */
         #strategy-carousel-isolated .sc-card ul { padding-left: 20px; margin: 0; list-style-type: none; text-align: left; }
         #strategy-carousel-isolated .sc-card ul li { 
             margin-bottom: 16px; font-size: 1.05rem; color: var(--text-white); font-weight: 400; line-height: 1.6; 
@@ -141,36 +126,35 @@ export const WPDevCarousel = () => {
         }
         #strategy-carousel-isolated strong { font-weight: 700; color: var(--sc-brand); }
 
-        /* --- STATS --- */
         #strategy-carousel-isolated .sc-stat-row { margin-top: auto; padding-top: 25px; border-top: 1px solid rgba(255,255,255,0.1); text-align: left; }
         #strategy-carousel-isolated .sc-stat-val { font-size: 48px; font-weight: 900; color: var(--sc-brand); line-height: 1; margin-bottom: 8px; }
         #strategy-carousel-isolated .sc-stat-lbl { font-size: 12px; color: rgba(255,255,255,0.7); font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; }
 
-        /* --- ARROWS --- */
         #strategy-carousel-isolated .slick-prev, #strategy-carousel-isolated .slick-next {
           width: 48px; height: 48px; z-index: 100; 
           background-color: var(--sc-card-bg); 
           border: 1px solid var(--sc-border);
-          border-radius: 50%; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); transition: all 0.3s ease;
+          border-radius: 50%; 
+          transition: all 0.2s ease;
+          display: flex !important;
+          align-items: center;
+          justify-content: center;
         }
         #strategy-carousel-isolated .slick-prev:hover, #strategy-carousel-isolated .slick-next:hover { 
             background-color: var(--sc-brand); border-color: var(--sc-brand); 
-            box-shadow: 0 0 15px var(--sc-brand);
         }
         #strategy-carousel-isolated .slick-prev { left: -60px; }
         #strategy-carousel-isolated .slick-next { right: -60px; }
         #strategy-carousel-isolated .slick-prev:before, #strategy-carousel-isolated .slick-next:before {
           font-family: sans-serif !important; font-size: 20px !important; color: var(--sc-text) !important;
-          opacity: 1 !important; transition: color 0.3s ease; line-height: 1;
+          opacity: 1 !important; line-height: 1;
         }
         #strategy-carousel-isolated .slick-prev:before { content: "❮"; }
         #strategy-carousel-isolated .slick-next:before { content: "❯"; }
         
-        /* Dots */
         #strategy-carousel-isolated .slick-dots li button:before { color: var(--text-white); opacity: 0.25; font-size: 12px; }
         #strategy-carousel-isolated .slick-dots li.slick-active button:before { color: var(--brand-blue); opacity: 1; }
 
-        /* --- RESPONSIVE --- */
         @media (max-width: 850px) { #strategy-carousel-isolated .slick-prev { left: -20px; } #strategy-carousel-isolated .slick-next { right: -20px; } }
         @media (max-width: 768px) {
           #strategy-carousel-isolated { padding: 60px 15px; }
@@ -179,29 +163,23 @@ export const WPDevCarousel = () => {
         }
       `}</style>
 
-      {/* --- HEADER --- */}
       <div className="header-section">
-        {/* Subtitle */}
         <span className="block text-[#FFFFFF] font-bold text-sm uppercase tracking-[2px] mb-4">
           Tailored Engineering
         </span>
-
-        {/* H2 */}
         <h2 className="main-heading">
           Technical Solutions for <br />
           <span className="white-highlight"> Modern Digital Business </span>
         </h2>
-        
         <p className="intro-text">
           Architecture is not one-size-fits-all. Whether you are an Agency requiring white-label precision, or an Enterprise needing micro-frontend scalability, I engineer the stack to fit your goals.
         </p>
       </div>
 
-      {/* --- CAROUSEL --- */}
       <div className="max-w-[1000px] mx-auto">
         <Slider {...settings} className="sc-carousel-track">
           
-          {/* SLIDE 1: Agencies */}
+          {/* SLIDE 1 */}
           <div>
             <div className="sc-card">
               <p className="sc-badge">Digital Agencies</p>
@@ -212,7 +190,6 @@ export const WPDevCarousel = () => {
                   <li><strong>Benefit:</strong> I handle the complex engineering; you take the credit. Deliver pixel-perfect Next.js sites without expanding your in-house team.</li>
                 </ul>
               </div>
-              <div className="mt-4 opacity-50 text-xs text-center border border-white/10 p-2 rounded"></div>
               <div className="sc-stat-row">
                 <div className="sc-stat-val">100%</div>
                 <div className="sc-stat-lbl">Brand Fidelity</div>
@@ -220,7 +197,7 @@ export const WPDevCarousel = () => {
             </div>
           </div>
 
-          {/* SLIDE 2: Enterprise */}
+          {/* SLIDE 2 */}
           <div>
             <div className="sc-card">
               <p className="sc-badge">Enterprise & B2B</p>
@@ -231,7 +208,6 @@ export const WPDevCarousel = () => {
                   <li><strong>Benefit:</strong> Decoupled systems that allow independent team deployment, high security, and zero-downtime scalability.</li>
                 </ul>
               </div>
-               <div className="mt-4 opacity-50 text-xs text-center border border-white/10 p-2 rounded"></div>
               <div className="sc-stat-row">
                 <div className="sc-stat-val">99.9%</div>
                 <div className="sc-stat-lbl">System Uptime</div>
@@ -239,7 +215,7 @@ export const WPDevCarousel = () => {
             </div>
           </div>
 
-          {/* SLIDE 3: eCommerce */}
+          {/* SLIDE 3 */}
           <div>
             <div className="sc-card">
               <p className="sc-badge">Headless Commerce</p>
@@ -250,7 +226,6 @@ export const WPDevCarousel = () => {
                   <li><strong>Benefit:</strong> Bypass template limitations. Create custom, high-speed shopping experiences with instant checkout flows.</li>
                 </ul>
               </div>
-              <div className="mt-4 opacity-50 text-xs text-center border border-white/10 p-2 rounded"></div>
               <div className="sc-stat-row">
                 <div className="sc-stat-val">2x</div>
                 <div className="sc-stat-lbl">Conversion Rate</div>
@@ -258,7 +233,7 @@ export const WPDevCarousel = () => {
             </div>
           </div>
 
-          {/* SLIDE 4: Startups */}
+          {/* SLIDE 4 */}
           <div>
             <div className="sc-card">
               <p className="sc-badge">SaaS & Startups</p>
@@ -269,10 +244,6 @@ export const WPDevCarousel = () => {
                   <li><strong>Benefit:</strong> Modular architecture that scales as you grow. Launch your product weeks ahead of competitors with a solid code foundation.</li>
                 </ul>
               </div>
-              <div className="mt-4 opacity-50 text-xs text-center border border-white/10 p-2 rounded">
-
-[Image of MVP Development Cycle]
-</div>
               <div className="sc-stat-row">
                 <div className="sc-stat-val">Fast</div>
                 <div className="sc-stat-lbl">Time-to-Market</div>

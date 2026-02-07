@@ -120,17 +120,13 @@ export const AIfrontendeveloperBook = () => {
 
   return (
     <div className="AISEO-scope" id="AISEOBookComponent">
-      <style>{`
+      <style jsx>{`
         .AISEO-scope {
             --brand-color: #3F5CE0;
             --brand-light: rgba(63, 92, 224, 0.1);
             --success-color: #3F5CE0;
             --txt-main: #FFFFFF;
             --txt-light: #E2E8F0;
-            background: #0E1623;
-            background-image: 
-                radial-gradient(900px 500px at 10% 0%, rgba(124, 92, 255, 0.25), transparent 60%),
-                radial-gradient(800px 500px at 90% 10%, rgba(0, 212, 255, 0.18), transparent 55%);
             padding: 80px 20px;
             display: flex;
             justify-content: center;
@@ -139,21 +135,13 @@ export const AIfrontendeveloperBook = () => {
             width: 100%;
             box-sizing: border-box;
             overflow: hidden;
+            background: #0a0f1a;
         }
 
         .main-wrapper { max-width: 900px; width: 100%; text-align: center; z-index: 2; }
         .header { margin-bottom: 50px; }
-        
-        .subtitle { color: #FFFFFF; font-weight: 900; font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 12px; }
-        
-        .title { 
-            font-size: clamp(1.5rem, 3vw, 2.5rem); 
-            color: #3F5CE0; 
-            margin-bottom: 20px; 
-            font-weight: 900; 
-            line-height: 1.1; 
-            letter-spacing: -0.04em;
-        }
+        .subtitle { color: #FFFFFF; font-weight: 900; font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 12px; text-transform: uppercase; }
+        .title { font-size: clamp(1.5rem, 3vw, 2.5rem); color: #3F5CE0; margin-bottom: 20px; font-weight: 900; line-height: 1.1; letter-spacing: -0.04em; }
 
         .double-scratch {
             position: relative;
@@ -162,14 +150,10 @@ export const AIfrontendeveloperBook = () => {
             z-index: 1;
             padding: 0 4px;
         }
-        .double-scratch::before {
-            content: ''; position: absolute; left: 0; right: 0; bottom: 4px; height: 10px; background: #2e476e; z-index: -2; transform: skewX(-12deg); border-radius: 2px;
-        }
-        .double-scratch::after {
-            content: ''; position: absolute; left: 0; right: 0; bottom: 8px; height: 10px; background: #2e476e; z-index: -1; transform: skewX(-12deg); border-radius: 2px;
-        }
+        .double-scratch::before { content: ''; position: absolute; left: 0; right: 0; bottom: 4px; height: 10px; background: #2e476e; z-index: -2; transform: skewX(-12deg); border-radius: 2px; }
+        .double-scratch::after { content: ''; position: absolute; left: 0; right: 0; bottom: 8px; height: 10px; background: #3C66A6; z-index: -1; transform: skewX(-12deg); border-radius: 2px; }
 
-        .description { color: #FFFFFF; font-size: 1.1rem; line-height: 1.7; font-weight: 400; max-width: 600px; margin: 0 auto; }
+        .description { color: #FFFFFF; font-size: 1.1rem; line-height: 1.7; font-weight: 400; max-width: 600px; margin: 0 auto; opacity: 0.9; }
 
         .book-viewport { perspective: 2000px; margin: 0 auto; width: 100%; height: 750px; position: relative; }
         .book-container { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; }
@@ -180,6 +164,7 @@ export const AIfrontendeveloperBook = () => {
             opacity: 0; pointer-events: none;
             transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.5s;
             transform: rotateY(90deg); transform-origin: center;
+            will-change: transform, opacity;
         }
 
         .spread.active { opacity: 1; pointer-events: all; transform: rotateY(0deg); z-index: 5; }
@@ -198,15 +183,15 @@ export const AIfrontendeveloperBook = () => {
         .scroll-area::-webkit-scrollbar { width: 6px; }
         .scroll-area::-webkit-scrollbar-thumb { background-color: #3F5CE0; border-radius: 10px;}
 
-        .info-title { font-size: clamp(1.0rem, 1vw, 1.2rem); color: #FFFFFF; margin-bottom: 25px; font-weight: 900; text-transform: uppercase; }
+        .info-title { font-size: 1.1rem; color: #FFFFFF; margin-bottom: 25px; font-weight: 900; text-transform: uppercase; }
         .info-item { display: flex; gap: 15px; margin-bottom: 25px; }
         .icon-bg { width: 40px; height: 40px; background: rgba(63, 92, 224, 0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .info-text h3 { font-size: clamp(1.0rem, 1vw, 1.2rem); margin-bottom: 4px; color: #3F5CE0; font-weight: 900; margin-top: 0; }
+        .info-text h3 { font-size: 1.1rem; margin-bottom: 4px; color: #3F5CE0; font-weight: 900; margin-top: 0; }
         .info-text p { font-size: 0.9rem; color: #E2E8F0; line-height: 1.5; margin: 0; font-weight: 400; }
 
         .list-title { font-size: 1.05rem; font-weight: 900; margin-bottom: 20px; color: #FFFFFF; text-transform: uppercase; }
         .feature-list { list-style: none; padding: 0; margin-bottom: 10px; }
-        .feature-list li { font-size: 1.1rem; color: #FFFFFF; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; line-height: 1.4; font-weight: 400; }
+        .feature-list li { font-size: 1rem; color: #FFFFFF; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; line-height: 1.4; font-weight: 400; }
         .feature-list li::before { content: '→'; color: #3F5CE0; font-weight: 900; }
 
         .btn-wrap { margin-top: auto; padding-top: 20px; }
@@ -264,7 +249,7 @@ export const AIfrontendeveloperBook = () => {
                         {step.items.map((item, i) => (
                           <div className="info-item" key={i}>
                             <div className="icon-bg">
-                              <svg width="20" height="20" viewBox="0 0 24 24" fill="#3F5CE0">
+                              <svg width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF">
                                 {item.icon}
                               </svg>
                             </div>
@@ -302,7 +287,7 @@ export const AIfrontendeveloperBook = () => {
             ← Back
           </button>
           <div className="page-counter">
-            Step <span id="pageCurrent">{currentIndex + 1}</span> of {steps.length}
+            Step <span>{currentIndex + 1}</span> of {steps.length}
           </div>
           <button className="nav-trigger next" onClick={handleNext}>
             Next Step →

@@ -4,15 +4,6 @@ export const GeoOverlapSection = () => {
   return (
     <section 
       className="py-24 px-5 relative overflow-hidden"
-      style={{
-        backgroundColor: '#0E1623',
-        backgroundImage: `
-          radial-gradient(900px 500px at 10% 0%, rgba(124, 92, 255, 0.25), transparent 60%),
-          radial-gradient(800px 500px at 90% 10%, rgba(0, 212, 255, 0.18), transparent 55%)
-        `,
-        backgroundAttachment: 'fixed',
-        backgroundRepeat: 'no-repeat'
-      }}
     >
       <div className="max-w-[1200px] mx-auto flex flex-col relative z-10">
         

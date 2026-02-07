@@ -3,7 +3,6 @@
 import React from "react";
 
 export const StatsSection = () => {
-  // Data array for Front End Engineering stats
   const stats = [
     {
       value: "53%",
@@ -24,19 +23,9 @@ export const StatsSection = () => {
   ];
 
   return (
-    <section 
-      className="stats-section relative overflow-hidden"
-      style={{
-        backgroundColor: '#0E1623',
-        backgroundImage: `
-          radial-gradient(900px 500px at 10% 0%, rgba(124, 92, 255, 0.25), transparent 60%),
-          radial-gradient(800px 500px at 90% 10%, rgba(0, 212, 255, 0.18), transparent 55%)
-        `,
-        backgroundAttachment: 'fixed',
-        backgroundRepeat: 'no-repeat'
-      }}
-    >
-      <style>{`
+    <section className="stats-section relative overflow-hidden">
+      {/* ADDED 'jsx' HERE TO PREVENT COMPILATION ERRORS */}
+      <style jsx>{`
         :root {
            --brand-blue: #3F5CE0;
            --scratch-1: #2E476E;
@@ -48,6 +37,7 @@ export const StatsSection = () => {
             width: 100%;
             padding: 80px 20px;
             text-align: center;
+            background: #0a0f1a; /* Ensuring a dark background for contrast */
         }
 
         .stats-container {
@@ -57,7 +47,6 @@ export const StatsSection = () => {
             z-index: 10;
         }
 
-        /* Main Heading (H2) */
         .stats-heading {
             font-weight: 900;
             font-size: clamp(2.5rem, 4vw, 3.5rem);
@@ -67,7 +56,6 @@ export const StatsSection = () => {
             letter-spacing: -1px;
         }
 
-        /* White Highlight Text */
         .white-highlight {
             position: relative;
             display: inline-block;
@@ -76,7 +64,6 @@ export const StatsSection = () => {
             padding: 0 5px;
         }
 
-        /* Double-Scratch Highlight */
         .white-highlight::before, 
         .white-highlight::after {
             content: '';
@@ -102,7 +89,6 @@ export const StatsSection = () => {
             opacity: 1;
         }
 
-        /* Grid Layout */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -111,9 +97,8 @@ export const StatsSection = () => {
             align-items: stretch;
         }
 
-        /* Card Styling */
         .stat-box {
-            background-color: #1a2436; /* Dark Card BG */
+            background-color: #1a2436;
             border: 1px solid rgba(255,255,255,0.1);
             padding: 50px 30px;
             border-radius: 20px;
@@ -131,7 +116,6 @@ export const StatsSection = () => {
             border-color: var(--brand-blue);
         }
 
-        /* Wrapper to align numbers */
         .stat-number-wrapper {
             height: 100px;
             display: flex;
@@ -141,7 +125,6 @@ export const StatsSection = () => {
             margin-bottom: 20px;
         }
 
-        /* Big Stat Numbers */
         .stat-number {
             font-weight: 900;
             font-size: clamp(3.5rem, 5vw, 5rem); 
@@ -152,7 +135,6 @@ export const StatsSection = () => {
             text-shadow: 0 0 30px rgba(63, 92, 224, 0.3);
         }
 
-        /* Description Text */
         .stat-desc {
             font-weight: 500;
             font-size: 1.1rem;
@@ -170,7 +152,6 @@ export const StatsSection = () => {
       `}</style>
       
       <div className="stats-container">
-        {/* Subtitle */}
         <div className="mb-4">
              <span className="text-[#FFFFFF] font-bold text-sm uppercase tracking-[2px]">
                 Market Reality
@@ -182,8 +163,6 @@ export const StatsSection = () => {
           <span className="white-highlight">Cannot Ignore</span>
         </h2>
         
-        
-
         <div className="stats-grid">
           {stats.map((stat, index) => (
             <div className="stat-box" key={index}>

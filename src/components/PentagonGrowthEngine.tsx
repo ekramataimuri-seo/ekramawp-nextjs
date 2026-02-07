@@ -14,13 +14,12 @@ export const PentagonGrowthEngine = () => {
     "bottom-left",  // 4
   ];
 
-  // Data for the 5 Services (Front End Engineering Focus)
+  // Data for the 5 Services
   const services = [
     {
       id: 0,
       label: "Architecture",
       title: "Component Architecture",
-      theme: "blue-theme",
       desc: "We build scalable, atomic design systems. By breaking interfaces down into reusable, isolated components, we ensure your application remains maintainable and consistent as it grows.",
       bullets: [
         "Atomic Design principles for modularity.",
@@ -37,7 +36,6 @@ export const PentagonGrowthEngine = () => {
       id: 1,
       label: "Performance",
       title: "Performance Engineering",
-      theme: "purple-theme",
       desc: "Speed is a feature. We optimize the critical rendering path, leverage Next.js Server Components, and implement edge caching to ensure instant load times and 100/100 Web Vitals.",
       bullets: [
         "Core Web Vitals (LCP, CLS, INP) optimization.",
@@ -54,7 +52,6 @@ export const PentagonGrowthEngine = () => {
       id: 2,
       label: "Headless",
       title: "Headless Integration",
-      theme: "teal-theme",
       desc: "Decouple your data from your display. We architect headless solutions connecting Next.js frontends to WordPress, Shopify, or Contentful backends via secure GraphQL APIs.",
       bullets: [
         "Secure API routes & middleware protection.",
@@ -72,7 +69,6 @@ export const PentagonGrowthEngine = () => {
       id: 3,
       label: "Quality",
       title: "Automated Quality Assurance",
-      theme: "indigo-theme",
       desc: "We don't ship bugs. Our engineering process includes rigid CI/CD pipelines, automated unit testing, and end-to-end (E2E) testing to catch regressions before deployment.",
       bullets: [
         "Jest & React Testing Library for units.",
@@ -89,7 +85,6 @@ export const PentagonGrowthEngine = () => {
       id: 4,
       label: "UX/UI",
       title: "Interaction Engineering",
-      theme: "navy-theme",
       desc: "We bridge the gap between design and code. Using tools like Framer Motion and GSAP, we create fluid, 60fps animations that delight users without blocking the main thread.",
       bullets: [
         "Smooth, physics-based micro-interactions.",
@@ -108,7 +103,6 @@ export const PentagonGrowthEngine = () => {
   ];
 
   const handleNodeClick = (index: number) => {
-    // If clicking the active one, rotate next. If clicking another, jump to it.
     if (index === activeIndex) {
       setActiveIndex((prev) => (prev + 1) % 5);
     } else {
@@ -118,19 +112,17 @@ export const PentagonGrowthEngine = () => {
 
   return (
     <section 
-      className="fx-pentagon-section relative overflow-hidden"
-      style={{
-        backgroundColor: '#0E1623',
-        backgroundImage: `
-          radial-gradient(900px 500px at 10% 0%, rgba(124, 92, 255, 0.25), transparent 60%),
-          radial-gradient(800px 500px at 90% 10%, rgba(0, 212, 255, 0.18), transparent 55%)
-        `,
-        backgroundAttachment: 'fixed',
-        backgroundRepeat: 'no-repeat'
-      }}
+      // Added 'hardware-accelerated' to force GPU usage
+      className="fx-pentagon-section relative overflow-hidden hardware-accelerated"
     >
-      {/* --- INJECTED CSS (Scoped styles for dark theme) --- */}
-      <style>{`
+      <style jsx>{`
+        /* --- PERFORMANCE & UTILS --- */
+        .hardware-accelerated {
+            will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+
         .fx-pentagon-section { padding: 80px 20px; color: #ffffff; }
 
         .header-section {
@@ -175,6 +167,8 @@ export const PentagonGrowthEngine = () => {
           position: absolute; background: none; border: none; cursor: pointer; 
           display: flex; flex-direction: column; align-items: center; width: 100px; 
           transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); outline: none; z-index: 5; 
+          /* GPU Force for nodes */
+          transform: translateZ(0);
         }
 
         /* Node Positions */
@@ -187,7 +181,9 @@ export const PentagonGrowthEngine = () => {
         .fx-icon-inner { 
           width: 55px; height: 55px; background: #1a2436; border-radius: 50%; 
           display: flex; align-items: center; justify-content: center; 
-          border: 1px solid rgba(255,255,255,0.2); transition: 0.3s; 
+          border: 1px solid rgba(255,255,255,0.2); 
+          /* OPTIMIZATION: Only animate transform/border, removed box-shadow transition */
+          transition: transform 0.3s ease, border-color 0.3s ease;
           box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
         }
         .fx-icon-inner svg { width: 24px; height: 24px; fill: #ffffff; }
@@ -198,27 +194,45 @@ export const PentagonGrowthEngine = () => {
           letter-spacing: 0.5px;
         }
 
-        /* Active State */
+        /* Active State - Optimized */
         .fx-node.is-active .fx-icon-inner { 
-          background: #3F5CE0; border-color: #3F5CE0; transform: scale(1.15); 
-          box-shadow: 0 0 20px rgba(63, 92, 224, 0.5);
+          background: #3F5CE0; 
+          border-color: #3F5CE0; 
+          transform: scale(1.15); 
+          /* REMOVED heavy box-shadow transition. Just set it static or lighter. */
         }
         .fx-node.is-active .fx-icon-inner svg { fill: #ffffff; }
         .fx-node.is-active .fx-node-label { color: #3F5CE0; }
 
-        .fx-content-column { width: 100%; position: relative; z-index: 1; min-height: 400px; }
-        
-        .fx-slide { 
-          display: none; padding: 70px 40px 50px 40px; border-radius: 20px; 
-          border: 1px solid rgba(255,255,255,0.1); opacity: 0; 
-          transition: opacity 0.4s ease; animation: fadeIn 0.5s forwards;
-          background: #1a2436; /* Dark card background */
-          box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        /* Content Column: Fixed height to prevent layout jumps */
+        .fx-content-column { 
+            width: 100%; 
+            position: relative; 
+            z-index: 1; 
+            min-height: 420px; /* Fixed height container */
         }
-        .fx-slide.is-active { display: block; opacity: 1; }
         
-        @keyframes fadeIn { to { opacity: 1; } }
-
+        /* Slides: Absolute positioning to prevent reflow */
+        .fx-slide { 
+          position: absolute;
+          top: 0; left: 0; right: 0;
+          padding: 70px 40px 50px 40px; border-radius: 20px; 
+          border: 1px solid rgba(255,255,255,0.1); 
+          opacity: 0; 
+          /* Use visibility:hidden instead of display:none to keep it in DOM but invisible */
+          visibility: hidden;
+          transition: opacity 0.4s ease, visibility 0.4s ease;
+          background: #1a2436; 
+          box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+          transform: translateZ(0); /* GPU */
+        }
+        
+        .fx-slide.is-active { 
+          opacity: 1; 
+          visibility: visible;
+          position: relative; /* Only the active one takes up flow space */
+        }
+        
         /* Slide Content Typography */
         .fx-slide h3 { 
             font-weight: 900; 
@@ -263,19 +277,15 @@ export const PentagonGrowthEngine = () => {
 
       {/* --- HEADER --- */}
       <div className="header-section">
-        {/* Subtitle */}
         <span className="block text-[#FFFFFF] font-bold text-sm uppercase tracking-[2px] mb-4">
           Integrated Capabilities
         </span>
 
-        {/* H2: Cobalt Base, White Highlight, Double Scratch */}
         <h2 className="text-[clamp(2.5rem,4vw,3.5rem)] font-black leading-[1.1] mb-[25px] text-[#3F5CE0] tracking-tight">
           Services That Build Your <br />
           <span className="relative inline-block text-[#FFFFFF] px-2 z-10 mt-2">
             Digital Empire
-            {/* Double Scratch Layer 1 (Darker Blue) */}
             <span className="absolute left-0 right-0 bottom-[6px] h-[12px] bg-[#2E476E] -z-20 -skew-x-[12deg] rounded-sm"></span>
-            {/* Double Scratch Layer 2 (Lighter Blue) */}
             <span className="absolute left-0 right-0 bottom-[10px] h-[12px] bg-[#3C66A6] -z-10 -skew-x-[12deg] rounded-sm shadow-[0_2px_0_rgba(255,255,255,0.1)]"></span>
           </span>
         </h2>
@@ -302,8 +312,6 @@ export const PentagonGrowthEngine = () => {
 
             {/* Nodes */}
             {services.map((service, index) => {
-              // Calculate Rotation Position based on activeIndex
-              // Logic: (index - activeIndex + 5) % 5
               const posIndex = (index - activeIndex + 5) % 5;
               const currentPos = positions[posIndex];
               const isActive = index === activeIndex;
@@ -331,7 +339,6 @@ export const PentagonGrowthEngine = () => {
               key={service.id}
               className={`fx-slide ${index === activeIndex ? "is-active" : ""}`}
             >
-              {/* H3 with White text inside Blue Highlight */}
               <h3>{service.title}</h3>
               <p className="fx-description">{service.desc}</p>
               

@@ -299,9 +299,9 @@ export default function Navbar() {
               Front End Tech <i className="fa-solid fa-chevron-down"></i>
             </div>
             <div className={`mobile-accordion-content ${openAccordion === 1 ? "open" : ""}`}>
-              <a href="https://wpfedev.com/front-end-technologies/HMTL" className="mobile-link">HTML</a>
-              <a href="https://wpfedev.com/front-end-technologies/CSS" className="mobile-link">CSS</a>
-              <a href="https://wpfedev.com/front-end-technologies/Javascript" className="mobile-link">Javascript</a>
+              <a href="https://wpfedev.com/front-end-technologies/html" className="mobile-link">HTML</a>
+              <a href="https://wpfedev.com/front-end-technologies/css" className="mobile-link">CSS</a>
+              <a href="https://wpfedev.com/front-end-technologies/javascript" className="mobile-link">Javascript</a>
               <a href="https://wpfedev.com/front-end-technologies/page-builders" className="mobile-link">Page Builders</a>
               <a href="https://wpfedev.com/front-end-technologies/nextjs-with-typescript" className="mobile-link">Next.js with Typescript</a>
               <a href="https://wpfedev.com/front-end-technologies" className="mobile-link" style={{ color: "#207DE9", fontWeight: 600 }}>All Technologies</a>
@@ -392,3 +392,5 @@ export default function Navbar() {
     </>
   );
 }
+
+

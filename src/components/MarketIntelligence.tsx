@@ -60,15 +60,6 @@ export const MarketIntelligence = () => {
   return (
     <div 
       className="w-full py-[80px] px-5 flex flex-col items-center relative overflow-hidden"
-      style={{
-        backgroundColor: '#0E1623',
-        backgroundImage: `
-          radial-gradient(900px 500px at 10% 0%, rgba(124, 92, 255, 0.25), transparent 60%),
-          radial-gradient(800px 500px at 90% 10%, rgba(0, 212, 255, 0.18), transparent 55%)
-        `,
-        backgroundAttachment: 'fixed',
-        backgroundRepeat: 'no-repeat'
-      }}
     >
       
       {/* --- HEADER --- */}
