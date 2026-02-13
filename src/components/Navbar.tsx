@@ -275,10 +275,6 @@ export default function Navbar() {
                   </a>
                 </div>
               </li>
-
-              <li>
-                <a href="https://wpfedev.com/portfolio/">Portfolio</a>
-              </li>
             </ul>
 
             <a href="https://wpfedev.com/contact/" className="cta-button-nav">

@@ -1,297 +1,215 @@
 /* =========================================
-   NAVBAR SPECIFIC STYLES
-   (Relies on inheritance from globals.css for fonts)
+   NAVBAR STYLES (Optimized & Lightweight)
    ========================================= */
 
-/* =========================================
-   1. HEADER CONTAINERS
-   ========================================= */
+/* --- 1. HEADER CONTAINER --- */
+/* Global wrapper for alignment */
 .top-info-content, .nav-content-wrapper {
     margin: 0 auto;
     padding: 0 24px;
     max-width: 1400px;
 }
 
-/* Sticky Header with Gradient Background */
 #ekrama-header-gif-style {
+    /* PERFORMANCE: Native sticky is GPU accelerated */
     position: sticky;
-    top: 0;
+    /* LOGIC: Negative top matches the height of top-bar (40px) + border (1px) */
+    top: -41px; 
     width: 100%;
     z-index: 1000;
+    
+    background-color: #0E1623;
+    color: #FFFFFF;
+    
+    /* VISUALS: Subtle shadow and border */
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    overflow: visible !important;
-
-    /* --- THEME UPDATE: Dark Gradient --- */
-    background-color: #0E1623;
-    background-image: 
-        radial-gradient(900px 500px at 10% 0%, rgba(124, 92, 255, 0.25), transparent 60%),
-        radial-gradient(800px 500px at 90% 10%, rgba(0, 212, 255, 0.18), transparent 55%);
-    color: #FFFFFF;
 }
 
-/* Top Bar */
+/* --- 2. TOP INFO BAR --- */
 .top-info-bar {
-    background-color: transparent; /* Transparent to let gradient show */
-    padding: 8px 0;
+    height: 40px; /* Fixed height for smooth scrolling calculation */
+    background-color: #0E1623; /* Solid color prevents see-through lag */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     font-size: 14px;
     font-weight: 900;
-    color: #FFFFFF; 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: #FFFFFF;
 }
 
 .top-info-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 100%;
 }
 
 .revenue-driven .label { color: #FFFFFF; opacity: 0.9; }
 .revenue-driven .value { color: #00ffbf; font-weight: 900; margin-left: 5px; } 
 .info-icon { color: #FFFFFF; opacity: 0.7; }
 
-.contact-info .phone-number { color: #FFFFFF; font-weight: 900; }
+.contact-info .phone-number { color: #FFFFFF; font-weight: 900; margin-left: 15px; }
 .contact-info .client-login {
     border-right: 1px solid rgba(255, 255, 255, 0.2);
     padding-right: 15px;
-    margin-right: 15px;
     color: #FFFFFF;
 }
 
-/* =========================================
-   2. NAVIGATION BAR
-   ========================================= */
+/* --- 3. NAVIGATION BAR --- */
 .nav-content-wrapper {
     display: flex;
     align-items: center;
     height: 70px;
     position: relative; 
-    overflow: visible !important;
+    background-color: #0E1623; 
 }
 
 .logo-brand {
     display: flex; flex-direction: column; line-height: 1.1; margin-right: 40px; min-width: 180px; z-index: 1001;
 }
-
-.logo-text { font-size: 24px; font-weight: 900; color: #FFFFFF; }
+.logo-text { font-size: 24px; font-weight: 900; color: #FFFFFF; text-decoration: none; }
 .tagline { font-size: 10px; font-weight: 500; color: #b0b8c4; letter-spacing: 0.5px; }
 
-/* The Nav Container */
+/* Nav List */
 .nav {
     display: flex;      
     align-items: center;
     height: 100%;
     margin-left: 0;
+    list-style: none;
+    margin-bottom: 0;
+    padding: 0;
 }
 
-/* Individual Nav Items */
 .nav > li {
     height: 100%;
     display: flex;
     align-items: center;
     padding: 0 40px 0 0; 
     cursor: pointer;
+    /* CRITICAL: Allows absolute positioning of Mega Menu relative to this or header */
     position: static; 
-    transition: opacity 0.2s; 
 }
 
-/* Navigation Title Styles */
 .nav > li > a {
     font-size: 14px;
     font-weight: 500;        
     letter-spacing: -0.005em; 
-    line-height: 1.5;
     color: #FFFFFF; 
-    transition: color 0.2s;
-    padding: 0;
+    text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 12px; 
-    white-space: nowrap;
+    gap: 8px; 
 }
 
-/* Hover State */
-.nav > li:hover { background-color: transparent; }
-.nav > li:hover > a { color: #00ffbf; /* Light Green Accent on hover */ }
-.nav-arrow { font-size: 11px; color: #b0b8c4; transition: transform 0.3s ease; }
+.nav > li:hover > a { color: #00ffbf; }
+.nav-arrow { font-size: 11px; color: #b0b8c4; transition: transform 0.2s ease; }
 .nav > li:hover .nav-arrow { transform: rotate(180deg); color: #00ffbf; }
 
-
-/* =========================================
-   3. MEGA MENU
-   ========================================= */
+/* --- 4. MEGA MENU (FIXED SCROLLBAR ISSUE) --- */
 .mega-menu {
-    position: fixed;
-    top: 100px;
-    left: 50%;
-    transform: translateX(-50%);
+    /* Changed from FIXED to ABSOLUTE to move naturally with the header */
+    position: absolute;
+    top: 100%; /* Attaches exactly to bottom of header */
+    left: 0;
     
-    width: 100vw; 
-    max-width: none;
-    padding: 45px max(24px, calc((100vw - 1400px) / 2));
+    /* FIX: 100% width prevents horizontal scrollbar caused by 100vw */
+    width: 100%; 
     
-    /* Dark Background matching header */
     background-color: #0E1623;
-    
-    border-radius: 0 0 4px 4px;
     border-top: 1px solid rgba(255,255,255,0.1); 
     box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    
+    /* Padding calculation centers content max 1400px */
+    padding: 45px max(24px, calc((100% - 1400px) / 2));
     
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     
+    /* Transition Logic */
     opacity: 0;
     visibility: hidden;
-    transition: all 0.2s ease;
-    z-index: 99999;
-    max-height: calc(100vh - 80px);
-    overflow-y: auto;
+    transform: translateY(10px); /* Small slide up effect */
+    transition: all 0.2s ease-out;
+    z-index: 999;
 }
 
-.nav > li:hover .mega-menu { opacity: 1; visibility: visible; }
+.nav > li:hover .mega-menu { 
+    opacity: 1; 
+    visibility: visible; 
+    transform: translateY(0);
+}
 
-/* =========================================
-   4. INNER CONTENT
-   ========================================= */
+/* Menu Content */
 .menu-column-list, .menu-column-card {
     background: transparent; 
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 4px;
     padding: 25px;
-    height: 100%;
     display: flex;
     flex-direction: column;
-    text-align: left;
-    transition: all 0.2s;
+    text-decoration: none;
 }
-
 .menu-column-list:hover, .menu-column-card:hover { background: rgba(255,255,255,0.05); }
 
-.menu-header { 
-    font-size: 22px; font-weight: 800; margin-bottom: 25px; 
-    display: flex; align-items: center; gap: 10px; 
-    color: #FFFFFF; 
-}
+.menu-header { font-size: 22px; font-weight: 800; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; color: #FFFFFF; }
 .menu-header i { color: #41D48C; }
 
-.link-list a { 
-    display: block; padding: 10px 0; 
-    color: #b0b8c4; 
-    font-size: 14px; 
-    font-weight: 500;        
-    letter-spacing: -0.005em; 
-    line-height: 1.5;
-    transition: 0.2s; 
-}
+.link-list a { display: block; padding: 10px 0; color: #b0b8c4; font-size: 14px; font-weight: 500; text-decoration: none; transition: 0.2s; }
 .link-list a:hover { color: #FFFFFF; padding-left: 5px; }
 
-.menu-column-card { justify-content: space-between; }
-
-.card-content h3 { 
-    font-size: 18px; font-weight: 800; margin-bottom: 15px; padding-bottom: 15px; 
-    border-bottom: 1px solid rgba(255,255,255,0.2); 
-    color: #FFFFFF; 
-}
-.card-content h4 { 
-    font-size: 14px; font-weight: 600; margin-bottom: 15px; padding-bottom: 12px; 
-    color: #FFFFFF; 
-}
+.card-content h3 { font-size: 18px; font-weight: 800; margin-bottom: 15px; color: #FFFFFF; }
 .card-content p { font-size: 13px; color: #b0b8c4; margin-bottom: 10px; }
-.section-icon { font-size: 32px; margin-bottom: 15px; display: inline-block; color: #41D48C; }
+.section-icon { font-size: 32px; margin-bottom: 15px; color: #41D48C; }
 
-/* Buttons */
 .btn-blue, .btn-orange {
     display: block; width: 100%; padding: 12px 0; margin-top: auto; border-radius: 4px;
-    font-weight: 700; font-size: 14px; text-align: center; transition: background 0.3s ease;
+    font-weight: 700; font-size: 14px; text-align: center; color: #fff;
 }
-.btn-blue { background-color: #4299e1; color: #fff; }
-.btn-orange { background-color: #3B82F6; color: #fff; }
-.btn-blue:hover, .btn-orange:hover { filter: brightness(1.1); }
+.btn-blue { background-color: #4299e1; }
+.btn-orange { background-color: #3B82F6; }
 
 .cta-button-nav {
-    margin-left: auto; background-color: #3F5CE0 !important; color: #fff !important;
-    padding: 10px 24px; border-radius: 4px; font-weight: 700; font-size: 14px; white-space: nowrap; display: inline-block;
+    margin-left: auto; background-color: #3F5CE0; color: #fff;
+    padding: 10px 24px; border-radius: 4px; font-weight: 700; font-size: 14px; text-decoration: none;
 }
-.cta-button-nav:hover { background-color: #2b41a3 !important; }
+.cta-button-nav:hover { background-color: #2b41a3; }
 
-/* =========================================
-   5. MOBILE MENU
-   ========================================= */
+/* --- 5. MOBILE MENU --- */
 .hamburger, .mobile-nav-container { display: none; }
 
 @media (max-width: 1024px) {
     .nav, .cta-button-nav { display: none; }
     
     .hamburger { display: flex; flex-direction: column; gap: 5px; margin-left: auto; cursor: pointer; }
-    .hamburger span { width: 25px; height: 3px; background-color: #FFFFFF; }
+    .hamburger span { width: 25px; height: 3px; background-color: #FFFFFF; transition: all 0.3s; }
     
+    .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
     .mobile-nav-container {
         display: block; position: fixed; 
-        top: 105px; 
-        left: 0; width: 100%; height: calc(100vh - 105px);
-        
-        /* Dark Gradient Mobile BG */
+        top: 105px; left: 0; width: 100%; height: calc(100vh - 105px);
         background-color: #0E1623;
-        background-image: 
-            radial-gradient(900px 500px at 10% 0%, rgba(124, 92, 255, 0.25), transparent 60%),
-            radial-gradient(800px 500px at 90% 10%, rgba(0, 212, 255, 0.18), transparent 55%);
-            
         overflow-y: auto; padding-bottom: 40px; 
         transform: translateX(100%);
-        transition: transform 0.3s ease; z-index: 998; 
-        border-top: 1px solid rgba(255,255,255,0.1);
+        transition: transform 0.3s ease; 
+        z-index: 998; 
     }
     .mobile-nav-container.active { transform: translateX(0); }
 
-    /* The Header of each dropdown */
     .mobile-accordion-header { 
-        padding: 20px 24px; 
-        display: flex; 
-        justify-content: space-between; 
-        font-weight: 700; 
-        color: #FFFFFF; 
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-        background: transparent; 
+        padding: 20px 24px; display: flex; justify-content: space-between; 
+        font-weight: 700; color: #FFFFFF; border-bottom: 1px solid rgba(255,255,255,0.1); cursor: pointer;
     }
-
-    /* Dropdown content logic */
-    .mobile-accordion-content {
-        display: none;      
-        background: rgba(0,0,0,0.2); 
-    }
-
+    .mobile-accordion-header.active { background: rgba(255,255,255,0.05); }
+    .mobile-accordion-content { display: none; background: rgba(0,0,0,0.2); }
     .mobile-accordion-content.open { display: block; }
 
-    .mobile-link { 
-        display: block; 
-        padding: 12px 40px; 
-        color: #b0b8c4; 
-        font-size: 14px; 
-        border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-    .mobile-link:hover {
-        color: #FFFFFF;
-        background: rgba(255,255,255,0.05);
-    }
-
+    .mobile-link { display: block; padding: 12px 40px; color: #b0b8c4; font-size: 14px; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .mobile-link.highlight { color: #207DE9; font-weight: 600; }
+    
     .mobile-cta-wrapper { padding: 24px; text-align: center; }
-    .mobile-btn { 
-        display: block; width: 100%; background-color: #3F5CE0; 
-        color: #fff; padding: 14px; font-weight: 700; 
-        border-radius: 4px; margin-top: 10px; 
-    }
+    .mobile-btn { display: block; width: 100%; background-color: #3F5CE0; color: #fff; padding: 14px; font-weight: 700; border-radius: 4px; text-decoration: none; }
 }
-
-/* Scroll Animation */
-@keyframes slideDownFade {
-    0% { transform: translateY(-100%); opacity: 0; }
-    100% { transform: translateY(0); opacity: 1; }
-}
-.header-scrolled {
-    position: fixed !important; top: 0; left: 0; width: 100%; 
-    background-color: #0E1623;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important; 
-    animation: slideDownFade 0.4s ease-out forwards;
-}
-.header-scrolled .top-info-bar { display: none; }
