@@ -28,6 +28,18 @@ import { SimpleContentSection } from "./SimpleContentSection";
 import { FourBoxes } from "./FourBoxes";
 import { FAQSection } from "./FAQSection";
 import { TraditionalHeroArea } from "./TraditionalHeroArea";
+import { Boxesimage } from "./Boxesimage";
+import { ThreeColumnBar } from "./ThreeColumnBar";
+import { FiveCirclesBox } from "./FiveCirclesBox";
+import { BigTabsData } from "./BigTabsData";
+import { WptwoPageVisual } from "./WptwoPageVisual";
+import { Shutterupanddown } from "./Shutterupanddown";
+import { Contentdouble } from "./Contentdouble";
+import { HeadlessfiveElements } from "./HeadlessfiveElements";
+import { Headwpcarousal } from "./Headwpcarousal";
+import { Fourblockswphead } from "./Fourblockswphead";
+import { HeadlessWpTabs } from "./HeadlessWpTabs";
+import { FAQheadlesswp } from "./FAQheadlesswp";
 
 
 
@@ -89,6 +101,18 @@ export const BlockRenderer = ({ htmlContent }: Props) => {
         if (classes.includes("section-Four-Boxes")) return <FourBoxes/>;
       if (classes.includes("section-FAQ")) return <FAQSection/>;
       if (classes.includes("section-TraditionalHeroArea")) return <TraditionalHeroArea/>;
+      if (classes.includes("section-Boxesimage")) return <Boxesimage/>;
+      if (classes.includes("section-ThreeColumnBar")) return <ThreeColumnBar/>;
+      if (classes.includes("section-FiveCirclesBox")) return <FiveCirclesBox/>;
+      if (classes.includes("section-BigTabsData")) return <BigTabsData/>;
+      if (classes.includes("section-WptwoPageVisual")) return <WptwoPageVisual/>;
+      if (classes.includes("section-Shutterupanddown")) return <Shutterupanddown/>;
+      if (classes.includes("section-Contentdouble")) return <Contentdouble/>;
+      if (classes.includes("section-HeadlessfiveElements")) return <HeadlessfiveElements/>;
+      if (classes.includes("section-Headwpcarousal")) return <Headwpcarousal/>;
+      if (classes.includes("section-Fourblockswphead")) return <Fourblockswphead/>;
+      if (classes.includes("section-HeadlessWpTabs")) return <HeadlessWpTabs/>;
+      if (classes.includes("section-FAQheadlesswp")) return <FAQheadlesswp/>;
 
 
       }

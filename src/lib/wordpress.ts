@@ -1,38 +1,50 @@
 // File: src/lib/wordpress.ts
-const WP_GRAPHQL_URL = "https://admin.wpfedev.com/graphql";
+
+// 👇 THIS IS THE KEY FIX: Point directly to index.php
+// This bypasses the Nginx 405 error completely.
+const WP_GRAPHQL_URL = "https://admin.wpfedev.com/index.php?graphql";
+
+// Credentials
+const WP_USERNAME = "ekrama.taimuri"; 
+const WP_APP_PASSWORD = "stgp Se7X oe81 Mak9 A64W GO9y"; 
 
 export async function fetchGraphQL(query: string, variables?: any) {
-  const url = new URL(WP_GRAPHQL_URL);
-  url.searchParams.append("query", query);
-  if (variables) url.searchParams.append("variables", JSON.stringify(variables));
-
   try {
-    const res = await fetch(url.toString(), {
-      method: "GET",
+    const auth = btoa(`${WP_USERNAME}:${WP_APP_PASSWORD}`);
+
+    console.log(`🌐 Fetching from: ${WP_GRAPHQL_URL}`); 
+
+    const res = await fetch(WP_GRAPHQL_URL, {
+      method: "POST",
       headers: {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/121.0.0.0 Safari/537.36",
         "Content-Type": "application/json",
+        "Authorization": `Basic ${auth}`, 
+        "User-Agent": "NextJS-Dev-Server/1.0", 
       },
-      cache: 'no-store'
+      body: JSON.stringify({
+        query,
+        variables,
+      }),
+      cache: 'no-store', 
     });
 
     const text = await res.text();
 
-    // 1. Safety Check for HTML/Firewall errors
-    if (text.trim().startsWith('<')) {
-      console.error("❌ FIREWALL ERROR: Received HTML.");
+    // Safety Check
+    if (text.trim().startsWith('<') || !text.trim().startsWith('{')) {
+      console.error("❌ FIREWALL ERROR. Server returned HTML.");
+      console.error("👇 ERROR PREVIEW 👇");
+      console.error(text.slice(0, 500)); 
       throw new Error("Firewall blocked request");
     }
 
     const json = JSON.parse(text);
 
-    // 2. CRITICAL: Check for GraphQL Errors
     if (json.errors) {
       console.error("❌ GRAPHQL ERROR:", JSON.stringify(json.errors, null, 2));
       throw new Error("WordPress API returned an error");
     }
 
-    // 3. Return the data
     return json.data;
 
   } catch (error) {

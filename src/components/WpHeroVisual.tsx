@@ -1,10 +1,10 @@
+"use client";
 import React from 'react';
 
 export const WpHeroVisual = () => {
   return (
     <section id="ek-ai-hero" className="relative w-full bg-[#020617] flex items-center overflow-hidden py-5 box-border">
       {/* External Resources */}
-      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 
       {/* Scoped CSS */}
@@ -20,9 +20,7 @@ export const WpHeroVisual = () => {
 
         #ek-ai-hero {
             position: relative;
-            /* FIX: Use 100% instead of 100vw to avoid scrollbar width conflict */
             width: 100%; 
-            /* Breakout logic that respects scrollbars */
             margin-left: calc(-50vw + 50%);
             margin-right: calc(-50vw + 50%);
             max-width: 100vw;
@@ -30,7 +28,6 @@ export const WpHeroVisual = () => {
             min-height: auto;
             height: auto;
             background-color: #0E1623;
-            /* GEOMETRIC SQUARE BORDER BACKGROUND */
             background-image: 
                 linear-gradient(rgba(255, 255, 255, 0.1) 1.5px, transparent 1.5px),
                 linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1.5px, transparent 1.5px);
@@ -38,7 +35,6 @@ export const WpHeroVisual = () => {
             display: flex;
             align-items: center;
             
-            /* CRITICAL FIX: prevents layout shift/scrollbars */
             overflow-x: clip !important; 
             overflow-y: hidden !important;
 
@@ -65,32 +61,36 @@ export const WpHeroVisual = () => {
             padding: 0 40px;
             box-sizing: border-box;
             align-items: center;
+            justify-content: space-between;
+            gap: 2rem; /* Added gap to prevent collisions */
             z-index: 2;
         }
 
-        /* ZONE A: CONTENT */
+        /* --- FLUID LEFT COLUMN --- */
         .hero-zone-a {
-            flex: 0 0 55%; 
+            flex: 1.2; /* Replaced strict 55% with fluid ratio */
             display: flex;
             flex-direction: column;
             justify-content: center;
+            padding-right: 2rem;
             z-index: 100;
         }
         
         .hero-zone-a h1 { 
-            font-size: clamp(2.2rem, 4vw, 3.8rem); 
-            line-height: 1.05; 
+            font-size: clamp(2.5rem, 4.5vw, 4rem); /* Enlarged matching previous fix */
+            line-height: 1.15; 
             font-weight: 800; 
-            margin-bottom: 24px; 
-            color: #ffffff;
-            letter-spacing: -1.5px;
+            margin-bottom: 1.5rem; 
+            color: #ffffff; /* Forced pure white */
+            letter-spacing: -0.02em;
         }
 
         .hero-zone-a p { 
-            font-size: 1.15rem; 
+            font-size: 1.1rem; 
             line-height: 1.6; 
-            color: #cbd5e1; 
-            margin-bottom: 40px; 
+            color: rgba(255, 255, 255, 0.85); /* Brightened gray for better contrast */
+            margin-bottom: 2rem; 
+            max-width: 95%;
         }
         
         .form__proposal { 
@@ -107,15 +107,13 @@ export const WpHeroVisual = () => {
         .form__proposal input { flex: 1; background: transparent; border: none; padding: 12px 20px; outline: none; font-size: 1rem; color: #fff; }
         .form__proposal button { background: #2563eb; color: #fff; border: none; padding: 0 32px; border-radius: 10px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; }
 
-        /* VISUAL ZONE */
+        /* --- FLUID RIGHT COLUMN --- */
         .visual-combined-zone {
-            flex: 0 0 45%; 
-            max-width: 650px; 
+            flex: 1; /* Replaced strict 45% with fluid ratio */
             position: relative;
             display: flex;
             justify-content: center; 
             align-items: center;
-            margin-left: 0; 
         }
 
         /* PROCESS BOXES */
@@ -166,11 +164,13 @@ export const WpHeroVisual = () => {
         .rotate-ccw { animation: rotate 50s linear infinite reverse; }
         .rotate-cw-slow { animation: rotate 80s linear infinite; }
 
+        /* MOBILE ADJUSTMENTS */
         @media (max-width: 1024px) {
             #ek-ai-hero { padding: 40px 0; margin-left: 0; margin-right: 0; width: 100%; }
-            .ek-hero-container { flex-direction: column; }
-            .hero-zone-a { width: 100%; text-align: center; align-items: center; flex: 0 0 100%; }
-            .visual-combined-zone { width: 100%; transform: scale(0.6); margin-top: -100px; margin-left: 0; flex: 0 0 100%; }
+            .ek-hero-container { flex-direction: column; gap: 40px; }
+            .hero-zone-a { width: 100%; text-align: center; align-items: center; flex: 1; padding-right: 0; }
+            .hero-zone-a p { max-width: 100%; }
+            .visual-combined-zone { width: 100%; transform: scale(0.65); margin-top: -60px; flex: 1; }
         }
       `}} />
 
@@ -203,7 +203,7 @@ export const WpHeroVisual = () => {
         </div>
 
         <div className="visual-combined-zone">
-          {/* SVG Container */}
+          {/* SVG Container - Completely untouched */}
           <svg viewBox="-120 -50 1100 850" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: 'auto', display: 'block', overflow: 'visible' }}>
             <defs>
               <linearGradient id="seg-blue" x1="0%" y1="0%" x2="100%" y2="0%">
