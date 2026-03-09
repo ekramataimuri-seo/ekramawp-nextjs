@@ -1,356 +1,201 @@
-"use client";
-
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 export const PentagonGrowthEngine = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeTab, setActiveTab] = useState('p-2'); // Set default to 'SEO Copywriting' to match your reference image
 
-  // The 5 positions for the rotation logic
-  const positions = [
-    "anchor",       // 0: Bottom Center (Active)
-    "bottom-right", // 1
-    "top-right",    // 2
-    "top-left",     // 3
-    "bottom-left",  // 4
-  ];
-
-  // Data for the 5 Services
-  const services = [
+  const tabsData = [
     {
-      id: 0,
-      label: "Architecture",
-      title: "Component Architecture",
-      desc: "We build scalable, atomic design systems. By breaking interfaces down into reusable, isolated components, we ensure your application remains maintainable and consistent as it grows.",
-      bullets: [
-        "Atomic Design principles for modularity.",
-        "Strict TypeScript typing for reliability.",
-        "Reusable UI libraries (Storybook integration).",
-      ],
+      id: 'p-1',
+      title: 'Keyword Research',
       icon: (
-        <svg viewBox="0 0 24 24">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5.5-2.5l7.5-4-7.5-4z"></path>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
       ),
+      imgSrc: 'https://www.webfx.com/wp-content/uploads/2024/01/LeadManagerFX.png',
+      imgAlt: 'Keyword Research',
+      heading: 'Keyword Research',
+      desc: 'Expect a website infused with the most relevant keywords tailored specifically for your real estate business. Through meticulous keyword research, we identify the top search terms that attract potential clients, helping your site rank higher and connect with the right audience.',
+      list: [
+        'Infused with the most relevant keywords tailored for real estate.',
+        'Identifies top search terms that attract potential clients.',
+        'Helps your site rank higher and connect with the right audience.'
+      ]
     },
     {
-      id: 1,
-      label: "Performance",
-      title: "Performance Engineering",
-      desc: "Speed is a feature. We optimize the critical rendering path, leverage Next.js Server Components, and implement edge caching to ensure instant load times and 100/100 Web Vitals.",
-      bullets: [
-        "Core Web Vitals (LCP, CLS, INP) optimization.",
-        "Code-splitting and bundle size reduction.",
-        "Server-Side Rendering (SSR) for speed.",
-      ],
+      id: 'p-2',
+      title: 'SEO Copywriting',
       icon: (
-        <svg viewBox="0 0 24 24">
-          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 20h9"></path>
+          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
         </svg>
       ),
+      imgSrc: 'https://www.webfx.com/wp-content/uploads/2023/12/AdTechFX.png',
+      imgAlt: 'SEO Copywriting',
+      heading: 'SEO Copywriting',
+      desc: 'Receive expertly crafted content designed to optimize your real estate website. Our SEO copywriting focuses on delivering engaging property descriptions, blogs, and landing pages, all enriched with the perfect keywords to ensure both search engine visibility and user engagement.',
+      list: [
+        'Expertly crafted content designed to optimize your website.',
+        'Focuses on engaging property descriptions, blogs, and landing pages.',
+        'Enriched with keywords for visibility and user engagement.'
+      ]
     },
     {
-      id: 2,
-      label: "Headless",
-      title: "Headless Integration",
-      desc: "Decouple your data from your display. We architect headless solutions connecting Next.js frontends to WordPress, Shopify, or Contentful backends via secure GraphQL APIs.",
-      bullets: [
-        "Secure API routes & middleware protection.",
-        "Incremental Static Regeneration (ISR).",
-        "Omnichannel content delivery architectures.",
-      ],
+      id: 'p-3',
+      title: 'Technical SEO',
       icon: (
-        <svg viewBox="0 0 24 24">
-          <path d="M2 16.1A5 5 0 0 1 5.9 20M2 12.05A9 9 0 0 1 9.95 20M2 8V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6"></path>
-          <line x1="2" y1="20" x2="2" y2="20"></line>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="18" y1="20" x2="18" y2="10"></line>
+          <line x1="12" y1="20" x2="12" y2="4"></line>
+          <line x1="6" y1="20" x2="6" y2="14"></line>
         </svg>
       ),
+      imgSrc: 'https://www.webfx.com/wp-content/uploads/2024/01/LeadManagerFX.png',
+      imgAlt: 'Technical SEO',
+      heading: 'Technical SEO',
+      desc: 'Your website will be finely tuned for superior speed, mobile compatibility, and seamless performance. Technical SEO addresses factors such as site structure, crawlability, and loading times, ensuring your site performs efficiently, providing a smooth experience for visitors and improving rankings.',
+      list: [
+        'Finely tuned for superior speed and mobile compatibility.',
+        'Addresses site structure, crawlability, and loading times.',
+        'Ensures efficient performance and improved rankings.'
+      ]
     },
     {
-      id: 3,
-      label: "Quality",
-      title: "Automated Quality Assurance",
-      desc: "We don't ship bugs. Our engineering process includes rigid CI/CD pipelines, automated unit testing, and end-to-end (E2E) testing to catch regressions before deployment.",
-      bullets: [
-        "Jest & React Testing Library for units.",
-        "Playwright/Cypress for E2E workflows.",
-        "Automated linting & formatting pipelines.",
-      ],
+      id: 'p-4',
+      title: 'Backlinking',
       icon: (
-        <svg viewBox="0 0 24 24">
-          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+          <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
         </svg>
       ),
+      imgSrc: 'https://www.webfx.com/wp-content/uploads/2024/01/LeadManagerFX.png',
+      imgAlt: 'Backlinking',
+      heading: 'Backlinking',
+      desc: 'Gain valuable, high-quality backlinks from respected sources in the real estate industry. We secure authoritative links to enhance your site’s credibility, increase its domain authority, and boost organic traffic, ultimately strengthening your site\'s position and visibility in search results.',
+      list: [
+        'Gain high-quality backlinks from respected industry sources.',
+        'Enhances credibility and increases domain authority.',
+        'Boosts organic traffic and strengthens search visibility.'
+      ]
     },
     {
-      id: 4,
-      label: "UX/UI",
-      title: "Interaction Engineering",
-      desc: "We bridge the gap between design and code. Using tools like Framer Motion and GSAP, we create fluid, 60fps animations that delight users without blocking the main thread.",
-      bullets: [
-        "Smooth, physics-based micro-interactions.",
-        "WCAG 2.1 AA Accessibility compliance.",
-        "Responsive layouts for all viewports.",
-      ],
+      id: 'p-5',
+      title: 'Local SEO',
       icon: (
-        <svg viewBox="0 0 24 24">
-          <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
-          <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
-          <path d="M2 2l7.586 7.586"></path>
-          <circle cx="11" cy="11" r="2"></circle>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+          <circle cx="12" cy="10" r="3"></circle>
         </svg>
       ),
-    },
-  ];
-
-  const handleNodeClick = (index: number) => {
-    if (index === activeIndex) {
-      setActiveIndex((prev) => (prev + 1) % 5);
-    } else {
-      setActiveIndex(index);
+      imgSrc: 'https://www.webfx.com/wp-content/uploads/2023/12/AdTechFX.png',
+      imgAlt: 'Local SEO',
+      heading: 'Local SEO',
+      desc: 'Experience enhanced visibility for local searches, ensuring your real estate business stands out in your specific geographic area. Through targeted local keyword optimization, Google My Business management, and local directory listings, we position your site to capture relevant, nearby clients.',
+      list: [
+        'Enhanced visibility for local searches in your geographic area.',
+        'Includes targeted local keyword optimization and GMB management.',
+        'Positions your site to capture relevant, nearby clients.'
+      ]
     }
-  };
+  ];
 
   return (
-    <section 
-      // Added 'hardware-accelerated' to force GPU usage
-      className="fx-pentagon-section relative overflow-hidden hardware-accelerated"
-    >
-      <style jsx>{`
-        /* --- PERFORMANCE & UTILS --- */
-        .hardware-accelerated {
-            will-change: transform;
-            transform: translateZ(0);
-            backface-visibility: hidden;
-        }
-
-        .fx-pentagon-section { padding: 80px 20px; color: #ffffff; }
-
-        .header-section {
-            max-width: 900px;
-            margin: 0 auto 60px auto;
-            text-align: center;
-            padding: 0 20px;
-            position: relative;
-            z-index: 10;
-        }
-
-        /* PENTAGON STYLES */
-        .fx-main-flex-container { 
-            max-width: 900px; 
-            margin: 0 auto; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            position: relative;
-            z-index: 10;
-        }
-        
-        .fx-nav-column { 
-            position: relative; 
-            z-index: 10; 
-            width: 100%; 
-            display: flex; 
-            justify-content: center; 
-            margin-bottom: -30px; 
-        }
-        .fx-pentagon-canvas { width: 300px; height: 240px; position: relative; }
-        .fx-svg-path { position: absolute; width: 100%; height: 100%; overflow: visible; }
-        
-        .dashed-line { 
-          fill: none; 
-          stroke: rgba(255, 255, 255, 0.2); 
-          stroke-width: 1px; 
-          stroke-dasharray: 4 4; 
-        }
-
-        .fx-node { 
-          position: absolute; background: none; border: none; cursor: pointer; 
-          display: flex; flex-direction: column; align-items: center; width: 100px; 
-          transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); outline: none; z-index: 5; 
-          /* GPU Force for nodes */
-          transform: translateZ(0);
-        }
-
-        /* Node Positions */
-        .fx-node[data-pos="anchor"] { top: 220px; left: 150px; transform: translate(-50%, -50%); z-index: 20; }
-        .fx-node[data-pos="bottom-right"] { top: 140px; left: 280px; transform: translate(-50%, -50%); }
-        .fx-node[data-pos="top-right"] { top: 20px; left: 230px; transform: translate(-50%, -50%); }
-        .fx-node[data-pos="top-left"] { top: 20px; left: 70px; transform: translate(-50%, -50%); }
-        .fx-node[data-pos="bottom-left"] { top: 140px; left: 20px; transform: translate(-50%, -50%); }
-
-        .fx-icon-inner { 
-          width: 55px; height: 55px; background: #1a2436; border-radius: 50%; 
-          display: flex; align-items: center; justify-content: center; 
-          border: 1px solid rgba(255,255,255,0.2); 
-          /* OPTIMIZATION: Only animate transform/border, removed box-shadow transition */
-          transition: transform 0.3s ease, border-color 0.3s ease;
-          box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
-        }
-        .fx-icon-inner svg { width: 24px; height: 24px; fill: #ffffff; }
-        
-        .fx-node-label { 
-          margin-top: 8px; font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.7); 
-          text-transform: uppercase; text-align: center; width: 80px; pointer-events: none; 
-          letter-spacing: 0.5px;
-        }
-
-        /* Active State - Optimized */
-        .fx-node.is-active .fx-icon-inner { 
-          background: #3F5CE0; 
-          border-color: #3F5CE0; 
-          transform: scale(1.15); 
-          /* REMOVED heavy box-shadow transition. Just set it static or lighter. */
-        }
-        .fx-node.is-active .fx-icon-inner svg { fill: #ffffff; }
-        .fx-node.is-active .fx-node-label { color: #3F5CE0; }
-
-        /* Content Column: Fixed height to prevent layout jumps */
-        .fx-content-column { 
-            width: 100%; 
-            position: relative; 
-            z-index: 1; 
-            min-height: 420px; /* Fixed height container */
-        }
-        
-        /* Slides: Absolute positioning to prevent reflow */
-        .fx-slide { 
-          position: absolute;
-          top: 0; left: 0; right: 0;
-          padding: 70px 40px 50px 40px; border-radius: 20px; 
-          border: 1px solid rgba(255,255,255,0.1); 
-          opacity: 0; 
-          /* Use visibility:hidden instead of display:none to keep it in DOM but invisible */
-          visibility: hidden;
-          transition: opacity 0.4s ease, visibility 0.4s ease;
-          background: #1a2436; 
-          box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-          transform: translateZ(0); /* GPU */
-        }
-        
-        .fx-slide.is-active { 
-          opacity: 1; 
-          visibility: visible;
-          position: relative; /* Only the active one takes up flow space */
-        }
-        
-        /* Slide Content Typography */
-        .fx-slide h3 { 
-            font-weight: 900; 
-            font-size: clamp(1.4rem, 2vw, 1.8rem); 
-            color: #3F5CE0; 
-            margin-bottom: 15px; 
-            text-align: center; 
-        }
-        .fx-description { 
-            font-size: 1.1rem; 
-            font-weight: 400; 
-            line-height: 1.6; 
-            color: #ffffff; 
-            margin-bottom: 25px; 
-            text-align: center; 
-        }
-        .fx-bullets { 
-            list-style: none; 
-            padding: 25px 0 0 0; 
-            margin: 0; 
-            text-align: left; 
-            border-top: 1px solid rgba(255,255,255,0.1); 
-        }
-        .fx-bullets li { 
-            margin-bottom: 12px; 
-            font-size: 1.1rem; 
-            font-weight: 400; 
-            position: relative; 
-            padding-left: 30px; 
-            color: #ffffff; 
-            line-height: 1.5; 
-        }
-        .fx-bullets li::before { 
-            content: '→'; 
-            position: absolute; 
-            left: 0; 
-            color: #3F5CE0; 
-            font-weight: 900; 
-            font-size: 1.2rem;
-        }
-      `}</style>
-
-      {/* --- HEADER --- */}
-      <div className="header-section">
-        <span className="block text-[#FFFFFF] font-bold text-sm uppercase tracking-[2px] mb-4">
-          Integrated Capabilities
-        </span>
-
-        <h2 className="text-[clamp(2.5rem,4vw,3.5rem)] font-black leading-[1.1] mb-[25px] text-[#3F5CE0] tracking-tight">
-          Services That Build Your <br />
-          <span className="relative inline-block text-[#FFFFFF] px-2 z-10 mt-2">
-            Digital Empire
-            <span className="absolute left-0 right-0 bottom-[6px] h-[12px] bg-[#2E476E] -z-20 -skew-x-[12deg] rounded-sm"></span>
-            <span className="absolute left-0 right-0 bottom-[10px] h-[12px] bg-[#3C66A6] -z-10 -skew-x-[12deg] rounded-sm shadow-[0_2px_0_rgba(255,255,255,0.1)]"></span>
-          </span>
+    <section className="pt-10 pb-16 px-5 min-h-[5vh] items-center flex flex-col bg-black text-white">
+      
+      {/* 1. Heading Section - Intact */}
+      <div className="w-full text-center mb-16 max-w-[1440px] mx-auto">
+        <h2 className="text-[clamp(2.2rem,4.5vw,3.2rem)] font-black leading-[1.1] tracking-normal mb-6">
+          Mastering <span className="text-emerald-500">Real Estate SEO</span>
         </h2>
-
-        <p className="text-[#FFFFFF] text-[1.1rem] font-normal leading-[1.6] max-w-[700px] mx-auto">
-          We provide the full spectrum of Front-End Engineering services to help your 
-          application scale. You’ll get:
-        </p>
       </div>
 
-      {/* --- PENTAGON INTERACTIVE --- */}
-      <div className="fx-main-flex-container">
+      {/* 2. Main Three-Column Grid for Centered Image and WIDER Content */}
+      <div className="max-w-[1440px] w-full mx-auto grid grid-cols-[190px_1fr_1.8fr] gap-12 items-center relative z-10">
         
-        {/* Navigation Pentagon */}
-        <div className="fx-nav-column">
-          <div className="fx-pentagon-canvas">
-            {/* Pentagon SVG Lines */}
-            <svg className="fx-svg-path" viewBox="0 0 300 240">
-              <path
-                className="dashed-line"
-                d="M150,220 L280,140 L230,20 L70,20 L20,140 Z"
-              />
-            </svg>
-
-            {/* Nodes */}
-            {services.map((service, index) => {
-              const posIndex = (index - activeIndex + 5) % 5;
-              const currentPos = positions[posIndex];
-              const isActive = index === activeIndex;
-
-              return (
-                <button
-                  key={service.id}
-                  className={`fx-node ${isActive ? "is-active" : ""}`}
-                  data-pos={currentPos}
-                  onClick={() => handleNodeClick(index)}
-                  aria-label={`Select ${service.label}`}
-                >
-                  <div className="fx-icon-inner">{service.icon}</div>
-                  <span className="fx-node-label">{service.label}</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Content Slides */}
-        <div className="fx-content-column">
-          {services.map((service, index) => (
-            <div
-              key={service.id}
-              className={`fx-slide ${index === activeIndex ? "is-active" : ""}`}
+        {/* Column A: Tabs (Vertical, Left-aligned) - Cleaned */}
+        <div className="flex flex-col gap-5 self-start pt-6">
+          {tabsData.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`flex items-center gap-4 px-2 py-3 cursor-pointer transition-all duration-300 outline-none text-left w-full ${
+                activeTab === tab.id ? 'opacity-100' : 'opacity-40 hover:opacity-100'
+              }`}
             >
-              <h3>{service.title}</h3>
-              <p className="fx-description">{service.desc}</p>
-              
-              <ul className="fx-bullets">
-                {service.bullets.map((bullet, i) => (
-                  <li key={i}>{bullet}</li>
-                ))}
-              </ul>
-            </div>
+              <div className="w-6 h-6 flex items-center justify-center shrink-0">
+                {tab.icon}
+              </div>
+              <span className="text-[18px] font-semibold whitespace-nowrap">{tab.title}</span>
+            </button>
           ))}
         </div>
+
+        {/* Column B: IMAGE (Strictly Centered horizontally between Tabs and Text) */}
+        <div className="relative w-full flex justify-center items-center">
+          {tabsData.map((tab) => (
+            <div
+              key={tab.id}
+              className={`w-[320px] transition-all duration-500 ease-in-out absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ${
+                activeTab === tab.id 
+                  ? 'opacity-100 scale-100 z-10' 
+                  : 'opacity-0 scale-95 z-0 pointer-events-none'
+              }`}
+            >
+              <img
+                src={tab.imgSrc}
+                alt={tab.imgAlt}
+                className="w-full h-auto block"
+              />
+            </div>
+          ))}
+          {/* Empty spacer to maintain height/width in the grid flow */}
+          <div className="w-[320px] h-[240px]"></div>
+        </div>
+
+  {/* Column C: TEXT CONTENT */}
+<div className="relative w-full h-full flex items-end pb-32 -translate-y-10"> 
+  {tabsData.map((tab) => (
+    <div
+      key={tab.id}
+      /* CHANGE: top-0 replaced with bottom-0 to pull content down */
+      className={`w-full transition-all duration-500 ease-in-out absolute bottom-0 left-0 ${
+        activeTab === tab.id 
+          ? 'opacity-100 translate-y-0 z-10 pointer-events-auto' 
+          : 'opacity-0 translate-y-4 z-0 pointer-events-none'
+      }`}
+    >
+      <div className="w-full text-left">
+        <h3 className="text-[28px] font-extrabold mb-[20px] leading-[1.25] tracking-tight text-white">
+          {tab.heading}
+        </h3>
+        <p className="text-white/90 text-[clamp(0.83rem,1.2vw,1.1rem)] font-normal leading-[1.6] mb-8 max-w-[650px]">
+          {tab.desc}
+        </p>
+        <ul className="list-disc pl-5 m-0 text-left max-w-[650px] space-y-3">
+          {tab.list.map((item, idx) => (
+            <li key={idx} className="text-white/90 text-[clamp(0.83rem,1.2vw,1.1rem)] font-normal leading-[1.6]">
+              {item}
+            </li>
+          ))}
+        </ul>
       </div>
+    </div>
+  ))}
+
+  {/* Invisible spacer: Ensures the parent div has enough height to contain the absolute items */}
+  <div className="w-full text-left opacity-0 pointer-events-none">
+    <h3 className="text-[28px] mb-[20px] leading-[1.25]">Spacer</h3>
+    <p className="mb-8 max-w-[650px] leading-[1.6]">Filler text</p>
+    <ul className="pl-5 list-disc space-y-3">
+      <li>Spacer</li>
+      <li>Spacer</li>
+    </ul>
+  </div>
+</div>
+</div>
     </section>
   );
 };

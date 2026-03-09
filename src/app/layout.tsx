@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Roboto_Flex } from "next/font/google"; // 1. USE NEXT FONT
+import { Inter } from "next/font/google"; // 1. USE INTER FONT
 import "./globals.css";
 import Navbar from "@/components/Navbar"; 
 import SmoothScroll from "@/components/SmoothScroll"; 
 
-// 2. CONFIGURE FONT (Prevents White Flashes)
-const roboto = Roboto_Flex({
+// 2. CONFIGURE INTER FONT (Prevents White Flashes)
+const inter = Inter({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-roboto",
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${roboto.variable}`}>
+    <html lang="en" className={`${inter.variable}`}>
       <head>
         {/* Font Awesome is fine here, but consider using a React library for icons later */}
         <link
@@ -31,8 +31,9 @@ export default function RootLayout({
         />
       </head>
       
-      <body className="antialiased bg-[#0E1623] text-white">
-        {/* 3. WRAP CONTENT - If SmoothScroll is the issue, try commenting this out temporarily */}
+      {/* 3. APPLY INTER CLASSNAME TO BODY */}
+      <body className={`antialiased text-white ${inter.className}`}>
+        {/* WRAP CONTENT */}
         <SmoothScroll>
           <Navbar />
           <main>
@@ -43,4 +44,3 @@ export default function RootLayout({
     </html>
   );
 }
-

@@ -129,7 +129,6 @@ export const BigTabsData = () => {
             margin: 4rem auto;
             display: grid;
             grid-template-columns: 280px 1fr;
-            background: rgba(14, 22, 35, 0.6);
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);

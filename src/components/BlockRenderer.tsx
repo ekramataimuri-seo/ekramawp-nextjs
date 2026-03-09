@@ -40,7 +40,9 @@ import { Headwpcarousal } from "./Headwpcarousal";
 import { Fourblockswphead } from "./Fourblockswphead";
 import { HeadlessWpTabs } from "./HeadlessWpTabs";
 import { FAQheadlesswp } from "./FAQheadlesswp";
-
+import { HtmlContent } from "./HtmlContent";
+import { HtmlSecondContent } from "./HtmlSecondContent";
+import { HtmlCheatsheet } from "./HtmlCheatsheet";
 
 
 
@@ -113,6 +115,9 @@ export const BlockRenderer = ({ htmlContent }: Props) => {
       if (classes.includes("section-Fourblockswphead")) return <Fourblockswphead/>;
       if (classes.includes("section-HeadlessWpTabs")) return <HeadlessWpTabs/>;
       if (classes.includes("section-FAQheadlesswp")) return <FAQheadlesswp/>;
+      if (classes.includes("section-HtmlContent")) return <HtmlContent/>;
+      if (classes.includes("section-HtmlSecondContent")) return <HtmlSecondContent/>;
+      if (classes.includes("section-HtmlCheatsheet")) return <HtmlCheatsheet/>;
 
 
       }

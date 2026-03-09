@@ -23,153 +23,39 @@ export const StatsSection = () => {
   ];
 
   return (
-    <section className="stats-section relative overflow-hidden">
-      {/* ADDED 'jsx' HERE TO PREVENT COMPILATION ERRORS */}
-      <style jsx>{`
-        :root {
-           --brand-blue: #3F5CE0;
-           --scratch-1: #2E476E;
-           --scratch-2: #3C66A6;
-           --text-white: #ffffff;
-        }
+    <section className="relative pt-10 pb-0 px-5 min-h-[5vh] flex items-center overflow-hidden">
+      {/* Main Container */}
+      <div className="max-w-[1440px] w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center relative z-10">
+        
+        {/* Left Side: Content */}
+        <div className="flex flex-col">
+          <h1 className="text-white font-black text-[clamp(2rem,4vw,5rem)] leading-[1.1] tracking-normal mb-6">
+            Performance Metrics You <br className="hidden md:block" />
+            <span className="text-emerald-400">Cannot Ignore</span>
+          </h1>
 
-        .stats-section {
-            width: 100%;
-            padding: 80px 20px;
-            text-align: center;
-            background: #0a0f1a; /* Ensuring a dark background for contrast */
-        }
-
-        .stats-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 10;
-        }
-
-        .stats-heading {
-            font-weight: 900;
-            font-size: clamp(2.5rem, 4vw, 3.5rem);
-            color: var(--brand-blue);
-            margin-bottom: 60px;
-            line-height: 1.1;
-            letter-spacing: -1px;
-        }
-
-        .white-highlight {
-            position: relative;
-            display: inline-block;
-            color: var(--text-white);
-            z-index: 1;
-            padding: 0 5px;
-        }
-
-        .white-highlight::before, 
-        .white-highlight::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            width: 100%;
-            z-index: -1;
-            border-radius: 4px;
-        }
-
-        .white-highlight::before {
-            bottom: 6px;
-            height: 10px;
-            background-color: var(--scratch-1);
-            transform: skewX(-12deg);
-        }
-
-        .white-highlight::after {
-            bottom: 10px;
-            height: 10px;
-            background-color: var(--scratch-2);
-            transform: skewX(-12deg);
-            opacity: 1;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-            align-items: stretch;
-        }
-
-        .stat-box {
-            background-color: #1a2436;
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 50px 30px;
-            border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .stat-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            border-color: var(--brand-blue);
-        }
-
-        .stat-number-wrapper {
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            margin-bottom: 20px;
-        }
-
-        .stat-number {
-            font-weight: 900;
-            font-size: clamp(3.5rem, 5vw, 5rem); 
-            color: var(--brand-blue); 
-            margin: 0;
-            line-height: 1;
-            letter-spacing: -2px;
-            text-shadow: 0 0 30px rgba(63, 92, 224, 0.3);
-        }
-
-        .stat-desc {
-            font-weight: 500;
-            font-size: 1.1rem;
-            color: var(--text-white);
-            line-height: 1.6;
-            margin: 0 auto;
-            max-width: 260px;
-            opacity: 0.9;
-        }
-
-        @media (max-width: 768px) {
-            .stat-number-wrapper { height: auto; margin-bottom: 10px; }
-            .stat-number { font-size: 3.5rem; }
-        }
-      `}</style>
-      
-      <div className="stats-container">
-        <div className="mb-4">
-             <span className="text-[#FFFFFF] font-bold text-sm uppercase tracking-[2px]">
-                Market Reality
-             </span>
+          <p className="text-white/90 text-[clamp(0.83rem,1.2vw,1.23rem)] font-normal leading-[1.6] mb-10 max-w-[600px] mx-auto lg:mx-0">
+Our data-driven approach ensures your digital infrastructure is optimized for maximum speed, high conversion, and long-term search engine dominance. By replacing guesswork with concrete, evidence-based insights, we transform your digital presence into a measurable, high-performance asset. 
+          </p>
         </div>
 
-        <h2 className="stats-heading">
-          Performance Metrics You <br className="hidden md:block" />
-          <span className="white-highlight">Cannot Ignore</span>
-        </h2>
-        
-        <div className="stats-grid">
+        {/* Right Side: Stats Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {stats.map((stat, index) => (
-            <div className="stat-box" key={index}>
-              <div className="stat-number-wrapper">
-                <h3 className="stat-number">{stat.value}</h3>
+            <div 
+              key={index} 
+              /* Emerald Green Background Boxes for each item */
+              className="bg-emerald-600 flex flex-col items-start p-3 md:p-8 rounded-2xl transition-transform duration-300 hover:scale-[1.03]"
+            >
+              <div className="mb-2">
+                {/* H3 remains White as requested */}
+                <h3 className="text-white font-black text-[clamp(2.5rem,4vw,4rem)] leading-none tracking-tighter">
+                  {stat.value}
+                </h3>
               </div>
-              <p className="stat-desc">{stat.desc}</p>
+              <p className="text-white/90 text-[clamp(0.83rem,1.1vw,1.1rem)] font-normal leading-relaxed">
+                {stat.desc}
+              </p>
             </div>
           ))}
         </div>

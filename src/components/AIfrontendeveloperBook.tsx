@@ -7,106 +7,115 @@ export const AIfrontendeveloperBook = () => {
 
   const steps = [
     {
-      badge: "The Architecture",
-      label: "System Design",
-      amount: "Scalable",
-      infoTitle: "Why Modular Code Matters",
+      badge: "Custom PPC Plans",
+      label: "Starting at",
+      amount: "$650",
+      infoTitle: "How we determine pricing",
       items: [
         {
-          title: "Component Atoms",
-          desc: "We build interfaces using atomic design principles, ensuring every button and input is a reusable asset.",
-          icon: <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+          title: "Your Ad Spend",
+          desc: "Your advertising budget will not only determine your monthly management costs, it will also help determine which advertising channels we’d recommend investing in to maximize your marketing budget.",
+          icon: <img src="https://www.webfx.com/wp-content/uploads/2023/06/accounts.png" alt="Ad Spend" style={{ width: "32px", height: "32px", objectFit: "contain" }} />
         },
         {
-          title: "State Management",
-          desc: "Predictable data flow using modern tools ensures your application remains stable as features grow.",
-          icon: <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+          title: "Networks and Targeting",
+          desc: "Your custom strategy will depend on where you are looking to advertise- Google, Bing, Programmatic, etc. Your WebFX strategist can recommend PPC channels for you based on your business goals!",
+          icon: <img src="https://www.webfx.com/wp-content/uploads/2023/06/accounts.png" alt="Networks" style={{ width: "32px", height: "32px", objectFit: "contain" }} />
         },
         {
-          title: "TypeScript Safety",
-          desc: "Static typing eliminates runtime errors and provides a self-documenting codebase for engineering teams.",
-          icon: <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z" />
+          title: "Creative Needs",
+          desc: "If you have an in-house designer, you may not need WebFX’s support with the creation of branded ad creative. However, many of our clients trust WebFX’s design team to create professional, branded display ads for any campaign type.",
+          icon: <img src="https://www.webfx.com/wp-content/uploads/2023/06/accounts.png" alt="Creative" style={{ width: "32px", height: "32px", objectFit: "contain" }} />
         }
       ],
-      rightTitle: "Architectural Wins:",
+      rightTitle: "Included for All PPC Plans:",
       features: [
-        "Reduced Technical Debt",
-        "Faster Feature Onboarding",
-        "Consistent Design Language",
-        "Simplified Unit Testing",
-        "Better Developer Experience",
-        "Future-Proof Tech Stack",
-        "Enterprise-Grade Stability"
+        "In-depth keyword research and advanced selection",
+        "Competitor and industry analysis",
+        "Data-backed keyword development",
+        "Ongoing ad strategy management and optimization",
+        "Access to our in-house revenue acceleration software RevenueCloudFX",
+        "Closed-loop ROI and customer journey tracking",
+        "Conversion-boosting and performance tested ad copy",
+        "Expertise and support from a team of over 750 strategists",
+        "Ad campaign performance, analysis, and revenue reporting",
+        "Strategic bid management"
       ],
-      btnText: "Audit Architecture"
+      btnText: "Get My Custom Quote"
     },
     {
-      badge: "The Performance",
-      label: "Core Web Vitals",
-      amount: "99+ Score",
-      infoTitle: "Optimizing for Speed",
+      badge: "Enterprise Plans",
+      label: "Starting at",
+      amount: "$1,200",
+      infoTitle: "How we determine pricing",
       items: [
         {
-          title: "Next.js SSR/ISR",
-          desc: "We leverage server-side rendering to deliver content instantly to the user's browser.",
-          icon: <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+          title: "Your Ad Spend",
+          desc: "Your advertising budget will not only determine your monthly management costs, it will also help determine which advertising channels we’d recommend investing in to maximize your marketing budget.",
+          icon: <img src="https://www.webfx.com/wp-content/uploads/2023/06/accounts.png" alt="Ad Spend" style={{ width: "32px", height: "32px", objectFit: "contain" }} />
         },
         {
-          title: "Image Optimization",
-          desc: "Modern formats and lazy loading ensure high-fidelity visuals don't compromise load times.",
-          icon: <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+          title: "Networks and Targeting",
+          desc: "Your custom strategy will depend on where you are looking to advertise- Google, Bing, Programmatic, etc. Your WebFX strategist can recommend PPC channels for you based on your business goals!",
+          icon: <img src="https://www.webfx.com/wp-content/uploads/2023/06/accounts.png" alt="Networks" style={{ width: "32px", height: "32px", objectFit: "contain" }} />
         },
         {
-          title: "Code Splitting",
-          desc: "Dynamically loading only what is needed keeps your JavaScript bundles lean and fast.",
-          icon: <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z" />
+          title: "Creative Needs",
+          desc: "If you have an in-house designer, you may not need WebFX’s support with the creation of branded ad creative. However, many of our clients trust WebFX’s design team to create professional, branded display ads for any campaign type.",
+          icon: <img src="https://www.webfx.com/wp-content/uploads/2023/06/accounts.png" alt="Creative" style={{ width: "32px", height: "32px", objectFit: "contain" }} />
         }
       ],
-      rightTitle: "Performance Metrics:",
+      rightTitle: "Included for All PPC Plans:",
       features: [
-        "Sub-second First Paint",
-        "Zero Layout Shifts (CLS)",
-        "Optimized Time to Interactive",
-        "Search Engine Dominance",
-        "Lower Bounce Rates",
-        "Higher User Engagement",
-        "Native-like Responsiveness"
+        "In-depth keyword research and advanced selection",
+        "Competitor and industry analysis",
+        "Data-backed keyword development",
+        "Ongoing ad strategy management and optimization",
+        "Access to our in-house revenue acceleration software RevenueCloudFX",
+        "Closed-loop ROI and customer journey tracking",
+        "Conversion-boosting and performance tested ad copy",
+        "Expertise and support from a team of over 750 strategists",
+        "Ad campaign performance, analysis, and revenue reporting",
+        "Strategic bid management"
       ],
-      btnText: "Check Performance"
+      btnText: "Get My Custom Quote"
     },
     {
-      badge: "The Interface",
-      label: "Precision UX",
-      amount: "Pixel Perfect",
-      infoTitle: "Beyond Visuals",
+      badge: "Global Strategy",
+      label: "Starting at",
+      amount: "$3,500",
+      infoTitle: "How we determine pricing",
       items: [
         {
-          title: "Responsive Logic",
-          desc: "Interfaces that adapt flawlessly across mobile, tablet, and ultra-wide desktop screens.",
-          icon: <path d="M4 6h18V4H4c-1.1 0-2 .9-2 2v11H0v3h14v-3H4V6zm19 2h-6c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V9c0-.55-.45-1-1-1zm-1 9h-4v-7h4v7z" />
+          title: "Your Ad Spend",
+          desc: "Your advertising budget will not only determine your monthly management costs, it will also help determine which advertising channels we’d recommend investing in to maximize your marketing budget.",
+          icon: <img src="https://www.webfx.com/wp-content/uploads/2023/06/accounts.png" alt="Ad Spend" style={{ width: "32px", height: "32px", objectFit: "contain" }} />
         },
         {
-          title: "Accessibility (a11y)",
-          desc: "WCAG compliant markup ensures your product is usable by everyone, everywhere.",
-          icon: <path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z" />
+          title: "Networks and Targeting",
+          desc: "Your custom strategy will depend on where you are looking to advertise- Google, Bing, Programmatic, etc. Your WebFX strategist can recommend PPC channels for you based on your business goals!",
+          icon: <img src="https://www.webfx.com/wp-content/uploads/2023/06/accounts.png" alt="Networks" style={{ width: "32px", height: "32px", objectFit: "contain" }} />
         },
         {
-          title: "Interaction Design",
-          desc: "Subtle micro-interactions and animations that guide users through your workflow.",
-          icon: <path d="M7 2v11h10V2H7zm5 9L9 8l1.41-1.41L12 8.17l1.59-1.58L15 8l-3 3z" />
+          title: "Creative Needs",
+          desc: "If you have an in-house designer, you may not need WebFX’s support with the creation of branded ad creative. However, many of our clients trust WebFX’s design team to create professional, branded display ads for any campaign type.",
+          icon: <img src="https://www.webfx.com/wp-content/uploads/2023/06/accounts.png" alt="Creative" style={{ width: "32px", height: "32px", objectFit: "contain" }} />
         }
       ],
-      rightTitle: "UX Deliverables:",
+      rightTitle: "Included for All PPC Plans:",
       features: [
-        "Semantic HTML5 Structure",
-        "Touch-Friendly Navigation",
-        "Adaptive Typography",
-        "Dark/Light Mode Support",
-        "Cross-Browser Consistency",
-        "User Flow Optimization",
-        "Intuitive Feedback Loops"
+        "In-depth keyword research and advanced selection",
+        "Competitor and industry analysis",
+        "Data-backed keyword development",
+        "Ongoing ad strategy management and optimization",
+        "Access to our in-house revenue acceleration software RevenueCloudFX",
+        "Closed-loop ROI and customer journey tracking",
+        "Conversion-boosting and performance tested ad copy",
+        "Expertise and support from a team of over 750 strategists",
+        "Ad campaign performance, analysis, and revenue reporting",
+        "Strategic bid management"
       ],
-      btnText: "Review My UI"
+      btnText: "Get My Custom Quote"
     }
   ];
 
@@ -118,182 +127,383 @@ export const AIfrontendeveloperBook = () => {
     setCurrentIndex((prev) => (prev > 0 ? prev - 1 : steps.length - 1));
   };
 
+  const activeStep = steps[currentIndex];
+
   return (
-    <div className="AISEO-scope" id="AISEOBookComponent">
+    <section className="bofu-pricing-wrapper">
       <style jsx>{`
-        .AISEO-scope {
-            --brand-color: #3F5CE0;
-            --brand-light: rgba(63, 92, 224, 0.1);
-            --success-color: #3F5CE0;
-            --txt-main: #FFFFFF;
-            --txt-light: #E2E8F0;
-            padding: 80px 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            width: 100%;
-            box-sizing: border-box;
-            overflow: hidden;
-            background: #0a0f1a;
+/* --- 1. THE MAIN WRAPPER --- */
+.bofu-pricing-wrapper {
+  background-color: #000000 !important; /* The top half remains black */
+  color: #fafbfd !important;
+  padding: 80px 20px 100px;
+  font-family: 'Inter', sans-serif;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-height: auto;
+  isolation: isolate; /* Critical: Keeps backgrounds from sliding behind site body */
+  overflow: visible !important; /* Fixes the floating icon cutting issue */
+}
+
+/* --- 2. THE DOTTED GREEN BOTTOM (Fixed to Top Anchor) --- */
+.bofu-pricing-wrapper::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  /* CHANGE: Fixed anchor point (e.g., 450px from top) stops the 'jumping' */
+  top: 650px; 
+  width: 100%;
+  /* Use a large height to ensure it covers the bottom even on long mobile scrolls */
+  height: 800px; 
+  
+  /* BASE COLOR: Using your site's --teal-01 or #EDF9F8 for the green block */
+  background-color: #1b572c !important; 
+  
+  /* DOTS: These will only appear within this green area */
+background-image: radial-gradient(#000000 1.2px, transparent 1.2px)
+ !important;  
+ background-repeat: no-repeat; 
+  background-size: 100% 100%; /* Or keep your 14px 14px and use repeat-x if only 1 row */
+  
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* --- 3. DOTTED LIMITER --- */
+/* If you want the dots to ONLY be at the top edge of the green block: */
+.bofu-pricing-wrapper::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 450px; /* Must match the top of the green block */
+  width: 100%;
+  height: 300px; /* This limits the dots to just the first 300px of the green */
+  background-image: radial-gradient(#000000 1px, transparent 1.5px) !important;
+  background-size: 14px 14px !important;
+  z-index: -1;
+}
+
+        /* --- 4. CONTAINER ALIGNMENT --- */
+        .container-inner {
+          max-width: 950px !important; 
+          width: 100% !important;
+          margin: 0 auto !important; 
+          position: relative;
+          z-index: 10;
         }
 
-        .main-wrapper { max-width: 900px; width: 100%; text-align: center; z-index: 2; }
-        .header { margin-bottom: 50px; }
-        .subtitle { color: #FFFFFF; font-weight: 900; font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 12px; text-transform: uppercase; }
-        .title { font-size: clamp(1.5rem, 3vw, 2.5rem); color: #3F5CE0; margin-bottom: 20px; font-weight: 900; line-height: 1.1; letter-spacing: -0.04em; }
-
-        .double-scratch {
-            position: relative;
-            display: inline-block;
-            color: #FFFFFF;
-            z-index: 1;
-            padding: 0 4px;
+        /* --- 5. TOP INTRO TEXT --- */
+        .intro-header {
+          text-align: center;
+          margin-bottom: 70px;
         }
-        .double-scratch::before { content: ''; position: absolute; left: 0; right: 0; bottom: 4px; height: 10px; background: #2e476e; z-index: -2; transform: skewX(-12deg); border-radius: 2px; }
-        .double-scratch::after { content: ''; position: absolute; left: 0; right: 0; bottom: 8px; height: 10px; background: #3C66A6; z-index: -1; transform: skewX(-12deg); border-radius: 2px; }
-
-        .description { color: #FFFFFF; font-size: 1.1rem; line-height: 1.7; font-weight: 400; max-width: 600px; margin: 0 auto; opacity: 0.9; }
-
-        .book-viewport { perspective: 2000px; margin: 0 auto; width: 100%; height: 750px; position: relative; }
-        .book-container { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; }
-
-        .spread {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            opacity: 0; pointer-events: none;
-            transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.5s;
-            transform: rotateY(90deg); transform-origin: center;
-            will-change: transform, opacity;
+        .intro-header h2 {
+          font-size: clamp(1.8rem, 4vw, 2.4rem) !important;
+          font-weight: 900 !important;
+          color: #ffffff !important;
+          line-height: 1.2 !important;
+          margin-bottom: 20px !important;
+        }
+        .intro-header p {
+          font-size: 1.05rem !important;
+          color: #f0f2f4 !important;
+          max-width: 800px;
+          margin: 0 auto !important;
+          line-height: 1.6 !important;
         }
 
-        .spread.active { opacity: 1; pointer-events: all; transform: rotateY(0deg); z-index: 5; }
-        .spread.turned { transform: rotateY(-90deg); opacity: 0; }
+        /* --- 6. MAIN PRICING CARD --- */
+        .pricing-card {
+          display: flex;
+          background-color: #060505 !important;
+          border-radius: 20px;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4) !important;
+          border: 1px solid #1f1a1a !important;
+          position: relative;
+          min-height: auto; 
+          overflow: visible; 
+        }
 
-        .card { background: #1a2436; border-radius: 12px; box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4); display: flex; text-align: left; border: 1px solid rgba(255,255,255,0.1); height: 100%; }
-        .card-left { flex: 1.2; border-top-left-radius: 12px; border-bottom-left-radius: 12px; display: flex; flex-direction: column; border-right: 1px solid rgba(255,255,255,0.1); }
-        .card-right { flex: 1; background-color: rgba(255,255,255,0.02); border-top-right-radius: 12px; border-bottom-right-radius: 12px; display: flex; flex-direction: column; padding: 20px; }
+        /* --- 7. LEFT COLUMN --- */
+        .card-left {
+          flex: 1.2;
+          display: flex;
+          flex-direction: column;
+          border-right: 1px solid #342b2b !important;
+        }
 
-        .AISEO-box { background-color: #3F5CE0; color: white; padding: 30px; text-align: center; position: relative; flex-shrink: 0; border-top-left-radius: 12px; }
-        .badge { font-size: 0.75rem; background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; display: inline-block; margin-bottom: 10px; font-weight: 900; text-transform: uppercase; }
-        .start-text { font-size: 0.9rem; margin-bottom: 5px; opacity: 0.9; font-weight: 400; }
-        .amount { font-size: 2.8rem; font-weight: 900; line-height: 1.1; }
+        .card-left-top {
+          background-color: #08743e !important;
+          padding: 60px 30px 40px; 
+          text-align: center;
+          position: relative;
+        }
+        .floating-icon {
+          position: absolute;
+          top: -24px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 48px;
+          height: 48px;
+          background-color: #ffffff !important;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.2) !important;
+        }
+        .badge {
+          color: #ffffff !important;
+          font-size: 0.95rem !important;
+          font-weight: 800 !important;
+          text-transform: uppercase;
+          margin: 0 0 8px 0 !important;
+        }
+        .label {
+          color: #ffffff !important;
+          font-size: 0.9rem !important;
+          opacity: 0.8;
+          margin: 0 0 10px 0 !important;
+        }
+        .price {
+          color: #ffffff !important;
+          font-size: 3.5rem !important;
+          font-weight: 900 !important;
+          margin: 0 !important;
+          line-height: 1 !important;
+        }
+        .price span {
+          color: #ffffff !important;
+          font-size: 1.1rem !important;
+          font-weight: 500 !important;
+        }
 
-        .scroll-area { flex-grow: 1; overflow-y: auto; padding: 30px 40px; scrollbar-width: thin; scrollbar-color: #3F5CE0 transparent; }
-        .scroll-area::-webkit-scrollbar { width: 6px; }
-        .scroll-area::-webkit-scrollbar-thumb { background-color: #3F5CE0; border-radius: 10px;}
+        .card-left-bottom {
+          background-color: #1A1A1A !important;
+          padding: 35px 40px 50px !important; 
+          flex-grow: 1; 
+          display: flex;
+          flex-direction: column;
+        }
+        .card-left-bottom h4 {
+          color: #ffffff !important;
+          font-size: 1.25rem !important;
+          font-weight: 700 !important;
+          margin: 0 0 25px 0 !important; 
+        }
+        .item-block {
+          margin-bottom: 30px !important;
+        }
+        .item-block:last-child {
+          margin-bottom: 0 !important;
+        }
+        .item-header {
+          display: flex;
+          align-items: center !important; 
+          gap: 12px;
+          margin-bottom: 12px !important;
+        }
+        .item-icon-wrap {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+        }
+        .item-header h5 {
+          color: #ffffff !important; 
+          font-size: 1.05rem !important;
+          font-weight: 700 !important; 
+          margin: 0 !important; 
+        }
+        .item-block p {
+          color: #e0e0e0 !important;
+          font-size: 0.9rem !important;
+          line-height: 1.6 !important; 
+          margin: 0 !important;
+          font-weight: 500 !important;
+        }
 
-        .info-title { font-size: 1.1rem; color: #FFFFFF; margin-bottom: 25px; font-weight: 900; text-transform: uppercase; }
-        .info-item { display: flex; gap: 15px; margin-bottom: 25px; }
-        .icon-bg { width: 40px; height: 40px; background: rgba(63, 92, 224, 0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .info-text h3 { font-size: 1.1rem; margin-bottom: 4px; color: #3F5CE0; font-weight: 900; margin-top: 0; }
-        .info-text p { font-size: 0.9rem; color: #E2E8F0; line-height: 1.5; margin: 0; font-weight: 400; }
+        /* --- 8. RIGHT COLUMN --- */
+        .card-right {
+          flex: 1;
+          background-color: #151515 !important;
+          padding: 60px 40px; 
+          display: flex;
+          flex-direction: column;
+        }
+        .card-right h4 {
+          color: #ffffff !important;
+          font-size: 1.2rem !important;
+          font-weight: 700 !important;
+          margin: 0 0 30px 0 !important;
+        }
+        .feature-list {
+          list-style: none !important;
+          padding: 0 !important;
+          margin: 0 0 40px 0 !important;
+          display: flex;
+          flex-direction: column;
+          gap: 16px; 
+        }
+        .feature-list li {
+          display: flex;
+          align-items: flex-start;
+          gap: 12px;
+          color: #f0f2f4 !important;
+          font-size: 0.9rem !important;
+          font-weight: 500 !important;
+          line-height: 1.4 !important;
+        }
+        .check-circle {
+          width: 20px;
+          height: 20px;
+          background-color: #E9F7F0 !important;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #26B16D !important;
+          flex-shrink: 0;
+          margin-top: 1px;
+        }
+        .cta-button {
+          background-color: #26B16D !important;
+          color: #ffffff !important;
+          font-weight: 800 !important;
+          font-size: 1rem !important;
+          padding: 16px 20px !important;
+          border-radius: 6px !important;
+          border: none !important;
+          cursor: pointer !important;
+          text-align: center !important;
+          width: 100% !important;
+          margin-top: auto !important;
+          transition: background-color 0.2s ease !important;
+        }
+        .cta-button:hover {
+          background-color: #1e9258 !important;
+        }
 
-        .list-title { font-size: 1.05rem; font-weight: 900; margin-bottom: 20px; color: #FFFFFF; text-transform: uppercase; }
-        .feature-list { list-style: none; padding: 0; margin-bottom: 10px; }
-        .feature-list li { font-size: 1rem; color: #FFFFFF; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; line-height: 1.4; font-weight: 400; }
-        .feature-list li::before { content: '→'; color: #3F5CE0; font-weight: 900; }
+        /* --- 9. BOTTOM NAVIGATION LINK --- */
+        .nav-link-area {
+          text-align: center;
+          margin-top: 40px;
+          position: relative;
+        }
+        .nav-link-area button {
+          background: none !important;
+          border: none !important;
+          color: #207DE9 !important;
+          font-weight: 700 !important;
+          font-size: 0.95rem !important;
+          cursor: pointer !important;
+          padding: 10px 15px !important;
+        }
+        .nav-link-area button:hover {
+          text-decoration: underline;
+        }
+        .nav-link-area span {
+          color: #ffffff !important;
+          font-size: 0.9rem !important;
+          margin: 0 15px !important;
+        }
 
-        .btn-wrap { margin-top: auto; padding-top: 20px; }
-        .cta-btn { background-color: #3F5CE0; color: white; border: none; padding: 16px 40px; border-radius: 8px; font-size: 1.05rem; font-weight: 900; cursor: pointer; transition: 0.3s; width: fit-content; display: block; margin: 0 auto; min-width: 200px; text-transform: uppercase; }
-        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(63, 92, 224, 0.3); }
-
-        .nav-wrap { display: flex; justify-content: center; align-items: center; gap: 30px; margin-top: 40px; position: relative; z-index: 10; }
-        .nav-trigger { background: transparent; border: 2px solid #3F5CE0; color: #3F5CE0; padding: 10px 25px; border-radius: 30px; font-weight: 900; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
-        .nav-trigger:hover { background: #3F5CE0; color: #fff; }
-        .page-counter { color: #fff; font-weight: 900; font-size: 1.1rem; }
-
-        @media (max-width: 850px) {
-            .card { flex-direction: column; height: auto; margin-top: 40px; }
-            .AISEO-box { border-radius: 12px 12px 0 0; }
-            .book-viewport { height: auto; min-height: 850px; perspective: none; }
-            .spread { position: relative; transform: none !important; opacity: 0; display: none; }
-            .spread.active { opacity: 1; display: block; }
-            .card-right { border-radius: 0 0 12px 12px; }
+        /* --- 10. MOBILE RESPONSIVENESS --- */
+        @media (max-width: 900px) {
+          .pricing-card {
+            flex-direction: column;
+          }
+          .card-left {
+            border-right: none !important;
+            border-bottom: 1px solid #342b2b !important;
+          }
         }
       `}</style>
 
-      <div className="main-wrapper">
-        <header className="header">
-          <p className="subtitle">Modern Engineering Workflow</p>
-          <h2 className="title">
-            Scaling Products Through <br />
-            <span className="double-scratch">Precision Engineering</span>
+      <div className="container-inner">
+        
+        {/* Intro Header */}
+        <div className="intro-header">
+          <h2>
+            Looking for plans and pricing?<br />
+            Get a preview of our enterprise PPC services
           </h2>
-          <p className="description">
-            We build high-performance front-end systems that combine modular architecture 
-            with pixel-perfect implementation to deliver world-class user experiences.
+          <p>
+            Growing PPC’s performance starts with a plan customized to your business, industry, and audience. So, we build a customized enterprise PPC service plan for your organization, providing you with a roadmap for how we’ll achieve your goals for paid search, from greater brand awareness to bigger market share.
           </p>
-        </header>
+        </div>
 
-        <div className="book-viewport">
-          <div className="book-container">
-            {steps.map((step, index) => {
-              let statusClass = "";
-              if (index === currentIndex) statusClass = "active";
-              else if (index < currentIndex) statusClass = "turned";
+        {/* Pricing Card */}
+        <div className="pricing-card">
+          
+          {/* Left Side */}
+          <div className="card-left">
+            <div className="card-left-top">
+              {/* Floating SVG Icon */}
+              <div className="floating-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="#207DE9">
+                  <path d="M4 6h16v2H4zm2 3h12v10H6zm2 2v6h2v-6zm6 0v6h2v-6z"/>
+                </svg>
+              </div>
+              <h3 className="badge">{activeStep.badge}</h3>
+              <p className="label">{activeStep.label}</p>
+              <h2 className="price">
+                {activeStep.amount} <span>/ month</span>
+              </h2>
+            </div>
 
-              return (
-                <div key={index} className={`spread ${statusClass}`}>
-                  <section className="card">
-                    <div className="card-left">
-                      <div className="AISEO-box">
-                        <span className="badge">{step.badge}</span>
-                        <p className="start-text">{step.label}</p>
-                        <div className="amount">
-                          {step.amount}
-                        </div>
-                      </div>
-                      <div className="scroll-area">
-                        <h3 className="info-title">{step.infoTitle}</h3>
-                        {step.items.map((item, i) => (
-                          <div className="info-item" key={i}>
-                            <div className="icon-bg">
-                              <svg width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF">
-                                {item.icon}
-                              </svg>
-                            </div>
-                            <div className="info-text">
-                              <h3>{item.title}</h3>
-                              <p>{item.desc}</p>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
+            <div className="card-left-bottom">
+              <h4>{activeStep.infoTitle}</h4>
+              
+              {activeStep.items.map((item, idx) => (
+                <div className="item-block" key={idx}>
+                  {/* Icon and Title Inline */}
+                  <div className="item-header">
+                    <div className="item-icon-wrap">
+                      {item.icon}
                     </div>
-
-                    <div className="card-right">
-                      <div className="scroll-area">
-                        <h3 className="list-title">{step.rightTitle}</h3>
-                        <ul className="feature-list">
-                          {step.features.map((feat, i) => (
-                            <li key={i}>{feat}</li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div className="btn-wrap">
-                        <button className="cta-btn">{step.btnText}</button>
-                      </div>
-                    </div>
-                  </section>
+                    <h5>{item.title}</h5>
+                  </div>
+                  {/* Paragraph Underneath */}
+                  <p>{item.desc}</p>
                 </div>
-              );
-            })}
+              ))}
+
+            </div>
           </div>
+
+          {/* Right Side */}
+          <div className="card-right">
+            <h4>{activeStep.rightTitle}</h4>
+            <ul className="feature-list">
+              {activeStep.features.map((feature, idx) => (
+                <li key={idx}>
+                  {/* SVG Checkmark */}
+                  <div className="check-circle">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </div>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+            <button className="cta-button">
+              {activeStep.btnText}
+            </button>
+          </div>
+
         </div>
 
-        <div className="nav-wrap">
-          <button className="nav-trigger prev" onClick={handlePrev}>
-            ← Back
-          </button>
-          <div className="page-counter">
-            Step <span>{currentIndex + 1}</span> of {steps.length}
-          </div>
-          <button className="nav-trigger next" onClick={handleNext}>
-            Next Step →
-          </button>
+        {/* Bottom Navigation */}
+        <div className="nav-link-area">
+          <button onClick={handlePrev}>← Previous Plan</button>
+          <span>Plan {currentIndex + 1} of {steps.length}</span>
+          <button onClick={handleNext}>Next Plan →</button>
         </div>
+
       </div>
-    </div>
+    </section>
   );
 };
