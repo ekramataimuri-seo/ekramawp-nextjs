@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 export const PentagonGrowthEngine = () => {
-  const [activeTab, setActiveTab] = useState('p-2'); // Set default to 'SEO Copywriting' to match your reference image
+  const [activeTab, setActiveTab] = useState('p-2');
 
   const tabsData = [
     {
@@ -106,39 +106,43 @@ export const PentagonGrowthEngine = () => {
     <section className="pt-10 pb-16 px-5 min-h-[5vh] items-center flex flex-col bg-black text-white">
       
       {/* 1. Heading Section - Intact */}
-      <div className="w-full text-center mb-16 max-w-[1440px] mx-auto">
+      <div className="w-full text-center mb-8 lg:mb-16 max-w-[1440px] mx-auto">
         <h2 className="text-[clamp(2.2rem,4.5vw,3.2rem)] font-black leading-[1.1] tracking-normal mb-6">
           Mastering <span className="text-emerald-500">Real Estate SEO</span>
         </h2>
       </div>
 
-      {/* 2. Main Three-Column Grid for Centered Image and WIDER Content */}
-      <div className="max-w-[1440px] w-full mx-auto grid grid-cols-[190px_1fr_1.8fr] gap-12 items-center relative z-10">
+      {/* 2. Main Grid 
+          NEW: Switched to grid-cols-1 for mobile, then lg:grid-cols-[190px_1fr_1.8fr] for desktop.
+          This stacks the layout vertically on phones. */}
+      <div className="max-w-[1440px] w-full mx-auto grid grid-cols-1 lg:grid-cols-[190px_1fr_1.8fr] gap-8 lg:gap-12 items-center relative z-10 w-full overflow-hidden lg:overflow-visible">
         
-        {/* Column A: Tabs (Vertical, Left-aligned) - Cleaned */}
-        <div className="flex flex-col gap-5 self-start pt-6">
+        {/* Column A: Tabs
+            NEW: Added flex-row and overflow-x-auto for mobile horizontal scrolling. lg:flex-col keeps it vertical on desktop. */}
+        <div className="flex flex-row lg:flex-col gap-3 lg:gap-5 self-start pt-2 lg:pt-6 w-full overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 snap-x">
           {tabsData.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-4 px-2 py-3 cursor-pointer transition-all duration-300 outline-none text-left w-full ${
-                activeTab === tab.id ? 'opacity-100' : 'opacity-40 hover:opacity-100'
+              /* NEW: Added shrink-0 so tabs don't compress on mobile, and w-auto for horizontal flow */
+              className={`flex items-center gap-3 lg:gap-4 px-4 lg:px-2 py-3 cursor-pointer transition-all duration-300 outline-none text-left w-auto lg:w-full shrink-0 snap-start rounded-full lg:rounded-none ${
+                activeTab === tab.id ? 'opacity-100 bg-white/10 lg:bg-transparent' : 'opacity-40 hover:opacity-100'
               }`}
             >
-              <div className="w-6 h-6 flex items-center justify-center shrink-0">
+              <div className="w-5 h-5 lg:w-6 lg:h-6 flex items-center justify-center shrink-0">
                 {tab.icon}
               </div>
-              <span className="text-[18px] font-semibold whitespace-nowrap">{tab.title}</span>
+              <span className="text-[15px] lg:text-[18px] font-semibold whitespace-nowrap">{tab.title}</span>
             </button>
           ))}
         </div>
 
-        {/* Column B: IMAGE (Strictly Centered horizontally between Tabs and Text) */}
-        <div className="relative w-full flex justify-center items-center">
+        {/* Column B: IMAGE strictly centered */}
+        <div className="relative w-full flex justify-center items-center py-6 lg:py-0">
           {tabsData.map((tab) => (
             <div
               key={tab.id}
-              className={`w-[320px] transition-all duration-500 ease-in-out absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ${
+              className={`w-[260px] sm:w-[320px] transition-all duration-500 ease-in-out absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ${
                 activeTab === tab.id 
                   ? 'opacity-100 scale-100 z-10' 
                   : 'opacity-0 scale-95 z-0 pointer-events-none'
@@ -151,51 +155,51 @@ export const PentagonGrowthEngine = () => {
               />
             </div>
           ))}
-          {/* Empty spacer to maintain height/width in the grid flow */}
-          <div className="w-[320px] h-[240px]"></div>
+          {/* Spacer slightly adjusted for mobile screens to prevent overflow */}
+          <div className="w-[260px] sm:w-[320px] h-[200px] sm:h-[240px]"></div>
         </div>
 
-  {/* Column C: TEXT CONTENT */}
-<div className="relative w-full h-full flex items-end pb-32 -translate-y-10"> 
-  {tabsData.map((tab) => (
-    <div
-      key={tab.id}
-      /* CHANGE: top-0 replaced with bottom-0 to pull content down */
-      className={`w-full transition-all duration-500 ease-in-out absolute bottom-0 left-0 ${
-        activeTab === tab.id 
-          ? 'opacity-100 translate-y-0 z-10 pointer-events-auto' 
-          : 'opacity-0 translate-y-4 z-0 pointer-events-none'
-      }`}
-    >
-      <div className="w-full text-left">
-        <h3 className="text-[28px] font-extrabold mb-[20px] leading-[1.25] tracking-tight text-white">
-          {tab.heading}
-        </h3>
-        <p className="text-white/90 text-[clamp(0.83rem,1.2vw,1.1rem)] font-normal leading-[1.6] mb-8 max-w-[650px]">
-          {tab.desc}
-        </p>
-        <ul className="list-disc pl-5 m-0 text-left max-w-[650px] space-y-3">
-          {tab.list.map((item, idx) => (
-            <li key={idx} className="text-white/90 text-[clamp(0.83rem,1.2vw,1.1rem)] font-normal leading-[1.6]">
-              {item}
-            </li>
+        {/* Column C: TEXT CONTENT 
+            NEW: Removed massive negative margin on mobile using lg:-translate-y-10 */}
+<div className="relative w-full h-full flex items-end mt-12 lg:mt-0 pb-2 lg:pb-32 lg:-translate-y-10">          {tabsData.map((tab) => (
+            <div
+              key={tab.id}
+              className={`w-full transition-all duration-500 ease-in-out absolute bottom-0 left-0 ${
+                activeTab === tab.id 
+                  ? 'opacity-100 translate-y-0 z-10 pointer-events-auto' 
+                  : 'opacity-0 translate-y-4 z-0 pointer-events-none'
+              }`}
+            >
+              <div className="w-full text-left">
+                <h3 className="text-[24px] lg:text-[28px] font-extrabold mb-[15px] lg:mb-[20px] leading-[1.25] tracking-tight text-white">
+                  {tab.heading}
+                </h3>
+                <p className="text-white/90 text-[clamp(0.83rem,1.2vw,1.1rem)] font-normal leading-[1.6] mb-6 lg:mb-8 max-w-[650px]">
+                  {tab.desc}
+                </p>
+                <ul className="list-disc pl-5 m-0 text-left max-w-[650px] space-y-3">
+                  {tab.list.map((item, idx) => (
+                    <li key={idx} className="text-white/90 text-[clamp(0.83rem,1.2vw,1.1rem)] font-normal leading-[1.6]">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           ))}
-        </ul>
-      </div>
-    </div>
-  ))}
 
-  {/* Invisible spacer: Ensures the parent div has enough height to contain the absolute items */}
-  <div className="w-full text-left opacity-0 pointer-events-none">
-    <h3 className="text-[28px] mb-[20px] leading-[1.25]">Spacer</h3>
-    <p className="mb-8 max-w-[650px] leading-[1.6]">Filler text</p>
-    <ul className="pl-5 list-disc space-y-3">
-      <li>Spacer</li>
-      <li>Spacer</li>
-    </ul>
-  </div>
-</div>
-</div>
+          {/* Invisible spacer: Ensures the parent div has enough height to contain the absolute items */}
+          <div className="w-full text-left opacity-0 pointer-events-none">
+            <h3 className="text-[28px] mb-[20px] leading-[1.25]">Spacer</h3>
+            <p className="mb-8 max-w-[650px] leading-[1.6]">Filler text to keep height stable on mobile</p>
+            <ul className="pl-5 list-disc space-y-3">
+              <li>Spacer</li>
+              <li>Spacer</li>
+              <li>Spacer</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };

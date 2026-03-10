@@ -25,8 +25,8 @@ export const StatsSection = () => {
   return (
     <section className="relative pt-10 pb-0 px-5 min-h-[5vh] flex items-center overflow-hidden">
       {/* Main Container */}
-      <div className="max-w-[1440px] w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center relative z-10">
-        
+{/* Changed gap-16 to gap-8 for mobile */}
+<div className="max-w-[1440px] w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center relative z-10">        
         {/* Left Side: Content */}
         <div className="flex flex-col">
           <h1 className="text-white font-black text-[clamp(2rem,4vw,5rem)] leading-[1.1] tracking-normal mb-6">
@@ -34,26 +34,28 @@ export const StatsSection = () => {
             <span className="text-emerald-400">Cannot Ignore</span>
           </h1>
 
-          <p className="text-white/90 text-[clamp(0.83rem,1.2vw,1.23rem)] font-normal leading-[1.6] mb-10 max-w-[600px] mx-auto lg:mx-0">
+<p className="text-white/90 text-[clamp(0.83rem,1.2vw,1.23rem)] font-normal leading-[1.6] mb-0 lg:mb-2 max-w-[600px] mx-auto lg:mx-0">
 Our data-driven approach ensures your digital infrastructure is optimized for maximum speed, high conversion, and long-term search engine dominance. By replacing guesswork with concrete, evidence-based insights, we transform your digital presence into a measurable, high-performance asset. 
           </p>
         </div>
 
-        {/* Right Side: Stats Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+{/* Right Side: Stats Grid */}
+        {/* Changed grid-cols-1 to grid-cols-2 so squares fit nicely on mobile */}
+        <div className="grid grid-cols-2 gap-4 sm:gap-6">
           {stats.map((stat, index) => (
             <div 
               key={index} 
-              /* Emerald Green Background Boxes for each item */
-              className="bg-emerald-600 flex flex-col items-start p-3 md:p-8 rounded-2xl transition-transform duration-300 hover:scale-[1.03]"
+              /* Added aspect-square and justify-center for perfect mobile squares */
+              className="bg-emerald-600 flex flex-col justify-center items-start p-4 md:p-8 rounded-2xl transition-transform duration-300 hover:scale-[1.03] aspect-square lg:aspect-auto lg:min-h-[220px]"
             >
               <div className="mb-2">
-                {/* H3 remains White as requested */}
-                <h3 className="text-white font-black text-[clamp(2.5rem,4vw,4rem)] leading-none tracking-tighter">
+                {/* Slightly reduced minimum text size (2rem) to ensure it fits in mobile squares */}
+                <h3 className="text-white font-black text-[clamp(2rem,5vw,4rem)] leading-none tracking-tighter">
                   {stat.value}
                 </h3>
               </div>
-              <p className="text-white/90 text-[clamp(0.83rem,1.1vw,1.1rem)] font-normal leading-relaxed">
+              {/* Slightly reduced minimum text size (0.75rem) for the description to fit nicely */}
+              <p className="text-white/90 text-[clamp(0.75rem,1.5vw,1.1rem)] font-normal leading-snug lg:leading-relaxed">
                 {stat.desc}
               </p>
             </div>

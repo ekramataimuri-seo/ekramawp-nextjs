@@ -24,8 +24,7 @@ export const GeoOverlapSection = () => {
               <h3 className="text-white text-[clamp(1.5rem,2vw,1.8rem)] font-black mb-2 leading-tight tracking-tight">
                 Users Demand <span className="text-emerald-400">Instant Interactions</span>
               </h3>
-              <p className="text-white/90 text-[clamp(0.83rem,1.2vw,1.23rem)] font-normal leading-[1.6] mb-10 max-w-[600px] mx-auto lg:mx-0">
-                Modern users refuse to wait for page reloads. If your application feels sluggish due to heavy legacy frameworks or bloated themes, you are actively losing user engagement and search engine rankings.
+<p className="text-white/90 text-[clamp(0.83rem,1.2vw,1.23rem)] font-normal leading-[1.6] mb-6 lg:mb-10 max-w-[600px] mx-auto lg:mx-0">                Modern users refuse to wait for page reloads. If your application feels sluggish due to heavy legacy frameworks or bloated themes, you are actively losing user engagement and search engine rankings.
               </p>
             </div>
 
@@ -37,8 +36,7 @@ export const GeoOverlapSection = () => {
                 Your competitors are shipping features rapidly using React and Next.js. Meanwhile, your legacy codebase forces your engineering team to spend all their time in maintenance mode rather than innovating.
               </p>
               
-              <ul className="space-y-6 mb-10 max-w-[600px] mx-auto lg:mx-0">
-                <li className="relative pl-7 text-[clamp(0.83rem,1vw,1.1rem)] text-white/90 font-normal leading-[1.6]">
+<ul className="space-y-4 lg:space-y-6 mb-6 lg:mb-10 max-w-[600px] mx-auto lg:mx-0">                <li className="relative pl-7 text-[clamp(0.83rem,1vw,1.1rem)] text-white/90 font-normal leading-[1.6]">
                   <span className="absolute left-0 text-emerald-400 font-bold text-lg top-0">→</span>
                   <strong className="text-white font-bold">Excessive paint times:</strong> Legacy monolithic themes load massive, render-blocking scripts before displaying any text, pushing your Largest Contentful Paint (LCP) well past the 2.5-second threshold.
                 </li>
@@ -52,8 +50,7 @@ export const GeoOverlapSection = () => {
                 </li>
               </ul>
 
-              <p className="text-white/90 text-[clamp(0.83rem,1.2vw,1.23rem)] font-normal leading-[1.6] mb-10 max-w-[600px] mx-auto lg:mx-0">
-                Without a component-driven architecture, scaling your digital presence is nearly impossible. You need a complete shift in engineering strategy.
+<p className="text-white/90 text-[clamp(0.83rem,1.2vw,1.23rem)] font-normal leading-[1.6] mb-2 lg:mb-10 max-w-[600px] mx-auto lg:mx-0">                Without a component-driven architecture, scaling your digital presence is nearly impossible. You need a complete shift in engineering strategy.
               </p>
             </div>
           </div>

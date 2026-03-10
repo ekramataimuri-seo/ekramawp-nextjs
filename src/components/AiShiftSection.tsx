@@ -86,8 +86,7 @@ export const AiShiftSection = () => {
   ];
 
   return (
-    <section className="pt-10 pb-20 px-5 min-h-[5vh] flex items-center relative overflow-hidden bg-transparent">
-      <style dangerouslySetInnerHTML={{ __html: `
+<section className="pt-10 pb-6 lg:pb-20 px-5 min-h-[5vh] flex items-center relative overflow-hidden bg-transparent">      <style dangerouslySetInnerHTML={{ __html: `
         .coin-wrap { perspective: 1000px; width: 100%; height: 100%; }
         .coin-inner {
           position: relative;
@@ -111,11 +110,9 @@ export const AiShiftSection = () => {
         .coin-back { transform: rotateY(180deg); }
       `}} />
 
-      <div className="max-w-[1440px] w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center relative z-10">
-        
+<div className="max-w-[1440px] w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-20 items-center relative z-10">        
         {/* --- LEFT COLUMN: DIAGRAM --- */}
-        <div className="relative w-full h-[450px] flex items-center justify-center order-2 lg:order-1">
-          <svg viewBox="0 0 800 400" className="w-full h-full overflow-visible">
+<div className="relative w-full aspect-[2/1] lg:aspect-auto lg:h-[450px] mt-8 lg:mt-0 flex items-center justify-center order-2 lg:order-1">         <svg viewBox="0 0 800 400" className="w-full h-full overflow-visible">
             
             {/* Background Glows for the Hub */}
             <circle cx="400" cy="200" r="90" fill="#2563eb" opacity="0.04" />
@@ -246,7 +243,7 @@ export const AiShiftSection = () => {
             ))}
           </div>
 
-          <div className="mt-10 flex justify-center lg:justify-start">
+          <div className="mt-6 lg:mt-10 flex justify-center lg:justify-start">
             <button className="bg-[#34d399] hover:bg-[#10b981] hover:scale-105 transition-all text-gray-900 font-black py-4 px-10 rounded-full text-lg shadow-[0_0_20px_rgba(52,211,153,0.3)]">
               Start your Deployment Today
             </button>

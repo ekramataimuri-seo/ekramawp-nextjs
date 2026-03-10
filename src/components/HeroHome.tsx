@@ -171,8 +171,9 @@ export const HeroHome = () => {
           </div>
 
           {/* Main Image */}
-          <div className="absolute right-[0%] lg:right-[-10%] bottom-0 w-[60%] lg:w-[60%] h-[90%] z-10 pointer-events-none">
-            <Image 
+{/* Main Image */}
+<div className="hidden lg:block absolute right-[0%] lg:right-[-10%] bottom-0 w-[60%] lg:w-[60%] h-[90%] z-10 pointer-events-none">
+              <Image 
               src={content.image} 
               alt="Hero Visual" 
               fill
