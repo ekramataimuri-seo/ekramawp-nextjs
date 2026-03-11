@@ -82,30 +82,30 @@ export const HeroHome = () => {
   }, [isHovered, content.nodes]);
 
   return (
-    <section className="relative w-full flex items-center overflow-hidden min-h-[5vh] pt-0 pb-0 px-5">
-      
-      <style dangerouslySetInnerHTML={{ __html: `
+    /* BOOM: Changed pt-28 to pt-40 to aggressively push it down on mobile */
+<section className="relative w-full flex items-center overflow-hidden min-h-[5vh] pt-[42px] lg:pt-0 pb-20 lg:pb-0 px-5">      <style dangerouslySetInnerHTML={{ __html: `
         @keyframes engine-spin { 100% { transform: rotate(360deg); } }
         @keyframes engine-reverse { 100% { transform: rotate(-360deg); } }
         .spin-slow { animation: engine-spin 20s linear infinite; }
         .spin-reverse { animation: engine-reverse 15s linear infinite; }
       `}} />
 
-      <div className="container mx-auto flex flex-col lg:flex-row relative max-w-[1200px] z-10 gap-10 lg:gap-0 items-center">
+      <div className="container mx-auto flex flex-col lg:flex-row relative max-w-[1200px] z-10 gap-16 lg:gap-0 items-center">
         
         {/* --- LEFT COLUMN --- */}
-        <div className="w-full lg:w-[45%] flex flex-col justify-center text-center lg:text-left max-w-[650px] mx-auto lg:mx-0 z-20">
-          <h1 className="text-white font-black text-[clamp(2rem,4vw,5rem)] leading-[1.2] tracking-normal mb-6">
+        <div className="w-full lg:w-[45%] flex flex-col justify-center text-left max-w-[650px] z-20">
+          
+          <h1 className="text-white mb-6">
             {content.titleStart} <br className="hidden lg:block"/> 
             <span className="text-emerald-400">{content.highlight}</span>
           </h1>
 
-          <p className="text-white/90 text-[clamp(0.83rem,1.2vw,1.23rem)] font-normal leading-[1.6] mb-10 max-w-[600px] mx-auto lg:mx-0">
+          <p className="text-white/90 max-w-[600px]">
             {content.desc}
           </p>
 
-          <div className="flex justify-center lg:justify-start">
-             <a href="#contact" className="border border-white/40 text-white px-8 py-3 font-bold text-[15px] hover:bg-white hover:text-black transition-all duration-300 inline-block rounded-sm">
+          <div className="flex justify-start">
+             <a href="#contact" className="border border-white/40 text-white px-8 py-3 hover:bg-white hover:text-black transition-all duration-300 inline-block rounded-sm">
                Get Started
              </a>
           </div>
@@ -136,7 +136,8 @@ export const HeroHome = () => {
                       <div className={`absolute inset-0 border-[1px] border-dashed rounded-full spin-slow transition-colors duration-500 ${isActive ? 'border-emerald-400' : 'border-white/20'}`} />
                       <div className={`absolute inset-[6px] border-[1px] border-dashed rounded-full spin-reverse transition-colors duration-500 ${isActive ? 'border-emerald-400/50' : 'border-white/10'}`} />
                       
-<div className={`absolute inset-4 rounded-full flex flex-col items-center justify-center text-center p-2 z-10 transition-colors duration-500 ${isActive ? 'bg-emerald-500/20' : 'bg-transparent'}`}>                         <strong className={`block text-[11px] font-black leading-tight uppercase tracking-wider transition-colors duration-300 ${isActive ? 'text-emerald-400' : 'text-white'}`}>
+                      <div className={`absolute inset-4 rounded-full flex flex-col items-center justify-center text-center p-2 z-10 transition-colors duration-500 ${isActive ? 'bg-emerald-500/20' : 'bg-transparent'}`}> 
+                         <strong className={`block text-[11px] uppercase transition-colors duration-300 ${isActive ? 'text-emerald-400' : 'text-white'}`}>
                            {node.title.includes(' ') ? (
                              <>
                                {node.title.split(' ')[0]} <br/> {node.title.split(' ').slice(1).join(' ')}
@@ -147,23 +148,21 @@ export const HeroHome = () => {
                          </strong>
                       </div>
 
-                      {/* FIXED: Dynamic SVG Icons rendered here instead of the dot */}
+                      {/* Dynamic SVG Icons */}
                       <div className={`absolute top-2 right-2 w-5 h-5 rounded-sm flex items-center justify-center shadow-lg border z-20 transition-all duration-500 transform ${isActive ? 'bg-emerald-400 border-emerald-300 scale-110' : 'bg-transparent border-white/30 scale-100'}`}>
                          {node.icon(`w-3 h-3 transition-colors duration-500 ${isActive ? 'text-black' : 'text-white/50'}`)}
                       </div>
                    </div>
 
                  {/* Description Box */}
-{/* Notice the isActive state now uses bg-emerald-500/30 for that semi-transparent look! */}
-<div className={`ml-6 flex flex-col backdrop-blur-md p-4 rounded-lg border transition-all duration-500 ease-out flex-1 max-w-[240px] ${isActive ? 'bg-emerald-500/30 border-emerald-400 shadow-[0_0_20px_rgba(52,211,153,0.15)] opacity-100 transform translate-x-2' : 'bg-transparent border-white/5 shadow-none opacity-50 transform translate-x-0'}`}>
-   <strong className="text-white text-[13px] font-black uppercase tracking-wider mb-2 block">
-     {node.title}
-   </strong>
-   {/* Text becomes fully white for clarity on the transparent background */}
-   <span className={`text-[12px] leading-relaxed transition-colors duration-300 ${isActive ? 'text-white' : 'text-white/80'}`}>
-     {node.nodeDesc}
-   </span>
-</div>
+                 <div className={`ml-6 flex flex-col backdrop-blur-md p-4 rounded-lg border transition-all duration-500 ease-out flex-1 max-w-[240px] ${isActive ? 'bg-emerald-500/30 border-emerald-400 shadow-[0_0_20px_rgba(52,211,153,0.15)] opacity-100 transform translate-x-2' : 'bg-transparent border-white/5 shadow-none opacity-50 transform translate-x-0'}`}>
+                   <strong className="text-white text-[13px] uppercase mb-2 block">
+                     {node.title}
+                   </strong>
+                   <span className={`text-[12px] transition-colors duration-300 ${isActive ? 'text-white' : 'text-white/80'}`}>
+                     {node.nodeDesc}
+                   </span>
+                 </div>
 
                  </div>
                );
@@ -171,8 +170,7 @@ export const HeroHome = () => {
           </div>
 
           {/* Main Image */}
-{/* Main Image */}
-<div className="hidden lg:block absolute right-[0%] lg:right-[-10%] bottom-0 w-[60%] lg:w-[60%] h-[90%] z-10 pointer-events-none">
+          <div className="hidden lg:block absolute right-[0%] lg:right-[-10%] bottom-0 w-[60%] lg:w-[60%] h-[90%] z-10 pointer-events-none">
               <Image 
               src={content.image} 
               alt="Hero Visual" 

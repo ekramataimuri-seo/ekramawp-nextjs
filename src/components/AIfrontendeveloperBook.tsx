@@ -137,10 +137,8 @@ export const AIfrontendeveloperBook = () => {
       <style jsx>{`
         /* --- 1. THE MAIN WRAPPER --- */
         .bofu-pricing-wrapper {
-          background-color: #000000 !important;
           color: #fafbfd !important;
           padding: 80px 20px 100px;
-          font-family: 'Inter', sans-serif;
           position: relative;
           z-index: 1;
           width: 100%;
@@ -198,9 +196,7 @@ export const AIfrontendeveloperBook = () => {
         }
         .intro-header h2 {
           font-size: clamp(1.8rem, 4vw, 2.4rem) !important;
-          font-weight: 900 !important;
           color: #ffffff !important;
-          line-height: 1.2 !important;
           margin-bottom: 20px !important;
         }
         .intro-header p {
@@ -208,7 +204,6 @@ export const AIfrontendeveloperBook = () => {
           color: #f0f2f4 !important;
           max-width: 800px;
           margin: 0 auto !important;
-          line-height: 1.6 !important;
         }
 
         /* --- 6. MAIN PRICING CARD --- */
@@ -256,7 +251,6 @@ export const AIfrontendeveloperBook = () => {
         .badge {
           color: #ffffff !important;
           font-size: 0.95rem !important;
-          font-weight: 800 !important;
           text-transform: uppercase;
           margin: 0 0 8px 0 !important;
         }
@@ -269,14 +263,11 @@ export const AIfrontendeveloperBook = () => {
         .price {
           color: #ffffff !important;
           font-size: 3.5rem !important;
-          font-weight: 900 !important;
           margin: 0 !important;
-          line-height: 1 !important;
         }
         .price span {
           color: #ffffff !important;
           font-size: 1.1rem !important;
-          font-weight: 500 !important;
         }
 
         .card-left-bottom {
@@ -290,7 +281,6 @@ export const AIfrontendeveloperBook = () => {
         .card-left-bottom h4 {
           color: #ffffff !important;
           font-size: 1.25rem !important;
-          font-weight: 700 !important;
           margin: 0 0 25px 0 !important; 
         }
         .item-block {
@@ -314,15 +304,12 @@ export const AIfrontendeveloperBook = () => {
         .item-header h5 {
           color: #ffffff !important; 
           font-size: 1.05rem !important;
-          font-weight: 700 !important; 
           margin: 0 !important; 
         }
         .item-block p {
           color: #e0e0e0 !important;
           font-size: 0.9rem !important;
-          line-height: 1.6 !important; 
           margin: 0 !important;
-          font-weight: 500 !important;
         }
 
         /* --- 8. RIGHT COLUMN --- */
@@ -338,7 +325,6 @@ export const AIfrontendeveloperBook = () => {
         .card-right h4 {
           color: #ffffff !important;
           font-size: 1.2rem !important;
-          font-weight: 700 !important;
           margin: 0 0 30px 0 !important;
         }
         .feature-list {
@@ -355,8 +341,6 @@ export const AIfrontendeveloperBook = () => {
           gap: 12px;
           color: #f0f2f4 !important;
           font-size: 0.9rem !important;
-          font-weight: 500 !important;
-          line-height: 1.4 !important;
         }
         .check-circle {
           width: 20px;
@@ -373,7 +357,6 @@ export const AIfrontendeveloperBook = () => {
         .cta-button {
           background-color: #26B16D !important;
           color: #ffffff !important;
-          font-weight: 800 !important;
           font-size: 1rem !important;
           padding: 16px 20px !important;
           border-radius: 6px !important;
@@ -398,7 +381,6 @@ export const AIfrontendeveloperBook = () => {
           background: none !important;
           border: none !important;
           color: #207DE9 !important;
-          font-weight: 700 !important;
           font-size: 0.95rem !important;
           cursor: pointer !important;
           padding: 10px 15px !important;
@@ -418,9 +400,7 @@ export const AIfrontendeveloperBook = () => {
 .item-desc {
   color: #e0e0e0 !important;
   font-size: 0.9rem !important;
-  line-height: 1.6 !important; 
   margin: 0 !important;
-  font-weight: 500 !important;
   transition: all 0.3s ease;
 }
         /* --- 10. MOBILE RESPONSIVENESS (UPDATED) --- */
@@ -437,7 +417,7 @@ export const AIfrontendeveloperBook = () => {
 
           /* Strip down wrapper padding */
           .bofu-pricing-wrapper {
-            padding: 40px 15px !important;
+            padding: 40px 30px !important;
             background-color: transparent !important;
           }
 /* Hide features beyond the first 5 when the state is false */
@@ -452,7 +432,6 @@ export const AIfrontendeveloperBook = () => {
   background: transparent !important;
   border: none !important;
   color: #26B16D !important;
-  font-weight: 700 !important;
   font-size: 0.95rem !important;
   margin-top: -10px !important;
   margin-bottom: 25px !important;
@@ -505,8 +484,6 @@ export const AIfrontendeveloperBook = () => {
   margin-left: auto;
   color: #26B16D !important; /* Green color to show it's clickable */
   font-size: 1.5rem !important;
-  font-weight: 400 !important;
-  line-height: 1;
 }
 
 /* 2. Make the header look clickable */

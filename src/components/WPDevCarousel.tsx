@@ -64,7 +64,6 @@ export const WPDevCarousel = () => {
           width: 100%;
           margin: 0 auto;
           padding: 80px 20px 100px;
-          color: var(--text-white);
           box-sizing: border-box;
           position: relative;
         }
@@ -79,10 +78,7 @@ export const WPDevCarousel = () => {
         }
 
         .main-heading {
-          font-weight: 900;
-          font-size: clamp(2.5rem, 4vw, 3.5rem);
           margin-bottom: 25px;
-          line-height: 1.1;
           color: var(--brand-blue);
         }
 
@@ -105,22 +101,21 @@ export const WPDevCarousel = () => {
         }
 
         .intro-text {
-          font-size: 1.1rem;
-          font-weight: 400;
-          line-height: 1.6;
-          color: var(--text-white);
           max-width: 700px;
           margin: 0 auto;
         }
 
-        .split-layout {
-          max-width: 1300px;
-          margin: 0 auto;
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 40px;
-          align-items: stretch;
-        }
+       .split-layout {
+  max-width: 1300px;
+  width: 100%;             /* Ensure it takes full available width */
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: stretch;
+  padding: 0 20px;         /* ADD THIS: Provides a safety gutter at 100% zoom */
+  box-sizing: border-box;  /* Ensures padding doesn't add to the width */
+}
 
         @media (min-width: 1024px) {
           .split-layout {
@@ -143,7 +138,6 @@ export const WPDevCarousel = () => {
           overflow: hidden;
         }
 
-        /* IMPORTANT: do not force slick-track or slick-slide to flex */
         #strategy-carousel-isolated .slick-track {
           display: block !important;
         }
@@ -211,10 +205,6 @@ export const WPDevCarousel = () => {
 
         #strategy-carousel-isolated .sc-card ul li {
           margin-bottom: 12px;
-          font-size: 0.9rem;
-          color: var(--text-white);
-          font-weight: 400;
-          line-height: 1.5;
           position: relative;
         }
 
@@ -228,7 +218,6 @@ export const WPDevCarousel = () => {
         }
 
         #strategy-carousel-isolated strong {
-          font-weight: 700;
           color: var(--sc-brand);
         }
 
@@ -326,33 +315,54 @@ export const WPDevCarousel = () => {
           margin-top: -60px;
         }
 
-        .detail-content {
-          background: rgba(255, 255, 255, 0.03);
-          padding: 30px;
+        /* --- STYLES FOR THE NEW SEO STRATEGY CARD --- */
+        .seo-strategy-card {
+          border-radius: var(--sc-radius);
+          padding: 30px 30px;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        .detail-content h3 {
-          font-size: 1.8rem;
-          font-weight: 800;
-          color: var(--brand-blue);
-          margin-bottom: 15px;
-          line-height: 1.2;
+        .seo-icon {
+          color: var(--sc-brand);
+          margin-bottom: 10px;
         }
 
-        .detail-content h4 {
-          font-size: 1.1rem;
+        .seo-card-title {
+           line-height: 1.2;
+           margin-bottom: 10px;
+        }
+
+        .seo-card-title span {
+          color: var(--sc-brand);
+          display: block;
+        }
+
+        .seo-input {
+          width: 100%;
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid var(--sc-border);
+          border-radius: 8px;
+          padding: 14px 16px;
+          color: white;
+          outline: none;
+        }
+
+        .seo-button {
+          background: var(--sc-brand);
+          color: white;
+          border: none;
+          border-radius: 8px;
+          padding: 16px;
           font-weight: 700;
-          color: var(--text-white);
-          margin-top: 20px;
-          margin-bottom: 8px;
-          padding-left: 10px;
+          cursor: pointer;
+          transition: filter 0.2s ease;
         }
 
-        .detail-content p {
-          font-size: 0.95rem;
-          line-height: 1.6;
-          color: rgba(255, 255, 255, 0.7);
-          margin-bottom: 15px;
+        .seo-button:hover {
+          filter: brightness(1.2);
         }
 
         @media (max-width: 768px) {
@@ -375,10 +385,6 @@ export const WPDevCarousel = () => {
 
           .content-column {
             margin-top: 0;
-          }
-
-          .detail-content {
-            padding: 20px;
           }
         }
       `}</style>
@@ -496,29 +502,34 @@ export const WPDevCarousel = () => {
           </Slider>
         </div>
 
+        {/* --- RIGHT COLUMN: NEW STRATEGY CARD --- */}
         <div className="content-column">
-          <div className="detail-content">
-            <h3>Deep-Dive Into The Stack</h3>
+          <div className="seo-strategy-card">
+            <div className="seo-icon">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </div>
+            
+            <h3 className="seo-card-title">
+              SEO Services That <br />
+              <span>Aren't Cookie Cutter</span>
+            </h3>
+
             <p>
-              Choosing the right architecture is the foundation of digital
-              success. By isolating components and decoupling the front-end from
-              the back-end, we ensure that your platform can adapt to future
-              technological shifts without requiring a complete rewrite.
+              Get an SEO strategy that's tailored for your business, industry, and revenue goals.
             </p>
 
-            <h4>For Agencies &amp; Enterprise</h4>
-            <p>
-              <strong>Agencies</strong> need velocity without sacrificing
-              quality. By leveraging modular design systems, we guarantee 100%
-              brand fidelity.
-            </p>
+            <input 
+              type="text" 
+              placeholder="Enter your website" 
+              className="seo-input" 
+            />
 
-            <h4>For Commerce &amp; Startups</h4>
-            <p>
-              A <strong>Headless Commerce</strong> approach separates
-              presentation from the engine, drastically reducing page load
-              times.
-            </p>
+            <button className="seo-button">
+              Get My SEO Strategy
+            </button>
           </div>
         </div>
       </div>

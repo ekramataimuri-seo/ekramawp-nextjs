@@ -1,203 +1,160 @@
 import React, { useState } from 'react';
 
 export const PentagonGrowthEngine = () => {
-  const [activeTab, setActiveTab] = useState('p-2');
+  const [activeTab, setActiveTab] = useState('p-1');
 
   const tabsData = [
     {
       id: 'p-1',
       title: 'Keyword Research',
       icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
       ),
       imgSrc: 'https://www.webfx.com/wp-content/uploads/2024/01/LeadManagerFX.png',
-      imgAlt: 'Keyword Research',
       heading: 'Keyword Research',
-      desc: 'Expect a website infused with the most relevant keywords tailored specifically for your real estate business. Through meticulous keyword research, we identify the top search terms that attract potential clients, helping your site rank higher and connect with the right audience.',
-      list: [
-        'Infused with the most relevant keywords tailored for real estate.',
-        'Identifies top search terms that attract potential clients.',
-        'Helps your site rank higher and connect with the right audience.'
-      ]
+      desc: 'Expect a website infused with the most relevant keywords tailored specifically for your real estate business. Through meticulous keyword research, we identify the top search terms that attract potential clients.',
+      list: ['Relevant keyword infusion', 'Top search term identification', 'Audience connection']
     },
     {
       id: 'p-2',
       title: 'SEO Copywriting',
       icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M12 20h9"></path>
           <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
         </svg>
       ),
       imgSrc: 'https://www.webfx.com/wp-content/uploads/2023/12/AdTechFX.png',
-      imgAlt: 'SEO Copywriting',
       heading: 'SEO Copywriting',
-      desc: 'Receive expertly crafted content designed to optimize your real estate website. Our SEO copywriting focuses on delivering engaging property descriptions, blogs, and landing pages, all enriched with the perfect keywords to ensure both search engine visibility and user engagement.',
-      list: [
-        'Expertly crafted content designed to optimize your website.',
-        'Focuses on engaging property descriptions, blogs, and landing pages.',
-        'Enriched with keywords for visibility and user engagement.'
-      ]
+      desc: 'Receive expertly crafted content designed to optimize your real estate website. Our SEO copywriting focuses on delivering engaging property descriptions and blogs.',
+      list: ['Expertly crafted content', 'Engaging descriptions', 'Keyword enriched']
     },
     {
       id: 'p-3',
       title: 'Technical SEO',
       icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <line x1="18" y1="20" x2="18" y2="10"></line>
           <line x1="12" y1="20" x2="12" y2="4"></line>
           <line x1="6" y1="20" x2="6" y2="14"></line>
         </svg>
       ),
       imgSrc: 'https://www.webfx.com/wp-content/uploads/2024/01/LeadManagerFX.png',
-      imgAlt: 'Technical SEO',
       heading: 'Technical SEO',
-      desc: 'Your website will be finely tuned for superior speed, mobile compatibility, and seamless performance. Technical SEO addresses factors such as site structure, crawlability, and loading times, ensuring your site performs efficiently, providing a smooth experience for visitors and improving rankings.',
-      list: [
-        'Finely tuned for superior speed and mobile compatibility.',
-        'Addresses site structure, crawlability, and loading times.',
-        'Ensures efficient performance and improved rankings.'
-      ]
+      desc: 'Your website will be finely tuned for superior speed, mobile compatibility, and seamless performance through technical structure optimization.',
+      list: ['Speed optimization', 'Mobile compatibility', 'Rankings boost']
     },
     {
       id: 'p-4',
       title: 'Backlinking',
       icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
           <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
         </svg>
       ),
       imgSrc: 'https://www.webfx.com/wp-content/uploads/2024/01/LeadManagerFX.png',
-      imgAlt: 'Backlinking',
       heading: 'Backlinking',
-      desc: 'Gain valuable, high-quality backlinks from respected sources in the real estate industry. We secure authoritative links to enhance your site’s credibility, increase its domain authority, and boost organic traffic, ultimately strengthening your site\'s position and visibility in search results.',
-      list: [
-        'Gain high-quality backlinks from respected industry sources.',
-        'Enhances credibility and increases domain authority.',
-        'Boosts organic traffic and strengthens search visibility.'
-      ]
+      desc: 'Gain high-quality backlinks from respected sources to enhance your site’s credibility and increase its domain authority.',
+      list: ['Industry backlinks', 'Site credibility', 'Organic traffic']
     },
     {
       id: 'p-5',
       title: 'Local SEO',
       icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
           <circle cx="12" cy="10" r="3"></circle>
         </svg>
       ),
       imgSrc: 'https://www.webfx.com/wp-content/uploads/2023/12/AdTechFX.png',
-      imgAlt: 'Local SEO',
       heading: 'Local SEO',
-      desc: 'Experience enhanced visibility for local searches, ensuring your real estate business stands out in your specific geographic area. Through targeted local keyword optimization, Google My Business management, and local directory listings, we position your site to capture relevant, nearby clients.',
-      list: [
-        'Enhanced visibility for local searches in your geographic area.',
-        'Includes targeted local keyword optimization and GMB management.',
-        'Positions your site to capture relevant, nearby clients.'
-      ]
+      desc: 'Experience enhanced visibility for local searches, ensuring your real estate business stands out in your specific area.',
+      list: ['Local visibility', 'GMB management', 'Nearby client capture']
     }
   ];
 
+  const activeData = tabsData.find(t => t.id === activeTab) || tabsData[0];
+
   return (
-    <section className="pt-10 pb-16 px-5 min-h-[5vh] items-center flex flex-col bg-black text-white">
-      
-      {/* 1. Heading Section - Intact */}
-      <div className="w-full text-center mb-8 lg:mb-16 max-w-[1440px] mx-auto">
-        <h2 className="text-[clamp(2.2rem,4.5vw,3.2rem)] font-black leading-[1.1] tracking-normal mb-6">
-          Mastering <span className="text-emerald-500">Real Estate SEO</span>
-        </h2>
-      </div>
-
-      {/* 2. Main Grid 
-          NEW: Switched to grid-cols-1 for mobile, then lg:grid-cols-[190px_1fr_1.8fr] for desktop.
-          This stacks the layout vertically on phones. */}
-      <div className="max-w-[1440px] w-full mx-auto grid grid-cols-1 lg:grid-cols-[190px_1fr_1.8fr] gap-8 lg:gap-12 items-center relative z-10 w-full overflow-hidden lg:overflow-visible">
+    <section className="py-16 px-6 lg:px-10  text-white overflow-hidden">
+      <div className="max-w-[1300px] mx-auto">
         
-        {/* Column A: Tabs
-            NEW: Added flex-row and overflow-x-auto for mobile horizontal scrolling. lg:flex-col keeps it vertical on desktop. */}
-        <div className="flex flex-row lg:flex-col gap-3 lg:gap-5 self-start pt-2 lg:pt-6 w-full overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 snap-x">
-          {tabsData.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              /* NEW: Added shrink-0 so tabs don't compress on mobile, and w-auto for horizontal flow */
-              className={`flex items-center gap-3 lg:gap-4 px-4 lg:px-2 py-3 cursor-pointer transition-all duration-300 outline-none text-left w-auto lg:w-full shrink-0 snap-start rounded-full lg:rounded-none ${
-                activeTab === tab.id ? 'opacity-100 bg-white/10 lg:bg-transparent' : 'opacity-40 hover:opacity-100'
-              }`}
-            >
-              <div className="w-5 h-5 lg:w-6 lg:h-6 flex items-center justify-center shrink-0">
-                {tab.icon}
-              </div>
-              <span className="text-[15px] lg:text-[18px] font-semibold whitespace-nowrap">{tab.title}</span>
-            </button>
-          ))}
+        {/* --- 1. HEADING --- */}
+        <div className="text-center mb-10 lg:mb-14">
+          <h1>
+            Mastering <span className="text-emerald-500">Real Estate SEO</span>
+          </h1>
+          <p className="text-gray-400 max-w-[700px] mx-auto text-base lg:text-lg opacity-90 leading-relaxed">
+    Elevate your digital presence with our specialized strategies designed to dominate local search results 
+    and capture high-quality property leads effortlessly.
+  </p>
         </div>
 
-        {/* Column B: IMAGE strictly centered */}
-        <div className="relative w-full flex justify-center items-center py-6 lg:py-0">
-          {tabsData.map((tab) => (
-            <div
-              key={tab.id}
-              className={`w-[260px] sm:w-[320px] transition-all duration-500 ease-in-out absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ${
-                activeTab === tab.id 
-                  ? 'opacity-100 scale-100 z-10' 
-                  : 'opacity-0 scale-95 z-0 pointer-events-none'
-              }`}
-            >
-              <img
-                src={tab.imgSrc}
-                alt={tab.imgAlt}
-                className="w-full h-auto block"
-              />
-            </div>
-          ))}
-          {/* Spacer slightly adjusted for mobile screens to prevent overflow */}
-          <div className="w-[260px] sm:w-[320px] h-[200px] sm:h-[240px]"></div>
-        </div>
+        {/* --- 2. MAIN GRID --- */}
+        <div className="grid grid-cols-1 lg:grid-cols-[220px_0.8fr_1.7fr] gap-6 lg:gap-10 items-center">
+          
+          {/* COLUMN A: TABS */}
+          <div className="flex flex-row lg:flex-col gap-1 lg:gap-3 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 scrollbar-hide snap-x">
+            {tabsData.map((tab) => {
+              const isActive = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`relative flex items-center gap-2 lg:gap-4 px-2.5 lg:px-6 py-3 lg:py-4 rounded-full lg:rounded-lg transition-all duration-300 shrink-0 snap-start text-left border-none outline-none w-auto lg:w-full ${
+                    isActive 
+                      ? 'text-emerald-400 opacity-100' 
+                      : 'text-white opacity-40 hover:opacity-100'
+                  }`}
+                >
+                  {isActive && (
+                    <div className="absolute inset-0" />
+                  )}
 
-        {/* Column C: TEXT CONTENT 
-            NEW: Removed massive negative margin on mobile using lg:-translate-y-10 */}
-<div className="relative w-full h-full flex items-end mt-12 lg:mt-0 pb-2 lg:pb-32 lg:-translate-y-10">          {tabsData.map((tab) => (
-            <div
-              key={tab.id}
-              className={`w-full transition-all duration-500 ease-in-out absolute bottom-0 left-0 ${
-                activeTab === tab.id 
-                  ? 'opacity-100 translate-y-0 z-10 pointer-events-auto' 
-                  : 'opacity-0 translate-y-4 z-0 pointer-events-none'
-              }`}
-            >
-              <div className="w-full text-left">
-                <h3 className="text-[24px] lg:text-[28px] font-extrabold mb-[15px] lg:mb-[20px] leading-[1.25] tracking-tight text-white">
-                  {tab.heading}
-                </h3>
-                <p className="text-white/90 text-[clamp(0.83rem,1.2vw,1.1rem)] font-normal leading-[1.6] mb-6 lg:mb-8 max-w-[650px]">
-                  {tab.desc}
-                </p>
-                <ul className="list-disc pl-5 m-0 text-left max-w-[650px] space-y-3">
-                  {tab.list.map((item, idx) => (
-                    <li key={idx} className="text-white/90 text-[clamp(0.83rem,1.2vw,1.1rem)] font-normal leading-[1.6]">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
-
-          {/* Invisible spacer: Ensures the parent div has enough height to contain the absolute items */}
-          <div className="w-full text-left opacity-0 pointer-events-none">
-            <h3 className="text-[28px] mb-[20px] leading-[1.25]">Spacer</h3>
-            <p className="mb-8 max-w-[650px] leading-[1.6]">Filler text to keep height stable on mobile</p>
-            <ul className="pl-5 list-disc space-y-3">
-              <li>Spacer</li>
-              <li>Spacer</li>
-              <li>Spacer</li>
-            </ul>
+                  <div className="shrink-0 w-4 h-4 lg:w-5 lg:h-5 flex items-center justify-center">
+                    {tab.icon}
+                  </div>
+<span className=" text-base lg:text-[19px] whitespace-nowrap">                    {tab.title}
+                  </span>
+                </button>
+              );
+            })}
           </div>
+
+          {/* COLUMN B: IMAGE */}
+          <div className="flex justify-center lg:justify-start items-center h-[280px] lg:h-auto">
+            <img 
+              key={`${activeTab}-img`}
+              src={activeData.imgSrc} 
+              alt={activeData.title}
+              className="w-[280px] lg:w-[95%] h-auto object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)] animate-in fade-in zoom-in duration-500" 
+            />
+          </div>
+
+          {/* COLUMN C: TEXT CONTENT */}
+          <div className="text-left">
+            <div key={`${activeTab}-text`} className="animate-in fade-in slide-in-from-right-4 duration-500">
+              <h3 className="mb-4 text-white">
+                {activeData.heading}
+              </h3>
+              <p className="mb-6 opacity-90">
+                {activeData.desc}
+              </p>
+              <ul className="space-y-3 list-none p-0 m-0">
+                {activeData.list.map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="text-emerald-500 mt-1">✓</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

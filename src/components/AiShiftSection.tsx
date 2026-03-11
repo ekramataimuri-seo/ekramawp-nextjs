@@ -25,7 +25,6 @@ interface MapNode extends NodeDataItem {
 }
 
 // --- Data Configuration ---
-// Cleaned up: Only 1 badge per outer node, placed at bottom-right. No badges on the hub.
 const nodeData: Record<string, NodeDataItem> = {
   "student-data": { 
     label: "Traffic", title: "SIS Data", side: "left", color: "#34d399", shortText: "Secure Sync", icon: "play-outline",
@@ -46,7 +45,7 @@ const nodeData: Record<string, NodeDataItem> = {
   
   "hub": { 
     title: "AI Hub", side: "center", color: "#2563eb", shortText: "AI Engine", icon: "play-solid",
-    badges: [] // No badges on the middle circle
+    badges: [] 
   },
   
   "grading": { 
@@ -68,25 +67,26 @@ const nodeData: Record<string, NodeDataItem> = {
 };
 
 export const AiShiftSection = () => {
-  // Map data to coordinates
+  // SPACED OUT COORDINATES: Increased vertical gap from 100 to 140
   const mapNodes: MapNode[] = [
-    { id: "student-data", cx: 100, cy: 50, ...nodeData["student-data"] },
-    { id: "curriculum", cx: 100, cy: 150, ...nodeData["curriculum"] },
-    { id: "faculty", cx: 100, cy: 250, ...nodeData["faculty"] },
-    { id: "policy", cx: 100, cy: 350, ...nodeData["policy"] },
+    { id: "student-data", cx: 100, cy: 90, ...nodeData["student-data"] },
+    { id: "curriculum", cx: 100, cy: 230, ...nodeData["curriculum"] },
+    { id: "faculty", cx: 100, cy: 370, ...nodeData["faculty"] },
+    { id: "policy", cx: 100, cy: 510, ...nodeData["policy"] },
     
-    // Hub
-    { id: "hub", cx: 400, cy: 200, ...nodeData["hub"], isHub: true }, 
+    // Hub (Moved down to center of new 600px height)
+    { id: "hub", cx: 400, cy: 300, ...nodeData["hub"], isHub: true }, 
     
     // Right nodes
-    { id: "grading", cx: 700, cy: 50, ...nodeData["grading"] },
-    { id: "personalization", cx: 700, cy: 150, ...nodeData["personalization"] },
-    { id: "automation", cx: 700, cy: 250, ...nodeData["automation"] },
-    { id: "support", cx: 700, cy: 350, ...nodeData["support"] },
+    { id: "grading", cx: 700, cy: 90, ...nodeData["grading"] },
+    { id: "personalization", cx: 700, cy: 230, ...nodeData["personalization"] },
+    { id: "automation", cx: 700, cy: 370, ...nodeData["automation"] },
+    { id: "support", cx: 700, cy: 510, ...nodeData["support"] },
   ];
 
   return (
-<section className="pt-10 pb-6 lg:pb-20 px-5 min-h-[5vh] flex items-center relative overflow-hidden bg-transparent">      <style dangerouslySetInnerHTML={{ __html: `
+    <section className="pt-10 pb-6 lg:pb-20 px-5 min-h-[5vh] flex items-center relative overflow-hidden bg-transparent">
+      <style dangerouslySetInnerHTML={{ __html: `
         .coin-wrap { perspective: 1000px; width: 100%; height: 100%; }
         .coin-inner {
           position: relative;
@@ -96,7 +96,7 @@ export const AiShiftSection = () => {
           transform-style: preserve-3d;
           border-radius: 50%;
         }
-        .group:hover .coin-inner { transform: rotateY(180deg); }
+        .group:hover .coin-inner { transform: rotateY(180deg) scale(1.25); }
         .coin-front, .coin-back {
           position: absolute;
           width: 100%;
@@ -110,25 +110,29 @@ export const AiShiftSection = () => {
         .coin-back { transform: rotateY(180deg); }
       `}} />
 
-<div className="max-w-[1440px] w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-20 items-center relative z-10">        
+      <div className="max-w-[1440px] w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-20 items-center relative z-10">
+        
         {/* --- LEFT COLUMN: DIAGRAM --- */}
-<div className="relative w-full aspect-[2/1] lg:aspect-auto lg:h-[450px] mt-8 lg:mt-0 flex items-center justify-center order-2 lg:order-1">         <svg viewBox="0 0 800 400" className="w-full h-full overflow-visible">
+        {/* Adjusted aspect ratio for taller SVG */}
+        <div className="relative w-full aspect-[4/3] lg:aspect-auto lg:h-[600px] mt-8 lg:mt-0 flex items-center justify-center order-2 lg:order-1">
+          {/* Expanded SVG canvas from height 400 to 600 */}
+          <svg viewBox="0 0 800 600" className="w-full h-full overflow-visible">
             
-            {/* Background Glows for the Hub */}
-            <circle cx="400" cy="200" r="90" fill="#2563eb" opacity="0.04" />
-            <circle cx="400" cy="200" r="70" fill="#2563eb" opacity="0.08" />
+            {/* Background Glows for the Hub (Updated Center Y to 300) */}
+            <circle cx="400" cy="300" r="90" fill="#2563eb" opacity="0.04" />
+            <circle cx="400" cy="300" r="70" fill="#2563eb" opacity="0.08" />
 
-            {/* Render Paths and Arrows */}
-            {[50, 150, 250, 350].map((y, i) => {
-              const leftPath = `M 100 ${y} C 250 ${y}, 260 200, 400 200`;
-              const rightPath = `M 400 200 C 540 200, 550 ${y}, 700 ${y}`;
+            {/* Render Paths and Arrows (Mapped to new Y coordinates) */}
+            {[90, 230, 370, 510].map((y, i) => {
+              const leftPath = `M 100 ${y} C 250 ${y}, 260 300, 400 300`;
+              const rightPath = `M 400 300 C 540 300, 550 ${y}, 700 ${y}`;
               const delay = `${i * 0.3}s`;
 
               return (
                 <React.Fragment key={i}>
                   {/* LEFT PATHS */}
                   <path d={leftPath} stroke="#34d399" strokeWidth="12" fill="none" opacity="0.15" strokeLinecap="round" />
-<path d={leftPath} stroke="#34d399" strokeWidth="4" fill="none" opacity="0.4" strokeLinecap="round" strokeDasharray="6 12" />                  
+                  <path d={leftPath} stroke="#34d399" strokeWidth="4" fill="none" opacity="0.4" strokeLinecap="round" strokeDasharray="6 12" />
                   <g fill="#34d399">
                     <path d="M -8 -6 L 8 0 L -8 6 Q -2 0 -8 -6 Z" />
                     <animateMotion dur="3s" repeatCount="indefinite" path={leftPath} rotate="auto" begin={delay} />
@@ -136,7 +140,7 @@ export const AiShiftSection = () => {
 
                   {/* RIGHT PATHS */}
                   <path d={rightPath} stroke="#2563eb" strokeWidth="12" fill="none" opacity="0.15" strokeLinecap="round" />
-<path d={rightPath} stroke="#2563eb" strokeWidth="4" fill="none" opacity="0.4" strokeLinecap="round" strokeDasharray="6 12" />                  
+                  <path d={rightPath} stroke="#2563eb" strokeWidth="4" fill="none" opacity="0.4" strokeLinecap="round" strokeDasharray="6 12" />
                   <g fill="#3b82f6">
                     <path d="M -8 -6 L 8 0 L -8 6 Q -2 0 -8 -6 Z" />
                     <animateMotion dur="3s" repeatCount="indefinite" path={rightPath} rotate="auto" begin={delay} />
@@ -147,8 +151,8 @@ export const AiShiftSection = () => {
 
             {/* Render Nodes */}
             {mapNodes.map((node) => {
-              const coinSize = node.isHub ? 110 : 70; 
-              const boxSize = node.isHub ? 160 : 120; 
+              const coinSize = node.isHub ? 120 : 90; 
+              const boxSize = node.isHub ? 180 : 150; 
               const radius = boxSize / 2;
 
               return (
@@ -157,12 +161,10 @@ export const AiShiftSection = () => {
                   {!node.isHub && (
                     <text 
                       x={node.cx} 
-                      y={node.cy - 45} 
+                      y={node.cy - 55} 
                       textAnchor="middle" 
                       fill="white" 
-                      fontSize="14" 
-                      fontWeight="bold" 
-                      className="opacity-90 tracking-wide"
+                      className="opacity-90"
                     >
                       {node.label}
                     </text>
@@ -179,11 +181,11 @@ export const AiShiftSection = () => {
                             className="coin-front text-white border-[3px] border-white/10 relative"
                             style={{ backgroundColor: node.color }}
                           >
-                            <svg width={node.isHub ? "40" : "24"} height={node.isHub ? "40" : "24"} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <svg width={node.isHub ? "44" : "32"} height={node.isHub ? "44" : "32"} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                               <DetailedIcon type={node.icon} />
                             </svg>
 
-                            {/* Render attached Small Badges (Only 1 per outer circle now) */}
+                            {/* Render attached Small Badges */}
                             {node.badges?.map((badge, idx) => (
                               <div 
                                 key={idx} 
@@ -201,7 +203,7 @@ export const AiShiftSection = () => {
                             className="coin-back text-white flex-col border-[3px] border-white/20"
                             style={{ backgroundColor: node.color }}
                           >
-                            <span className={`font-black text-center leading-tight drop-shadow-md ${node.isHub ? 'text-base' : 'text-[11px]'}`}>
+                            <span className={`text-center drop-shadow-md ${node.isHub ? 'text-[15px]' : 'text-[12px]'}`}>
                               {node.shortText.split(' ').map((word, i) => (
                                 <React.Fragment key={i}>
                                   {word}<br/>
@@ -222,12 +224,13 @@ export const AiShiftSection = () => {
 
         {/* --- RIGHT COLUMN: TEXT CONTENT --- */}
         <div className="flex flex-col text-center lg:text-left z-20 w-full order-1 lg:order-2">
-          <h1 className="text-white text-[clamp(1.5rem,4vw,2.5rem)] font-black leading-[1.1] mb-8">
+          
+          <h2 className="text-white mb-8">
             Shared AI Chat Platform for <br className="hidden lg:block" />
             <span className="text-emerald-400">Educational institutions</span>
-          </h1>
+          </h2>
 
-          <div className="space-y-4">
+          <div className="space-y-1">
             {[
               "AI Knowledge Base for curriculum resources",
               "Streamline project collaboration for lesson planning",
@@ -236,7 +239,7 @@ export const AiShiftSection = () => {
             ].map((text, idx) => (
               <div key={idx} className="flex items-start justify-center lg:justify-start gap-4 group">
                 <CheckIcon />
-                <p className="text-white/80 text-lg leading-relaxed max-w-[500px] group-hover:text-white transition-colors">
+                <p className="text-white/80 max-w-[500px] group-hover:text-white transition-colors">
                   {text}
                 </p>
               </div>
@@ -244,7 +247,7 @@ export const AiShiftSection = () => {
           </div>
 
           <div className="mt-6 lg:mt-10 flex justify-center lg:justify-start">
-            <button className="bg-[#34d399] hover:bg-[#10b981] hover:scale-105 transition-all text-gray-900 font-black py-4 px-10 rounded-full text-lg shadow-[0_0_20px_rgba(52,211,153,0.3)]">
+            <button className="bg-[#34d399] hover:bg-[#10b981] hover:scale-105 transition-all text-gray-900 py-4 px-10 rounded-full shadow-[0_0_20px_rgba(52,211,153,0.3)]">
               Start your Deployment Today
             </button>
           </div>
@@ -271,7 +274,7 @@ const DetailedIcon = ({ type }: { type: string }) => {
   }
 };
 
-// Small Badge Icons Matcher (Neural, Terminal, Brackets)
+// Small Badge Icons Matcher
 const BadgeIcon = ({ type }: { type: string }) => {
   switch(type) {
     case "ai-brain": return <><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-2.54zM14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-2.54z" /></>;
