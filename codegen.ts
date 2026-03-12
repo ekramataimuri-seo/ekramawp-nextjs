@@ -7,11 +7,9 @@ loadEnvConfig(projectDir);
 const config: CodegenConfig = {
   overwrite: true,
   schema: {
-    // 1. Point to the working URL
-    [`${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/index.php?graphql`]: {
-      // 2. Force a GET request (Matches your browser)
+    // REPLACED process.env WITH YOUR ACTUAL URL
+    ["https://admin.wpfedev.com/index.php?graphql"]: {
       method: "GET",
-      // 3. Pretend to be a browser (Bypass security plugins)
       headers: {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
         "Content-Type": "application/json",
