@@ -7,7 +7,7 @@ import SmoothScroll from "@/components/SmoothScroll";
 const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-bricolage",
+  variable: "--font-NeueHaasGrotesk",
 });
 
 export const metadata: Metadata = {

@@ -1,163 +1,158 @@
 "use client";
 import React, { useState } from "react";
 
-// --- DATA: Content for each Hotspot (Front End Engineering Focus) ---
+// --- DATA ---
 const INTELLIGENCE_DATA = {
   1: {
     title: (
       <>
-        Performance is the <span className="relative inline-block text-[#3F5CE0] px-1 z-10">New Standard</span>
+        Performance is the <span className="text-emerald-500">New Standard</span>
       </>
     ),
-    desc: "Google's Core Web Vitals are now a critical success metric. React apps that score 100/100 on LightHouse rank higher and convert better. I build high-performance frontends that users love."
+    desc: "Google's Core Web Vitals are now a critical success metric. React apps that score 100/100 on LightHouse rank higher and convert better.",
+    label: "Performance",
+    image: "https://www.webfx.com/wp-content/uploads/2025/10/ai-seo-results-768x536.png",
   },
   2: {
     title: (
       <>
-        Headless CMS <span className="relative inline-block text-[#3F5CE0] px-1 z-10">Scalability</span>
+        Headless CMS <span className="text-emerald-500">Scalability</span>
       </>
     ),
-    desc: "Traditional monoliths crash under high traffic. Decoupled architectures (Next.js + WordPress) allow you to handle global traffic spikes without server downtime or security risks."
+    desc: "Traditional monoliths crash under high traffic. Decoupled architectures allow you to handle global spikes without server downtime.",
+    label: "Scalability",
+    image: "https://www.webfx.com/wp-content/uploads/2025/10/ai-seo-results-768x536.png",
   },
   3: {
     title: (
       <>
-        User Experience <span className="relative inline-block text-[#3F5CE0] px-1 z-10">= Revenue</span>
+        User Experience <span className="text-emerald-500">= Revenue</span>
       </>
     ),
-    desc: "Every 100ms of latency costs 1% in sales. My front-end code is optimized for 'Instant Load' via Edge Caching, reducing bounce rates and directly increasing conversions."
+    desc: "Every 100ms of latency costs 1% in sales. My front-end code is optimized for 'Instant Load' via Edge Caching.",
+    label: "Experience",
+    image: "https://www.webfx.com/wp-content/uploads/2025/10/ai-seo-results-768x536.png",
   },
   4: {
     title: (
       <>
-        Global <span className="relative inline-block text-[#3F5CE0] px-1 z-10">Accessibility</span>
+        Global <span className="text-emerald-500">Accessibility</span>
       </>
     ),
-    desc: "Modern web apps must work on all devices. I implement strict WCAG accessibility standards, ensuring your application reaches the widest possible audience and avoids legal liabilities."
+    desc: "Modern web apps must work on all devices. I implement strict WCAG accessibility standards, avoiding legal liabilities.",
+    label: "Accessibility",
+    image: "https://www.webfx.com/wp-content/uploads/2025/10/ai-seo-results-1000x698.png",
   }
 };
 
 export const MarketIntelligence = () => {
-  const [activeId, setActiveId] = useState<1 | 2 | 3 | 4>(2); // Default to #2
+  const [activeId, setActiveId] = useState<1 | 2 | 3 | 4>(3);
   const [isFading, setIsFading] = useState(false);
-  const [displayData, setDisplayData] = useState(INTELLIGENCE_DATA[2]);
 
-  // Handle Hotspot Click
-  const handleHotspotClick = (id: 1 | 2 | 3 | 4) => {
+  const handleInteraction = (id: 1 | 2 | 3 | 4) => {
     if (id === activeId) return;
-
-    // Trigger Fade Out
     setIsFading(true);
-
-    // Swap Content after fade-out completes (200ms)
     setTimeout(() => {
       setActiveId(id);
-      setDisplayData(INTELLIGENCE_DATA[id]);
-      setIsFading(false); // Trigger Fade In
+      setIsFading(false);
     }, 200);
   };
 
   return (
-    <div 
-      className="w-full py-[80px] px-5 flex flex-col items-center relative overflow-hidden"
-    >
-      
-      {/* --- HEADER --- */}
-      <div className="text-center max-w-[900px] mb-[60px] relative z-10">
-        {/* Subtitle: Pure White */}
-        <span className="block text-[#FFFFFF] font-bold text-[0.85rem] uppercase tracking-[2px] mb-[15px]">
-          Global Architecture Standards
-        </span>
+   <section className="w-full pt-2 pb-0 relative overflow-hidden">
+      <div className="max-w-[1400px] mx-auto px-5 relative z-10 items-center justify-center text-center
+">
         
-        {/* H2: Cobalt Base, White Highlight, Double Scratch */}
-        <h2 className="text-[clamp(2.2rem,4.5vw,3.2rem)] font-black text-[#3F5CE0] leading-[1.1] tracking-tight m-0">
-          Engineering Insights for{" "}
-          <span className="relative inline-block text-[#FFFFFF] px-1 z-10">
-            Strategic Growth
-            {/* Double Scratch Layer 1 (Darker Blue) */}
-            <span className="absolute left-0 right-0 bottom-[6px] h-[12px] bg-[#2E476E] -z-20 skew-x-[-10deg] rounded-sm"></span>
-            {/* Double Scratch Layer 2 (Lighter Blue) */}
-            <span className="absolute left-0 right-0 bottom-[10px] h-[12px] bg-[#3C66A6] -z-10 skew-x-[-10deg] rounded-sm shadow-[0_2px_0_rgba(255,255,255,0.1)]"></span>
-          </span>
-        </h2>
-      </div>
-
-      {/* --- WIDGET AREA --- */}
-      <div className="flex flex-col lg:flex-row w-full max-w-[1100px] items-center justify-center gap-[5%] mb-[40px] relative z-10">
-        
-        {/* 1. LAPTOP VISUALIZER */}
-        <div className="relative flex-[1.2] max-w-[600px] min-w-[300px] flex flex-col items-center w-full mb-[30px] lg:mb-0">
-          
-          {/* Screen Frame - Darkened for theme */}
-          <div className="relative w-full border-[8px] border-[#2c2e31] border-b-0 rounded-t-xl bg-black overflow-hidden z-[2] shadow-2xl">
-            <img
-              src="https://www.webfx.com/wp-content/uploads/2025/10/ai-seo-results-768x536.png"
-              alt="Performance Dashboard"
-              className="w-full h-auto block opacity-90"
-            />
-          </div>
-          
-          {/* Device Base */}
-          <div className="w-[104%] h-[12px] bg-[#3c4043] rounded-b-xl shadow-xl relative z-[2]"></div>
-
-          {/* HOTSPOTS */}
-          {[
-             { id: 1, pos: "top-[15%] -right-[5%] lg:-right-[5%] right-0" }, 
-             { id: 2, pos: "top-[40%] -left-[5%] lg:-left-[5%] left-0" },   
-             { id: 3, pos: "bottom-[20%] -right-[5%] lg:-right-[5%] right-0" }, 
-             { id: 4, pos: "bottom-[20%] -left-[5%] lg:-left-[5%] left-0" }   
-          ].map((spot) => (
-            <button
-              key={spot.id}
-              onClick={() => handleHotspotClick(spot.id as 1 | 2 | 3 | 4)}
-              className={`
-                absolute w-[44px] h-[44px] bg-[#3F5CE0] border-[3px] border-[#0E1623] rounded-full 
-                text-white text-[28px] flex items-center justify-center z-10 cursor-pointer 
-                transition-all duration-300 pb-1 shadow-lg shadow-[#3F5CE0]/40
-                ${spot.pos}
-                ${activeId === spot.id 
-                  ? "scale-115 bg-[#344dbd] shadow-[0_0_0_4px_rgba(63,92,224,0.4)]" 
-                  : "hover:scale-110"
-                }
-              `}
-              aria-label={`View Insight ${spot.id}`}
-            >
-              +
-              {/* Pulse Animation Ring */}
-              <span className="absolute -inset-1 rounded-full border-[2px] border-[#3F5CE0] animate-ping opacity-75"></span>
-            </button>
-          ))}
+        {/* HEADER CONTENT */}
+        <div className="col-span-full max-w-[800px] mx-auto w-full text-center relative z-20 flex flex-col items-center justify-center">
+          <h2 className="text-white text-4xl md:text-5xl">
+  <span className="text-emerald-500">Engineering</span> Ecosystem
+</h2>
+          <p className="text-gray-400 text-lg md:text-xl mb-16">
+            Hover over the architectural nodes below to explore our core insights. Our decoupled systems are engineered to maximize performance, scalability, and user revenue.
+          </p>
         </div>
 
-        {/* 2. DYNAMIC CONTENT BOX */}
-        {/* Dark Box with White Text */}
-        <div className="flex-1 w-full bg-[#1a2436] border border-white/10 p-[40px] rounded-2xl min-h-[280px] flex flex-col justify-center relative z-[1] shadow-2xl">
-          
-          <div 
-            className={`transition-all duration-300 transform ${
-              isFading ? "opacity-0 -translate-y-2" : "opacity-100 translate-y-0"
-            }`}
-          >
-            {/* Title: White Base with Blue Highlight */}
-            <h2 className="text-[1.8rem] font-black text-[#FFFFFF] mb-[15px] leading-[1.25] tracking-tight">
-              {displayData.title}
-            </h2>
-            {/* Paragraph: Pure White */}
-            <p className="text-[1.1rem] leading-[1.6] text-[#FFFFFF]">
-              {displayData.desc}
-            </p>
-          </div>
+        {/* RESPONSIVE SCALING WRAPPER */}
+        <div className="col-span-full relative w-full h-[130px] sm:h-[190px] md:h-[300px] lg:h-[450px] xl:h-[600px]">
+          <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[1600px] h-[900px] scale-[0.22] sm:scale-[0.35] md:scale-[0.5] lg:scale-[0.75] xl:scale-[0.9] origin-top z-10">
+            
+            <svg width="1600" height="900" viewBox="0 0 1600 900" className="absolute inset-0 pointer-events-none z-0">
+              {/* CURVY DOT LINE - Moved to the upper side (Y values around 100-300) */}
+              <path 
+d="M 50 150 Q 400 -90 800 200 T 1550 50"
+                fill="none" 
+                stroke="#10B981" 
+                strokeWidth="2" 
+                strokeDasharray="8 12" 
+                opacity="0.25" 
+              />
+              
+              {/* MAIN ORBIT */}
+              <path 
+                d="M 350 500 A 450 450 0 0 1 1250 500" 
+                fill="none" 
+                stroke="#10B981" 
+                strokeWidth="8" 
+                opacity="0.5" 
+              />
+            </svg>
 
+            {/* --- CENTRAL TV MOCKUP --- */}
+            <div className="absolute left-[800px] top-[400px] -translate-x-1/2 -translate-y-1/2 w-[600px] z-10 transition-transform duration-500">
+              <div className="w-full h-[280px] bg-black rounded-t-xl border-[6px] border-[#1f1f1f] shadow-[0_0_80px_rgba(0,0,0,0.8)] relative overflow-hidden flex flex-col z-10">
+                <img 
+                  src={INTELLIGENCE_DATA[activeId].image} 
+                  alt="Dashboard Data" 
+                  className={`w-full h-full object-cover opacity-80 transition-opacity duration-300 ${isFading ? 'opacity-0' : 'opacity-80'}`}
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none"></div>
+              </div>
+              <div className="w-[640px] h-[16px] bg-[#2a2a2a] -ml-[20px] rounded-b-xl border-t border-[#444] shadow-[0_30px_60px_rgba(0,0,0,0.8)] relative flex justify-center z-20">
+                <div className="w-[70px] h-[4px] bg-[#111] rounded-b-md"></div>
+              </div>
+            </div>
+
+            {/* --- NODES & HOVER BOXES --- */}
+            {[
+              { id: 1, x: 350, y: 500, boxPos: "right-[calc(100%-20px)] bottom-[calc(100%+20px)]", width: "w-[230px]"},
+              { id: 2, x: 575, y: 110, labelAlign: "-top-[65px] left-1/2 -translate-x-1/2 text-center", boxPos: "bottom-[calc(100%-190px)] right-[calc(100%+140px)]", width: "w-[280px]"},
+              { id: 3, x: 1025, y: 110, labelAlign: "-top-[65px] left-1/2 -translate-x-1/2 text-center", boxPos: "bottom-[calc(100%-190px)] left-[calc(100%+140px)]", width: "w-[280px]" },
+              { id: 4, x: 1250, y: 500, boxPos: "left-[calc(100%-20px)] bottom-[calc(100%+20px)]", width: "w-[230px]"}
+            ].map((node) => (
+              <div 
+                key={node.id}
+                className="absolute -translate-x-1/2 -translate-y-1/2 z-40 cursor-pointer group"
+                style={{ left: node.x, top: node.y }}
+                onMouseEnter={() => handleInteraction(node.id as 1 | 2 | 3 | 4)}
+              >
+                <div className={`w-14 h-14 rounded-full border-[3px] flex items-center justify-center text-2xl transition-all duration-300 relative z-20 ${activeId === node.id ? "border-emerald-500 bg-emerald-500 text-[#0f172a] scale-110 shadow-[0_0_30px_rgba(16,185,129,0.6)]" : "border-emerald-500/70 bg-[#0c131f] text-white group-hover:border-emerald-400 group-hover:scale-105"}`}>
+                  +
+                </div>
+
+                <div className={`absolute flex flex-col w-[150px] ${node.labelAlign} pointer-events-none transition-opacity duration-300 ${activeId === node.id ? "opacity-0" : "opacity-60 group-hover:opacity-100"}`}>
+                  <span className="text-white">{INTELLIGENCE_DATA[node.id as 1|2|3|4].label}</span>
+                  <span className="text-emerald-500/70">Insight Data</span>
+                </div>
+
+                <div className={`absolute ${node.boxPos} ${node.width || 'w-[360px]'} pointer-events-none transition-all duration-500 ${activeId === node.id ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}>                
+                  <div className={`bg-[#0c131f]/90 backdrop-blur-xl rounded-2xl p-7 shadow-[0_40px_80px_rgba(0,0,0,0.9)] z-30 transition-all duration-300 ${isFading ? 'opacity-0' : 'opacity-100'}`}>
+                    <h4 className="text-white text-2xl">
+                      {INTELLIGENCE_DATA[node.id as 1|2|3|4].title}
+                    </h4>
+                    <p className="text-gray-300">
+                      {INTELLIGENCE_DATA[node.id as 1|2|3|4].desc}
+                    </p>
+                    <button className="text-emerald-400 text-xs hover:text-white transition-colors">
+                      Audit Metric →
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-
-      {/* --- CTA BUTTON --- */}
-      <div className="relative z-10">
-        <a href="#contact" className="bg-[#3F5CE0] text-white py-[16px] px-[40px] text-[18px] font-extrabold rounded-lg hover:-translate-y-[2px] transition-transform uppercase tracking-wide no-underline shadow-lg shadow-[#3F5CE0]/30">
-          Audit My Architecture →
-        </a>
-      </div>
-
-    </div>
+    </section>
   );
 };

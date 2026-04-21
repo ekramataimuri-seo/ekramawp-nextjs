@@ -89,382 +89,100 @@ export const MasterServices = () => {
   ];
 
   return (
-    <div className="w-full bg-[#020617] py-24">
+    <section className="section-container">
+      <div className="global-grid-layout"></div>
+    <div className="w-full bg-transparent overflow-visible">
+      {/* Required for standardizing the custom animations without editing tailwind.config.js */}
       <style dangerouslySetInnerHTML={{ __html: `
-        /* --- 1. PREVENT SITE OVERFLOW --- */
-        #ek-rev-v17, 
-        #ek-rev-v17 .fx-wrapper {
-            overflow: visible !important;
-            max-width: 100%;
-        }
-
-        /* --- 2. COMPONENT ISOLATION --- */
-        #ek-rev-v17 {
-            --brand-blue: #3b82f6;      
-            --brand-navy: #ffffff;      
-            --scratch-light: #60a5fa;   
-            --border-subtle: rgba(255, 255, 255, 0.1);
-            
-            box-sizing: border-box;
-            width: 100%;
-            max-width: 1400px !important; 
-            margin: 0 auto !important;
-            padding: 0 40px; 
-            background: transparent !important;
-        }
-
-        #ek-rev-v17 * {
-            box-sizing: border-box;
-        }
-
-        /* --- 3. HEADING STYLES --- */
-        #ek-rev-v17 .king-heading-wrap {
-            text-align: center;
-            /* Margin accounts for the top overlap of the image */
-            margin-bottom: 180px; 
-        }
-
-        #ek-rev-v17 .king-kicker {
-            display: block;
-            color: var(--brand-blue);
-            font-weight: 800;
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 2.5px;
-            margin-bottom: 15px;
-        }
-
-        #ek-rev-v17 .king-heading-wrap h2 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 900;
-            color: var(--brand-navy);
-            line-height: 1.1;
-            letter-spacing: -0.04em;
-            margin: 0 0 20px 0;
-        }
-
-        #ek-rev-v17 .king-heading-wrap p {
-            font-size: 1.2rem;
-            color: #94a3b8; 
-            font-weight: 400;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* --- 4. MAIN LAYOUT --- */
-        .fx-wrapper {
-            display: flex !important;
-            flex-direction: row !important;
-            justify-content: space-between !important; 
-            align-items: flex-start !important;
-            position: relative;
-            width: 100%;
-            gap: 60px;
-        }
-
-        /* --- 5. MINIMAL VERTICAL TABS --- */
-        .fx-tabs {
-            flex: 0 0 280px !important; 
-            display: flex;
-            flex-direction: column;
-            border-left: 1px solid var(--border-subtle);
-            z-index: 20;
-            padding-left: 0;
-        }
-
-        .fx-tab {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 24px 30px !important;
-            cursor: pointer;
-            color: #64748b !important; 
-            transition: all 0.3s ease;
-            background: transparent !important;
-            border-left: 2px solid transparent;
-            margin-left: -1px; 
-            user-select: none;
-        }
-
-        .fx-tab:hover {
-            color: #cbd5e1 !important;
-            border-left-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .fx-tab.active {
-            border-left-color: var(--brand-blue);
-            color: #ffffff !important;
-            background: linear-gradient(90deg, rgba(59, 130, 246, 0.05) 0%, transparent 100%) !important;
-        }
-
-        .fx-icon-circle {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: inherit; 
-            flex-shrink: 0;
-            transition: all 0.3s ease;
-        }
-
-        .fx-tab.active .fx-icon-circle {
-            color: var(--brand-blue) !important;
-        }
-
-        .fx-tab span {
-            font-size: 17px;
-            font-weight: 700 !important; 
-            letter-spacing: -0.01em;
-        }
-
-/* --- 6. CLEAN CONTENT AREA --- */
-        .fx-content-area {
-            flex: 1 !important; /* Lets it shrink and grow to fill available space */
-            width: 100% !important;
-            max-width: 950px !important; /* Caps the size on huge monitors */
-            position: relative;
-            border-top: 1px solid var(--border-subtle);
-            min-height: 400px;
-            /* I removed the overflow: hidden; so your image won't get chopped in half! */
-        }
-
-        .fx-panel {
-            display: none;
-            width: 100%;
-            height: 100%;
-        }
-
-        .fx-panel.active {
-            display: block !important;
-            animation: fx-fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
         @keyframes fx-fade-in {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
         }
-
-        /* --- 7. SMALL CENTERED OVERLAPPING IMAGE --- */
-        .fx-img-overlap {
-            position: absolute !important;
-            width: 460px !important; /* Constrained small width */
-            
-            /* Perfectly centered horizontally and 50% vertically */
-            top: 0 !important;
-            left: 50% !important;
-            transform: translate(-50%, -50%) !important;
-            z-index: 30;
-        }
-
-        .fx-img-overlap img {
-            width: 100% !important;
-            height: 280px !important; /* Fixed proportional height */
-            border-radius: 12px !important;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            object-fit: cover; /* Prevents stretching completely */
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6) !important;
-            display: block !important;
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .fx-panel.active .fx-img-overlap img {
-            animation: img-scale-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
         @keyframes img-scale-in {
-            from { transform: scale(0.96); opacity: 0.8; }
-            to { transform: scale(1); opacity: 1; }
+          from { transform: scale(0.96); opacity: 0.8; }
+          to { transform: scale(1); opacity: 1; }
         }
-
-        /* --- 8. TEXT CONTENT --- */
-        .fx-text-col { 
-            color: #ffffff !important; 
-            /* Push text down so the centered image has breathing room */
-            padding-top: 180px; 
-            max-width: 850px;
-            margin: 0 auto; /* Keep text column centered within the 950px box */
-        }
-        
-        .fx-text-col .panel-kicker {
-            display: inline-block;
-            color: var(--brand-blue);
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 12px;
-        }
-
-        .fx-text-col h3 { 
-            font-size: 38px !important; 
-            font-weight: 900 !important;
-            margin: 0 0 24px 0 !important; 
-            color: #ffffff !important;
-            line-height: 1.1 !important;
-            letter-spacing: -0.02em !important;
-        }
-
-        .fx-text-col p { 
-            color: #cbd5e1 !important;
-            font-size: 18px;
-            font-weight: 400;
-            line-height: 1.7;
-            margin-bottom: 40px !important;
-        }
-
-        .fx-text-col ul { 
-            list-style-type: none !important; 
-            margin: 0 !important; 
-            padding: 0 !important; 
-            display: grid !important; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 20px;
-        } 
-
-        .fx-text-col li { 
-            display: flex !important; 
-            align-items: flex-start !important;
-            color: #e2e8f0 !important; 
-            font-size: 16px !important; 
-            line-height: 1.5 !important; 
-            margin: 0 !important; 
-            font-weight: 400;
-        }
-
-        .fx-text-col li::before {
-            content: "—"; 
-            color: var(--brand-blue);
-            font-weight: 900;
-            margin-right: 12px;
-            font-size: 16px;
-        }
-
-        /* --- 9. MOBILE RESPONSIVE --- */
-        @media (max-width: 992px) {
-            #ek-rev-v17 .king-heading-wrap {
-                margin-bottom: 60px; 
-            }
-
-            #ek-rev-v17 .fx-wrapper {
-                flex-direction: column !important;
-                gap: 50px !important;
-            }
-
-            #ek-rev-v17 .fx-tabs {
-                width: 100% !important;
-                flex-direction: row !important;
-                border-left: none;
-                border-bottom: 1px solid var(--border-subtle);
-                overflow-x: auto !important;
-                overflow-y: hidden !important;
-                -webkit-overflow-scrolling: touch;
-                scrollbar-width: none;
-            }
-
-            #ek-rev-v17 .fx-tabs::-webkit-scrollbar { display: none; }
-
-            #ek-rev-v17 .fx-tab {
-                flex: 0 0 auto !important;
-                padding: 16px 20px !important;
-                border-left: none;
-                border-bottom: 2px solid transparent;
-                margin-left: 0;
-                margin-bottom: -1px; 
-            }
-
-            #ek-rev-v17 .fx-tab:hover {
-                border-left-color: transparent;
-                border-bottom-color: rgba(255,255,255,0.3);
-            }
-
-            #ek-rev-v17 .fx-tab.active {
-                border-bottom-color: var(--brand-blue);
-                background: linear-gradient(0deg, rgba(59, 130, 246, 0.05) 0%, transparent 100%) !important;
-            }
-
-            #ek-rev-v17 .fx-content-area {
-                width: 100% !important;
-                flex: 1 !important;
-                border-top: none; 
-            }
-
-            #ek-rev-v17 .fx-img-overlap {
-                position: relative !important;
-                transform: translateX(-50%) !important;
-                margin-bottom: 40px;
-                width: 90% !important;
-                max-width: 460px !important;
-            }
-
-            #ek-rev-v17 .fx-img-overlap img {
-                height: 240px !important;
-            }
-
-            #ek-rev-v17 .fx-text-col {
-                padding-top: 0; 
-            }
-
-            #ek-rev-v17 .fx-text-col ul {
-                grid-template-columns: 1fr; 
-            }
-        }
+        .animate-fx-fade-in { animation: fx-fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .animate-img-scale-in { animation: img-scale-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
       `}} />
 
-      <div id="ek-rev-v17">
+      <div className="box-border w-full max-w-[1400px] mx-auto bg-transparent overflow-visible">
         
         {/* HEADING */}
-        <div className="king-heading-wrap">
-          <span className="king-kicker">End-to-End Solutions</span>
-          <h2>Mastering <span className="blue-scratch">Modern Web</span></h2>
-          <p>A complete suite of engineering services designed to maximize performance, scalability, and user experience.</p>
+        <div className="text-center lg:mb-[180px]">
+          <h2 className="font-black text-white">
+            Mastering <span className="text-emerald-400">Modern Web</span>
+          </h2>
+          <p className="text-slate-400  max-w-[800px] mx-auto m-0">
+            A complete suite of engineering services designed to maximize performance, scalability, and user experience.
+          </p>
         </div>
 
         {/* MAIN LAYOUT */}
-        <div className="fx-wrapper">
+        <div className="flex flex-col lg:flex-row justify-between items-start relative w-full gap-[50px] lg:gap-[60px] overflow-visible">
           
           {/* TABS COLUMN */}
-          <div className="fx-tabs">
-            {SERVICES_DATA.map((service, index) => (
-              <div 
-                key={service.id}
-                className={`fx-tab ${activeTab === index ? 'active' : ''}`}
-                onClick={() => setActiveTab(index)}
-              >
-                <div className="fx-icon-circle">
-                  {service.icon}
+          <div className="flex flex-row lg:flex-col w-full lg:w-[280px] flex-none border-b lg:border-b-0 lg:border-l border-white/10 z-20 pl-0 overflow-x-auto lg:overflow-visible overflow-y-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {SERVICES_DATA.map((service, index) => {
+              const isActive = activeTab === index;
+              return (
+                <div 
+                  key={service.id}
+                  className={`flex flex-none items-center gap-4 py-4 px-5 lg:py-6 lg:px-[30px] cursor-pointer transition-all duration-300 bg-transparent border-b-2 lg:border-b-0 lg:border-l-2 select-none  ${
+                    isActive 
+                      ? 'text-white border-emerald-500 bg-gradient-to-t lg:bg-gradient-to-r from-emerald-500/5 to-transparent' 
+                      : 'text-slate-500 border-transparent hover:text-slate-300 hover:border-white/30 lg:hover:border-b-transparent'
+                  }`}
+                  onClick={() => setActiveTab(index)}
+                >
+                  <div className={`flex items-center justify-center shrink-0 transition-all duration-300 ${isActive ? 'text-emerald-500' : 'text-inherit'}`}>
+                    {service.icon}
+                  </div>
+                  <span className=" font-bold">{service.title}</span>
                 </div>
-                <span>{service.title}</span>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* CONTENT COLUMN */}
-          <div className="fx-content-area">
-            {SERVICES_DATA.map((service, index) => (
-              <div 
-                key={service.id} 
-                className={`fx-panel ${activeTab === index ? 'active' : ''}`}
-              >
-                <div className="fx-clean-container">
-                  <div className="fx-img-overlap">
-                    <img src={service.img} alt={service.title} />
-                  </div>
-                  <div className="fx-text-col">
-                    <span className="panel-kicker">{service.kicker}</span>
-                    <h3>{service.title}</h3>
-                    <p>{service.desc}</p>
-                    <ul>
-                      {service.bullets.map((bullet, idx) => (
-                        <li key={idx}>{bullet}</li>
-                      ))}
-                    </ul>
+          <div className="flex-1 w-full lg:max-w-[950px] relative  border-white/10 min-h-[400px]">
+            {SERVICES_DATA.map((service, index) => {
+              const isActive = activeTab === index;
+              return (
+                <div 
+                  key={service.id} 
+                  className={`w-full h-full ${isActive ? 'block animate-fx-fade-in' : 'hidden'}`}
+                >
+                  <div>
+                    <div className="relative lg:absolute w-[90%] lg:w-[460px] max-w-[460px] top-0 left-1/2 -translate-x-1/2 lg:-translate-y-1/2 z-30 ">
+                      <img 
+                        src={service.img} 
+                        alt={service.title} 
+                        className={`w-full h-[240px] lg:h-[280px] rounded-xl border border-white/10 object-cover shadow-[0_25px_50px_-12px_rgba(0,0,0,0.6)] block transition-transform duration-700 ${isActive ? 'animate-img-scale-in' : ''}`}
+                      />
+                    </div>
+                    <div className="text-white pt-0 lg:pt-[180px] max-w-[850px] mx-auto">
+                      <span className="inline-block text-emerald-500 text-[0.85rem] font-bold uppercase tracking-[2px] mb-3">{service.kicker}</span>
+                      <h3 className="text-[38px] font-black m-0 mb-6 text-white ">{service.title}</h3>
+                      <p className="text-slate-300 text-[18px] font-normal mb-10">{service.desc}</p>
+                      <ul className="list-none m-0 p-0 grid grid-cols-1 lg:grid-cols-2 gap-5">
+                        {service.bullets.map((bullet, idx) => (
+                          <li key={idx} className="flex items-start text-slate-200 m-0 before:content-['—'] before:text-emerald-500 before:font-black">
+                            {bullet}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
         </div>
       </div>
     </div>
+    
+    </section>
   );
 };

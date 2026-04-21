@@ -1,153 +1,311 @@
 "use client";
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 
-// Configuration Data
-const cardImage = "https://admin.wpfedev.com/wp-content/uploads/2026/02/bluedeign-image.webp";
-
-const sharedContent = {
-    tag: "AI-Powered Intelligence for WordPress Success",
-    title: "Make Smarter Decisions, Faster",
+// 5-Pillar Dataset
+const pillarData = [
+  {
+    id: 0,
+    color: '#10B981', // Emerald 500
+    bgLight: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05))',
+    label: 'Revenue Platform',
+    title: 'Attributable ROI From Marketing',
     bullets: [
-        "Leverage AI to analyze website performance across industries and campaigns, uncovering opportunities that may go unnoticed.",
-        "AI insights help guide optimization efforts, ensuring strategy and execution remain at the forefront of growth.",
-        "Integrating AI into your WordPress site empowers your team to focus on what’s driving results, guiding smart investments, and compounding revenue over time."
+      'We integrate RevenueCloudFX with your existing CRM or FSM with our team handling 100% of the setup for you.',
+      'Our marketing efforts are tied directly to pipeline and ROI so that you get greater transparency into our data-backed recommendations.',
+      'Clients who connect their systems see an average of 15% higher marketing ROI within the first 6 months.'
     ],
-    cta: "Explore Our Case Studies to See the Impact of AI-Driven Optimization!"
-};
-
-const serviceLabels = ["Architecture", "Performance", "Headless", "Quality", "Security", "SEO"];
+    cta: 'Discover RevenueCloudFX',
+    icon: 'https://admin.wpfedev.com/wp-content/uploads/2026/01/Sampleimage.webp',
+    mediaType: 'image',
+    mediaSrc: 'https://admin.wpfedev.com/wp-content/uploads/2026/01/Sampleimage.webp'
+  },
+  {
+    id: 1,
+    color: '#059669', // Emerald 600
+    bgLight: 'linear-gradient(135deg, rgba(5, 150, 105, 0.15), rgba(5, 150, 105, 0.05))',
+    label: 'Strategic Execution',
+    title: 'Turning Traffic into Leads & Pipeline',
+    bullets: [
+      'Your dedicated team of FXers leverage the data within our revenue platform to make data-driven decisions about your strategy.',
+      'Your dedicated team will comprise of channel and industry experts that will help prioritize actions to keep your business ahead.',
+      'With weekly updates and monthly calls, your team will remain informed on exactly what we\'re working on to drive performance.'
+    ],
+    cta: 'See Our Approach',
+    icon: 'https://admin.wpfedev.com/wp-content/uploads/2026/01/Sampleimage.webp',
+    mediaType: 'image',
+    mediaSrc: 'https://admin.wpfedev.com/wp-content/uploads/2026/01/Sampleimage.webp'
+  },
+  {
+    id: 2,
+    color: '#34D399', // Emerald 400
+    bgLight: 'linear-gradient(135deg, rgba(52, 211, 153, 0.15), rgba(52, 211, 153, 0.05))',
+    label: 'AI-Powered Intelligence',
+    title: 'Smarter Decisions at Scale',
+    bullets: [
+      'AI analyzes performance patterns across industries and campaigns to surface opportunities humans might miss.',
+      'AI insights are used to prioritize optimizations, not replace strategy or execution.',
+      'AI integration allows our team to focus on what’s working, where to invest next, and how to compound revenue over time.'
+    ],
+    cta: 'Explore Our Case Studies',
+    icon: 'https://admin.wpfedev.com/wp-content/uploads/2026/01/Sampleimage.webp',
+    mediaType: 'image',
+    mediaSrc: 'https://admin.wpfedev.com/wp-content/uploads/2026/01/Sampleimage.webp'
+  },
+  {
+    id: 3,
+    color: '#047857', // Emerald 700
+    bgLight: 'linear-gradient(135deg, rgba(4, 120, 87, 0.15), rgba(4, 120, 87, 0.05))',
+    label: 'Market Intelligence',
+    title: 'Focused Market Strategy',
+    bullets: [
+      'Define where to compete, what to prioritize, and how to sequence efforts for the biggest return.',
+      'Translate research into a practical roadmap your team can actually follow without losing speed.',
+      'Create alignment across messaging, targeting, offers, and long-term expansion decisions.'
+    ],
+    cta: 'View Strategy Model',
+    icon: 'https://admin.wpfedev.com/wp-content/uploads/2026/01/Sampleimage.webp',
+    mediaType: 'image',
+    mediaSrc: 'https://admin.wpfedev.com/wp-content/uploads/2026/01/Sampleimage.webp'
+  },
+  {
+    id: 4,
+    color: '#6EE7B7', // Emerald 300
+    bgLight: 'linear-gradient(135deg, rgba(110, 231, 183, 0.15), rgba(110, 231, 183, 0.05))',
+    label: 'Process Automation',
+    title: 'Continuous Growth Optimization',
+    bullets: [
+      'Use live performance signals to improve conversion paths, budget allocation, and messaging effectiveness over time.',
+      'Continuously test, learn, and refine so growth compounds instead of resetting every quarter.',
+      'Make optimization part of the system, not a last-minute fix when numbers fall short.'
+    ],
+    cta: 'See Optimization Plan',
+    icon: 'https://admin.wpfedev.com/wp-content/uploads/2026/01/Sampleimage.webp',
+    mediaType: 'image',
+    mediaSrc: 'https://admin.wpfedev.com/wp-content/uploads/2026/01/Sampleimage.webp'
+  }
+];
 
 export const FiveCirclesBox = () => {
-    const [activeIndex, setActiveIndex] = useState(0);
-    const [lineWidth, setLineWidth] = useState(0);
-    const nodesRef = useRef<(HTMLButtonElement | null)[]>([]);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isStepping, setIsStepping] = useState(false);
+  
+  const totalPillars = pillarData.length;
+  const activePillar = pillarData[activeIndex] || pillarData[0];
 
-    const updateProgressLine = (index: number) => {
-        const activeNode = nodesRef.current[index];
-        if (activeNode) {
-            const centerOffset = activeNode.offsetLeft + (activeNode.offsetWidth / 2) - 40;
-            setLineWidth(centerOffset);
-        }
-    };
+  // SMART ROTATION: Prevents criss-crossing ("swapping") by routing movement through the perimeter
+  const handleSetActive = (idx: number) => {
+    if (idx === activeIndex || isStepping) return;
 
-    useEffect(() => {
-        const timer = setTimeout(() => updateProgressLine(activeIndex), 50);
-        const handleResize = () => updateProgressLine(activeIndex);
+    const diff = (idx - activeIndex + totalPillars) % totalPillars;
+    
+    if (diff === 2) {
+      setIsStepping(true);
+      setActiveIndex((prev) => (prev + 1) % totalPillars); 
+      setTimeout(() => {
+        setActiveIndex(idx); 
+        setIsStepping(false);
+      }, 250); 
+    } else if (diff === 3) {
+      setIsStepping(true);
+      setActiveIndex((prev) => (prev + 4) % totalPillars); 
+      setTimeout(() => {
+        setActiveIndex(idx); 
+        setIsStepping(false);
+      }, 250);
+    } else {
+      setActiveIndex(idx);
+    }
+  };
+
+  return (
+    <section className="w-full pt-2 pb-16 relative overflow-hidden">
+      <div className="max-w-[1400px] mx-auto px-5 relative z-10 items-center justify-center text-center">
         
-        window.addEventListener('resize', handleResize);
-        return () => {
-            clearTimeout(timer);
-            window.removeEventListener('resize', handleResize);
-        };
-    }, [activeIndex]);
+        {/* --- HEADER --- */}
+        <header className="max-w-[980px] mx-auto mb-8">
+          <h2>
+            Uniquely Positioned to <span style={{ color: activePillar.color }} className="transition-colors duration-500">Power Real Revenue Growth</span>
+          </h2>
+          <div className="mt-4 max-w-[860px] mx-auto">
+            Every result we deliver is powered by five connected pillars — each one working together to create 
+            clearer strategy, stronger execution, better intelligence, and scalable growth.
+          </div>
+        </header>
 
-    return (
-        <section className="five-circles-wrapper">
-            <style dangerouslySetInnerHTML={{ __html: `
-                .five-circles-wrapper {
-                    --primary-blue: #007bff;
-                    --accent-teal: #2db8b1;
-                    --bg-dark: #0f172a;
-                    --card-bg: rgba(30, 41, 59, 0.7);
-                    --text-pure-white: #ffffff;
-                    --halo-static: rgba(255, 255, 255, 0.2); 
-                    --line-color: #ffffff; 
-                    --highlight-1: #3C66A6;
-                    --highlight-2: #2E476E;
-                    width: 100%;
-                    max-width: 1300px;
-                    margin: 0 auto;
-                    padding: 60px 20px;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 40px;
-                }
-                .fx-header-section { text-align: center; max-width: 800px; margin: 0 auto 20px auto; }
-                .fx-main-heading { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; color: var(--text-pure-white); line-height: 1.2; margin-bottom: 20px; }
-                .highlight-scratch {
-                    position: relative; z-index: 1; padding: 0 5px; display: inline-block;
-                    background-image: linear-gradient(to right, var(--highlight-1), var(--highlight-1)), linear-gradient(to right, var(--highlight-2), var(--highlight-2));
-                    background-size: 100% 12px, 100% 8px; background-position: 0 85%, 0 95%; background-repeat: no-repeat;
-                }
-                .fx-body-content { font-size: 1.1rem; line-height: 1.6; color: rgba(255, 255, 255, 0.8); }
-                .fx-nav-wrapper { position: relative; width: 100%; max-width: 750px; margin: 0 auto; padding: 20px 0; }
-                .fx-nav-wrapper::before { content: ''; position: absolute; top: 45px; left: 40px; right: 40px; height: 1px; background: var(--line-color); z-index: 1; opacity: 0.3; }
-                .fx-progress-line { position: absolute; top: 45px; left: 40px; height: 2px; background: var(--primary-blue); z-index: 2; transition: width 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
-                .fx-nodes-container { display: flex; justify-content: space-between; position: relative; z-index: 3; }
-                .fx-node { background: none; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; outline: none; transition: 0.3s; width: 80px; }
-                .fx-icon-outer { width: 50px; height: 50px; background: var(--halo-static); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; transition: all 0.4s ease; border: 1px solid rgba(255,255,255,0.1); }
-                .fx-icon-inner { width: 32px; height: 32px; background: var(--primary-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-                .fx-icon-inner svg { width: 16px; height: 16px; fill: white; }
-                .fx-node-label { font-size: 9px; font-weight: 800; text-transform: uppercase; color: rgba(255,255,255,0.6); letter-spacing: 1px; margin-top: 5px; }
-                .fx-node.is-active .fx-node-label { color: var(--accent-teal); }
-                .fx-node.is-active .fx-icon-outer { background: rgba(255, 255, 255, 0.9); transform: scale(1.1); box-shadow: 0 0 15px rgba(255,255,255,0.3); }
-                .fx-content-area { position: relative; min-height: 550px; }
-                .fx-slide { position: absolute; top: 0; left: 0; right: 0; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); background: var(--card-bg); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; padding: 60px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
-                .fx-slide.is-active { opacity: 1; visibility: visible; transform: translateY(0); position: relative; }
-                .fx-slide-tag { color: var(--accent-teal); font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; }
-                .fx-slide h3 { font-size: 2.5rem; font-weight: 900; color: var(--text-pure-white); margin: 0 0 25px 0; line-height: 1.1; }
-                .fx-bullets { list-style: none; padding: 0; margin: 0 0 35px 0; }
-                .fx-bullets li { position: relative; padding-left: 30px; margin-bottom: 15px; color: var(--text-pure-white); font-size: 1.05rem; line-height: 1.5; }
-                .fx-bullets li::before { content: ''; position: absolute; left: 0; top: 10px; width: 8px; height: 8px; background-color: var(--accent-teal); border-radius: 50%; }
-                .fx-cta { color: var(--primary-blue); font-weight: 800; text-decoration: none; display: inline-flex; align-items: center; gap: 12px; font-size: 1.1rem; }
-                .visual-main-img { width: 100%; max-width: 480px; height: auto; border-radius: 15px; }
-                @media (max-width: 1000px) {
-                    .fx-nodes-container { gap: 15px; overflow-x: auto; padding-bottom: 20px; }
-                    .fx-node { flex-shrink: 0; }
-                    .fx-nav-wrapper::before, .fx-progress-line { display: none; }
-                    .fx-slide { grid-template-columns: 1fr; padding: 30px; }
-                    .fx-slide-visual { order: -1; }
-                }
-            `}} />
+        {/* --- COMPRESSED DOWNWARD PENTAGON CAROUSEL NAVIGATION --- */}
+        <div className="relative w-full max-w-[650px] mx-auto h-[170px] z-20 hidden md:block">
+          
+          <div className="absolute top-[0px] left-0 w-full h-[170px] z-0 pointer-events-none">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 1000 170" fill="none" preserveAspectRatio="none">
+              <polygon 
+                points="500,170 820,85 660,15 340,15 180,85" 
+                fill="none" 
+                stroke="#5b5d60" 
+                strokeWidth="2.5" 
+                strokeDasharray="8 8" 
+              />
+            </svg>
+          </div>
 
-            <div className="fx-header-section">
-                <h2 className="fx-main-heading">
-                    Revolutionizing WordPress with <span className="highlight-scratch">AI-Driven Intelligence</span>
-                </h2>
-                <p className="fx-body-content">
-                    Unlock the full potential of your digital presence. Our integrated AI solutions analyze and elevate your WordPress ecosystem.
-                </p>
-            </div>
+          {pillarData.map((item, idx) => {
+            let posClass = '';
+            let zIndex = 10;
+            let opacityClass = 'opacity-100 hover:opacity-100';
 
-            <div className="fx-nav-wrapper">
-                <div className="fx-progress-line" style={{ width: `${lineWidth}px` }}></div>
-                <div className="fx-nodes-container">
-                    {serviceLabels.map((label, index) => (
-                        <button
-                            key={index}
-                            // Fixed Ref Assignment
-                            ref={(el) => { nodesRef.current[index] = el; }}
-                            className={`fx-node ${activeIndex === index ? 'is-active' : ''}`}
-                            onClick={() => setActiveIndex(index)}
-                        >
-                            <div className="fx-icon-outer">
-                                <div className="fx-icon-inner">
-                                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5.5-2.5l7.5-4-7.5-4z"></path></svg>
-                                </div>
-                            </div>
-                            <span className="fx-node-label">{label}</span>
-                        </button>
-                    ))}
+            const offset = (idx - activeIndex + totalPillars) % totalPillars;
+            const isActive = offset === 0;
+
+            switch(offset) {
+              case 0: // Active 
+                posClass = 'left-[50%] top-[170px] scale-[1.1]';
+                break;
+              case 1: // Middle Right
+                posClass = 'left-[82%] top-[85px] scale-[0.85]';
+                zIndex = 20;
+                break;
+              case 2: // Top Right
+                posClass = 'left-[66%] top-[15px] scale-[0.70]';
+                zIndex = 10;
+                break;
+              case 3: // Top Left
+                posClass = 'left-[34%] top-[15px] scale-[0.70]';
+                zIndex = 10;
+                break;
+              case 4: // Middle Left
+                posClass = 'left-[18%] top-[85px] scale-[0.85]';
+                zIndex = 20;
+                break;
+              default:
+                break;
+            }
+
+            return (
+              <div 
+                key={item.id} 
+                className={`absolute -translate-x-1/2 -translate-y-1/2 transition-all duration-[500ms] ease-in-out flex flex-col items-center cursor-pointer ${posClass} ${opacityClass}`}
+                style={{ zIndex }}
+                onClick={() => handleSetActive(idx)}
+              >
+                <div 
+                  className={`w-[80px] h-[80px] rounded-full flex items-center justify-center transition-all duration-500 shadow-md ${isActive ? 'shadow-2xl' : ''}`}
+                  style={{ 
+                    borderColor: item.color, 
+                    backgroundColor: 'rgba(9, 11, 14, 0.45)'
+                  }}
+                >
+                  <img 
+                    src={item.icon} 
+                    alt={item.label} 
+                    className="w-[80%] h-[80%] object-contain transition-all duration-500"
+                  />
                 </div>
+                
+                <div className={`absolute top-[88px] w-[130px] text-center transition-all duration-500 ${isActive ? 'opacity-0 translate-y-3 pointer-events-none' : 'opacity-100 translate-y-0'}`}>
+                  <span 
+                    className="text-[0.85rem] font-extrabold leading-tight drop-shadow-sm"
+                    style={{ color: item.color }}
+                  >
+                    {item.label}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* --- MOBILE NAVIGATION BUTTONS --- */}
+        <div className="flex flex-wrap justify-center gap-3 mb-8 md:hidden relative z-10">
+           {pillarData.map((item, idx) => (
+             <button
+                key={idx}
+                onClick={() => handleSetActive(idx)}
+                className="px-5 py-2.5 rounded-full border-[2.5px] font-bold text-[0.85rem] transition-colors shadow-sm"
+                style={{ 
+                  backgroundColor: activeIndex === idx ? item.color : '#fff',
+                  borderColor: item.color,
+                  color: activeIndex === idx ? '#fff' : item.color
+                }}
+             >
+                {item.label}
+             </button>
+           ))}
+        </div>
+
+        {/* --- DYNAMIC PILLAR CONTENT PANEL --- */}
+        <div 
+          className="relative rounded-[22px] p-8 lg:p-[64px_48px] pt-16 lg:pt-[70px] z-10 transition-all duration-500 shadow-[0_22px_60px_rgba(17,45,84,0.06)]"
+          style={{ background: activePillar.bgLight }}
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-[40px] items-center text-left">
+            
+            <div className="animate-fade-in" key={`content-${activeIndex}`}>
+              <h3 className="mb-6">
+                {activePillar.title}
+              </h3>
+              
+              <ul className="grid gap-5 mb-8 list-none p-0">
+                {activePillar.bullets.map((bullet, i) => (
+                  <li key={i} className="relative pl-7 text-[1.05rem] leading-relaxed">
+                    <span 
+                      className="absolute left-0 top-[0.6em] w-2.5 h-2.5 rounded-full"
+                      style={{ backgroundColor: activePillar.color }}
+                    />
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
+
+              <a 
+                href="#" 
+                className="inline-flex items-center gap-3 no-underline font-extrabold text-[1.05rem] group transition-all"
+                style={{ color: activePillar.color }}
+              >
+                <span>{activePillar.cta}</span>
+                <svg className="w-5 h-5 transition-transform group-hover:translate-x-1.5" viewBox="0 0 19 16" fill="currentColor">
+                  <path d="M18.7071 8.70711C19.0976 8.31658 19.0976 7.68342 18.7071 7.29289L12.3431 0.928932C11.9526 0.538408 11.3195 0.538408 10.9289 0.928932C10.5384 1.31946 10.5384 1.95262 10.9289 2.34315L16.5858 8L10.9289 13.6569C10.5384 14.0474 10.5384 14.6805 10.9289 15.0711C11.3195 15.4616 11.9526 15.4616 12.3431 15.0711L18.7071 8.70711ZM0 9H18V7H0V9Z" />
+                </svg>
+              </a>
             </div>
 
-            <div className="fx-content-area">
-                {serviceLabels.map((_, index) => (
-                    <div key={index} className={`fx-slide ${activeIndex === index ? 'is-active' : ''}`}>
-                        <div className="fx-slide-text">
-                            <div className="fx-slide-tag">{sharedContent.tag}</div>
-                            <h3>{sharedContent.title}</h3>
-                            <ul className="fx-bullets">
-                                {sharedContent.bullets.map((bullet, i) => <li key={i}>{bullet}</li>)}
-                            </ul>
-                            <a href="#" className="fx-cta">{sharedContent.cta} &rarr;</a>
-                        </div>
-                        <div className="fx-slide-visual">
-                            <img className="visual-main-img" src={cardImage} alt="AI Visual" />
-                        </div>
-                    </div>
-                ))}
+            <div className="flex justify-center w-full relative group" key={`media-${activeIndex}`}>
+              <div className="relative w-full max-w-[500px] aspect-[16/10] rounded-[20px] overflow-hidden transition-all duration-500">
+                <img 
+                  src={activePillar.mediaSrc} 
+                  alt={activePillar.label} 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                />
+              </div>
             </div>
-        </section>
-    );
+
+          </div>
+
+          {/* PROGRESSIVE PAGINATION INDICATORS */}
+          <div className="mt-8 pt-6 flex items-center justify-end gap-3">
+            {pillarData.map((item, dotIdx) => {
+              const isActive = activeIndex === dotIdx;
+              return (
+                <button 
+                  key={dotIdx} 
+                  onClick={() => handleSetActive(dotIdx)}
+                  className="relative h-1.5 rounded-full bg-gray-200 overflow-hidden transition-all duration-500 ease-in-out"
+                  style={{ 
+                    width: isActive ? '40px' : '12px',
+                  }}
+                  aria-label={`Go to slide ${dotIdx + 1}`}
+                >
+                  <div 
+                    className={`absolute inset-0 transition-transform duration-[1000ms] ease-out ${isActive ? 'translate-x-0' : '-translate-x-full'}`}
+                    style={{ 
+                      backgroundColor: item.color,
+                    }}
+                  />
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
 };

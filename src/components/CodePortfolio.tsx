@@ -43,13 +43,13 @@ export const CodePortfolio = () => {
   }, [codeString]);
 
   return (
-    <div className="bg-[#0E1623] py-16 px-6 md:px-12 w-full min-h-screen">
-      <section className="text-center max-w-[1400px] mx-auto">
+<div className="max-w-[1400px] mx-auto px-5 relative z-10 items-center justify-center text-center
+">
+        <section className="w-full pt-2 pb-16 relative overflow-hidden">
         <header className="mb-16">
-          <span className="block text-white font-bold text-sm uppercase tracking-widest mb-4">Engineering Portfolio</span>
-          <h2 className="font-black text-[clamp(2rem,5vw,3.5rem)] text-[#3F5CE0] leading-none mb-6">
+          <h2 className="font-black text-[#10B981] ">
             Architecture & <span className="text-white relative">Performance
-              <span className="absolute left-0 right-0 bottom-2 h-3 bg-[#2E476E] -z-10 -skew-x-12"></span>
+              <span className="absolute left-0 right-0 bottom-2 h-3 -z-10 -skew-x-12"></span>
             </span>
           </h2>
           <p className="text-white text-lg opacity-80">Click a module to run isolated engineering logic.</p>
@@ -60,13 +60,12 @@ export const CodePortfolio = () => {
             <div 
               key={id} 
               onClick={() => handleOpen(id)}
-              className="group bg-[#1a2436] border border-white/10 rounded-2xl p-8 cursor-pointer transition-all hover:-translate-y-2 hover:border-[#3F5CE0] text-left"
-            >
+className="group bg-[#1a2436] border border-white/10 rounded-2xl p-8 cursor-pointer transition-all hover:-translate-y-2 hover:border-[#10B981] text-left"            >
               <div className="flex justify-between items-start mb-6">
-                <span className="text-xs font-black text-[#3F5CE0] bg-[#3F5CE0]/10 px-3 py-1 rounded">MODULE 0{index + 1}</span>
-                <div className="w-8 h-8 rounded bg-white/5 flex items-center justify-center text-[#3F5CE0]">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2v20M2 12h20"/></svg>
-                </div>
+<span className="text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded">MODULE 0{index + 1}</span>               
+ <div className="w-8 h-8 rounded bg-[#10B981] flex items-center justify-center text-white">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2v20M2 12h20"/></svg>
+</div>
               </div>
               <h3 className="text-white text-xl font-black mb-3">
                 {id === 'project1' && 'State Manager'}
@@ -76,7 +75,7 @@ export const CodePortfolio = () => {
                 {id === 'project5' && 'CSS Variables'}
                 {id === 'project6' && 'Form Validator'}
               </h3>
-              <p className="text-white/60 text-sm mb-8 leading-relaxed">Testing isolated logic for {id} within a secure sandbox environment.</p>
+              <p className="text-white/60">Testing isolated logic for {id} within a secure sandbox environment.</p>
               <div className="flex justify-between items-center mt-auto">
                 <span className="text-white font-bold text-sm group-hover:text-[#3F5CE0] transition-colors">Run Simulator →</span>
               </div>
@@ -97,7 +96,7 @@ export const CodePortfolio = () => {
               <div className="flex-1 bg-gray-50 relative border-r">
                 <iframe srcDoc={codeString} className="w-full h-full border-none" sandbox="allow-scripts" />
               </div>
-              <div className="flex-1 bg-[#1e1e1e] p-8 overflow-auto font-mono text-xs leading-relaxed text-gray-300" dangerouslySetInnerHTML={highlightedHTML} />
+              <div className="flex-1 bg-[#1e1e1e] overflow-auto text-gray-300" dangerouslySetInnerHTML={highlightedHTML} />
             </div>
           </div>
         </div>

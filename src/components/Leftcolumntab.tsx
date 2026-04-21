@@ -51,9 +51,9 @@ export const Leftcolumntab = () => {
   const [currentIndex, setCurrentIndex] = useState(2); 
   const [isTransitioning, setIsTransitioning] = useState(true);
 
-  // JS CONSTANTS (Must match CSS values)
-  const cardWidth = 300; 
-  const gap = 20;
+  // JS CONSTANTS
+  const cardWidth = 420; 
+  const gap = 30;
 
   const handleNext = () => {
     setCurrentIndex((prev) => prev + 1);
@@ -74,225 +74,97 @@ export const Leftcolumntab = () => {
   }, [currentIndex, isTransitioning]);
 
   return (
-    <section className="wpf-section">
-      <style dangerouslySetInnerHTML={{ __html: `
-        :root {
-          --wpf-blue: #083A74;
-          --wpf-accent: #207DE9;
-          --wpf-green: #41D48C;
-          --c-w: 300px; /* JS assumes this width */
-          --c-h: 360px; 
-          --c-gap: 20px; /* JS assumes this gap */
-        }
+    <section className="w-full pt-16 pb-24 relative z-10">
 
-        .wpf-section {
-          background: #000000;
-          padding: 80px 0;
-          font-family: 'Inter', sans-serif;
-          width: 100%;
-          overflow-x: clip; 
-          position: relative;
-          display: flex;
-          justify-content: center;
-        }
-
-        .wpf-container {
-          width: 100%;
-          max-width: 1300px;
-          margin: 0 auto;
-          display: flex;
-          justify-content: center;
-          align-items: center; 
-          gap: clamp(20px, 4vw, 60px);
-          padding: 0 20px;
-        }
-
-        /* --- SLIDER (LEFT) --- */
-        .wpf-slider-col {
-          flex: 0 0 auto; 
-          /* DESKTOP: Width calculated for exactly 2 cards + 1 gap */
-          width: calc((var(--c-w) * 2) + var(--c-gap)); 
-          position: relative;
-        }
-
-        .wpf-viewport {
-          width: 100%;
-          overflow: hidden;
-          padding: 60px 0; 
-        }
-
-        .wpf-track {
-          display: flex;
-          gap: var(--c-gap);
-          will-change: transform;
-          transition: ${isTransitioning ? 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)' : 'none'};
-        }
-
-        /* --- CARD --- */
-        .wpf-card {
-          width: var(--c-w);
-          height: var(--c-h);
-          background: var(--wpf-blue);
-          border-radius: 18px;
-          flex-shrink: 0;
-          position: relative;
-          padding: 0 20px 20px;
-          display: flex;
-          flex-direction: column;
-          box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        }
-
-        .wpf-img-pop {
-          width: 85%;
-          background: #fff;
-          padding: 5px;
-          border-radius: 8px;
-          position: absolute;
-          top: -40px; 
-          left: 50%;
-          transform: translateX(-50%);
-          box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-          z-index: 20;
-        }
-
-        .wpf-card-body {
-          margin-top: 130px; 
-          overflow-y: auto; 
-          color: #fff;
-          flex-grow: 1;
-          padding-right: 5px;
-        }
-
-        .wpf-card-body::-webkit-scrollbar { width: 4px; }
-        .wpf-card-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.3); border-radius: 10px; }
-
-        .wpf-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: #fff; line-height: 1.2; }
-        .wpf-card p { font-size: 0.8rem; margin-bottom: 10px; opacity: 0.85; line-height: 1.4; }
-        
-        .wpf-list { list-style: none; padding: 0; margin: 0; }
-        .wpf-list li { position: relative; padding-left: 15px; margin-bottom: 6px; font-size: 0.75rem; opacity: 0.9; }
-        .wpf-list li::before { content: "•"; position: absolute; left: 0; color: #fff; font-weight: bold; }
-
-        /* --- MIDDLE NAV BUTTON --- */
-        .wpf-nav-btn {
-          width: 48px;
-          height: 48px;
-          border-radius: 50%;
-          background: var(--wpf-accent);
-          color: #fff;
-          border: none;
-          cursor: pointer;
-          flex-shrink: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 1.2rem;
-          box-shadow: 0 4px 12px rgba(32, 125, 233, 0.3);
-          transition: all 0.3s ease;
-          z-index: 50;
-        }
-        .wpf-nav-btn:hover { background: #1a6cd1; transform: scale(1.1); }
-
-        /* --- RIGHT CONTENT --- */
-        .wpf-content-col {
-          width: 420px;
-          max-width: 100%;
-          flex-shrink: 1;
-        }
-
-        .wpf-h2 { font-size: 2.5rem; font-weight: 900; line-height: 1.1; margin-bottom: 20px; color: #FFFFFF; letter-spacing: -0.5px; }
-        .wpf-p { font-size: 0.95rem; color: #FFFFFF; line-height: 1.6; margin-bottom: 30px; opacity: 0.9; }
-
-        .wpf-stats { display: flex; gap: 20px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; }
-        .wpf-stat-v { font-size: 2rem; font-weight: 900; color: var(--wpf-green); display: block; line-height: 1; }
-        .wpf-stat-l { font-size: 0.6rem; font-weight: 800; color: #FFFFFF; text-transform: uppercase; margin-top: 6px; display: block; }
-
-        /* --- MOBILE FIXES --- */
-        @media (max-width: 1024px) {
-          .wpf-container { 
-            flex-direction: column; 
-            text-align: center; 
-          }
-          
-          .wpf-slider-col { 
-            /* FORCE WIDTH TO 1 CARD + GAP (matches JS shift logic) */
-            width: 320px; 
-            max-width: 100vw; 
-          }
-          
-          .wpf-viewport { 
-             /* Ensure viewport masks the neighbors */
-             width: 100%;
-          }
-
-          .wpf-track { 
-             /* Center the active slide in the viewport */
-             justify-content: flex-start; 
-          }
-
-          .wpf-card { 
-            /* FORCE FIXED WIDTH to align with JS calculation */
-            width: 300px !important; 
-          }
-
-          .wpf-content-col { 
-            width: 100%; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            margin-top: 30px; 
-          }
-          
-          /* Rotate arrow to point down, indicating 'next' implies down/flow */
-          .wpf-nav-btn { 
-            margin: 20px 0; 
-            transform: rotate(90deg); 
-          }
-          .wpf-nav-btn:hover { transform: rotate(90deg) scale(1.1); }
-        }
-      `}} />
-
-      <div className="wpf-container">
+      <div className="max-w-[1400px] mx-auto px-5 relative z-10 flex flex-col lg:flex-row items-center justify-between text-center lg:text-left gap-[clamp(40px,6vw,100px)] w-full">
         
         {/* CAROUSEL ON LEFT */}
-        <div className="wpf-slider-col">
-          <div className="wpf-viewport">
+        <div className="shrink-0 grow-0 relative w-[100vw] lg:w-[calc(100%-450px)] max-w-[850px]">
+          {/* Edge shadow gradients completely removed. Overflow hidden handles the edge cleanly. */}
+          <div className="w-full overflow-hidden py-[80px] px-4 lg:px-0 relative">
+            
             <div 
-              className="wpf-track"
-              style={{ transform: `translateX(-${currentIndex * (cardWidth + gap)}px)` }}
+              className="flex justify-start will-change-transform items-stretch h-full"
+              style={{ 
+                gap: `${gap}px`,
+                transform: `translateX(calc(-${currentIndex * (cardWidth + gap)}px + 20px))`,
+                transition: isTransitioning ? 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)' : 'none'
+              }}
             >
-              {INFINITE_TRACK.map((slide, idx) => (
-                <div className="wpf-card" key={idx}>
-                  <div className="wpf-img-pop">
-                    <img src={slide.image} style={{width:'100%', borderRadius:'6px', display:'block'}} alt="Dashboard UI" />
+              {INFINITE_TRACK.map((slide, idx) => {
+                const isActive = idx === currentIndex;
+                
+                return (
+                <div 
+                  className={`w-[320px] sm:w-[380px] lg:w-[420px] bg-gradient-to-br from-emerald-400/10 to-teal-600/10 border border-emerald-500/20 rounded-[24px] shrink-0 relative px-8 pb-8 pt-[180px] flex flex-col shadow-[0_25px_50px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-500 ${isActive ? 'scale-100 opacity-100 z-20' : 'scale-95 opacity-50 z-10'}`} 
+                  key={idx}
+                >
+                  <div className={`w-[90%] bg-zinc-900 p-2 rounded-xl absolute -top-[60px] left-1/2 -translate-x-1/2 shadow-[0_20px_40px_rgba(16,185,129,0.15)] z-20 border border-white/5 transition-transform duration-500 ${isActive ? 'translate-y-0' : 'translate-y-4'}`}>
+                    <img src={slide.image} className="w-full rounded-lg block" alt={slide.title} />
                   </div>
-                  <div className="wpf-card-body">
-                    <h3>{slide.title}</h3>
-                    <p>{slide.desc}</p>
-                    <ul className="wpf-list">
-                      {slide.list.map((item, i) => <li key={i}>{item}</li>)}
+                  
+                  <div className="overflow-y-auto text-white grow pr-2 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:bg-emerald-500/50 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-transparent">
+                    <h3 className="mb-3 text-[24px] font-bold text-white tracking-tight leading-tight">{slide.title}</h3>
+                    <p className="text-white/70 text-[15px] mb-6 leading-relaxed font-light">{slide.desc}</p>
+                    <ul className="list-none p-0 m-0 space-y-3">
+                      {slide.list.map((item, i) => (
+                        <li key={i} className="text-white/90 relative pl-6 text-[14px] leading-snug">
+                          <svg className="absolute left-0 top-[2px] w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                          </svg>
+                          {item}
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 </div>
-              ))}
+              )})}
             </div>
           </div>
         </div>
 
-        {/* MIDDLE ARROW BUTTON */}
-        <button className="wpf-nav-btn" onClick={handleNext} aria-label="Next Slide">
-          →
-        </button>
-
         {/* STATIC CONTENT ON RIGHT */}
-        <div className="wpf-content-col">
-          <h2 className="wpf-h2">Data-Driven Lead Nurture Campaigns</h2>
-          <p className="wpf-p">RevenueCloudFX is our proprietary marketing software built to enable website strategies via segmentation. <br></br>RevenueCloudFX is our proprietary marketing software built to enable website strategies via segmentation.</p>
+        <div className="w-full lg:w-[400px] shrink-0 flex flex-col items-center lg:items-start z-20">
           
-          <div className="wpf-stats">
-            <div><span className="wpf-stat-v">14%</span><span className="wpf-stat-l">Average Increase<br/>in sales</span></div>
-            <div><span className="wpf-stat-v">$500K+</span><span className="wpf-stat-l">Built-In Value<br/>of tools</span></div>
-            <div><span className="wpf-stat-v">1B+</span><span className="wpf-stat-l">Data Points<br/>tracked</span></div>
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-semibold mb-6">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            Proprietary Software
+          </div>
+
+          <h2 className="mb-6 text-[42px] lg:text-[48px] font-extrabold text-white leading-[1.1] tracking-tight">
+            Data-Driven <br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-600">Lead Nurture</span>
+          </h2>
+          
+          <p className="text-white/70 text-[17px] leading-relaxed mb-8 font-light">
+            RevenueCloudFX is our proprietary marketing software built to enable website strategies via precise audience segmentation.
+            <br/><br/>
+            Identify high-value companies engaging with your site to unlock powerful insights, empower sales enablement, and launch hyper-targeted campaigns seamlessly integrated into your existing workflow.
+          </p>
+          
+          <button 
+            className="group flex items-center justify-between w-full sm:w-auto gap-6 bg-emerald-500 text-black px-8 py-4 rounded-full font-bold text-lg transition-all hover:bg-emerald-400 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)] mb-12"
+            onClick={handleNext}
+          >
+            <span>Explore Features</span>
+            <span className="flex items-center justify-center w-8 h-8 rounded-full bg-black/10 group-hover:translate-x-1 transition-transform">
+              →
+            </span>
+          </button>
+
+          <div className="grid grid-cols-3 gap-6 border-t border-white/10 pt-8 w-full">
+            <div className="flex flex-col items-center lg:items-start">
+              <span className="text-[32px] font-black text-white tracking-tighter">14<span className="text-emerald-500">%</span></span>
+              <span className="text-white/50 text-[11px] font-bold uppercase tracking-wider mt-1 text-center lg:text-left">Avg. Sales<br/>Increase</span>
+            </div>
+            <div className="flex flex-col items-center lg:items-start border-l border-white/10 pl-6">
+              <span className="text-[32px] font-black text-white tracking-tighter"><span className="text-emerald-500">$</span>500<span className="text-emerald-500">K</span></span>
+              <span className="text-white/50 text-[11px] font-bold uppercase tracking-wider mt-1 text-center lg:text-left">Built-In<br/>Value</span>
+            </div>
+            <div className="flex flex-col items-center lg:items-start border-l border-white/10 pl-6">
+              <span className="text-[32px] font-black text-white tracking-tighter">1<span className="text-emerald-500">B+</span></span>
+              <span className="text-white/50 text-[11px] font-bold uppercase tracking-wider mt-1 text-center lg:text-left">Data Points<br/>Tracked</span>
+            </div>
           </div>
         </div>
 

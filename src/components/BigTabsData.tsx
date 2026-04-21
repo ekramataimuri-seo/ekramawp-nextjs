@@ -5,7 +5,6 @@ const tabsData = [
   {
     id: 'core',
     label: 'Core Features',
-    subtitle: 'FRONTEND MASTERY',
     titlePre: 'Ship robust interfaces with',
     highlight: 'engineering precision',
     intro: 'Move beyond simple scripts. Architect scalable frontend ecosystems that handle complex state, enforce strict typing, and deliver pixel-perfect rendering.',
@@ -30,7 +29,6 @@ const tabsData = [
   {
     id: 'architecture',
     label: 'Architecture',
-    subtitle: 'SCALABLE FOUNDATIONS',
     titlePre: 'Built for',
     highlight: 'growth & scale',
     intro: 'Adopt micro-frontend architectures or modular monoliths. Ensure your codebase remains maintainable as your team grows from 5 to 50 engineers.',
@@ -55,7 +53,6 @@ const tabsData = [
   {
     id: 'performance',
     label: 'Performance',
-    subtitle: 'SPEED MATTERS',
     titlePre: 'Optimize your',
     highlight: 'critical path',
     intro: 'Achieve 100 Lighthouse scores by minimizing main-thread blocking, optimizing bundle sizes, and utilizing efficient caching strategies.',
@@ -80,7 +77,6 @@ const tabsData = [
   {
     id: 'types',
     label: 'Type Safety',
-    subtitle: 'STRICT TYPING',
     titlePre: 'Eliminate',
     highlight: 'runtime errors',
     intro: 'Leverage TypeScript to catch bugs at compile time. Define interfaces for API responses and prop types to ensure data integrity across your app.',
@@ -111,290 +107,84 @@ export const BigTabsData = () => {
   const activeContent = tabsData.find(tab => tab.id === activeTabId) || tabsData[0];
 
   return (
-    <div className="fe-component-wrapper">
-      <style dangerouslySetInnerHTML={{ __html: `
-        /* --- Component Scoped Variables --- */
-        .fe-component-wrapper {
-            --fe-white: #FFFFFF;
-            --fe-blue-main: #3F5CE0;
-            --fe-highlight-1: #3C66A6;
-            --fe-highlight-2: #2E476E;
-            --fe-tab-bg-hover: rgba(63, 92, 224, 0.1);
-            --fe-tab-border: rgba(255, 255, 255, 0.1);
-        }
-
-        /* --- Layout Grid --- */
-        .fe-component-wrapper {
-            max-width: 1200px;
-            margin: 4rem auto;
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            min-height: 800px;
-        }
-
-        /* --- Left Sidebar (Tabs) --- */
-        .fe-sidebar {
-            display: flex;
-            flex-direction: column;
-            border-right: 1px solid var(--fe-tab-border);
-            padding: 2rem 0;
-            background: rgba(0, 0, 0, 0.2);
-        }
-
-        .fe-tab-btn {
-            background: transparent;
-            border: none;
-            text-align: left;
-            padding: 1.25rem 2rem;
-            cursor: pointer;
-            color: rgba(255, 255, 255, 0.6);
-            font-family: inherit;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .fe-tab-btn:hover {
-            color: var(--fe-white);
-            background-color: var(--fe-tab-bg-hover);
-        }
-
-        .fe-tab-btn.active {
-            color: var(--fe-blue-main);
-            background-color: rgba(63, 92, 224, 0.08);
-        }
-
-        .fe-tab-btn.active::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background-color: var(--fe-blue-main);
-            box-shadow: 0 0 15px var(--fe-blue-main);
-        }
-
-        /* --- Right Content Area --- */
-        .fe-content-panel {
-            padding: 3rem 4rem;
-            position: relative;
-        }
-
-        /* --- Tab Pane Animation --- */
-        .fe-tab-pane {
-            animation: fadeIn 0.4s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- Typography --- */
-        .fe-subtitle {
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--fe-white);
-            margin-bottom: 1rem;
-            opacity: 0.9;
-            display: block;
-        }
-
-        .fe-heading-main {
-            font-weight: 900;
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
-            color: var(--fe-blue-main);
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            max-width: 800px;
-        }
-
-        .highlight-scratch {
-            color: var(--fe-white);
-            position: relative;
-            z-index: 1;
-            padding: 0 8px;
-            display: inline-block;
-            background-image: 
-                linear-gradient(to right, var(--fe-highlight-1), var(--fe-highlight-1)),
-                linear-gradient(to right, var(--fe-highlight-2), var(--fe-highlight-2));
-            background-size: 100% 12px, 100% 8px;
-            background-position: 0 85%, 0 95%;
-            background-repeat: no-repeat;
-            transform: skewX(-2deg); 
-        }
-
-        .fe-intro-text {
-            color: var(--fe-white);
-            font-size: 1.1rem;
-            font-weight: 400;
-            line-height: 1.7;
-            margin-bottom: 3rem;
-            max-width: 700px;
-            opacity: 0.95;
-        }
-
-        /* --- Feature Grid (3 Items) --- */
-        .fe-features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .fe-feature-item {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .fe-feature-icon {
-            width: 32px;
-            height: 32px;
-            margin-bottom: 0.5rem;
-            color: #FF7A00;
-        }
-
-        .fe-feature-title {
-            color: var(--fe-white);
-            font-weight: 900;
-            font-size: 1.1rem;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .fe-feature-title::after {
-            content: '›';
-            font-size: 1.4rem;
-            font-weight: 400;
-            color: var(--fe-blue-main);
-            transition: transform 0.2s;
-        }
+    <section className="w-full pt-2 pb-12 relative overflow-hidden">
+      <div className="max-w-[1400px] mx-auto px-5 relative z-10 flex flex-col items-center justify-center text-center">
         
-        .fe-feature-item:hover .fe-feature-title::after {
-            transform: translateX(4px);
-        }
-
-        .fe-feature-desc {
-            color: var(--fe-white);
-            font-size: 0.9rem;
-            line-height: 1.5;
-            opacity: 0.8;
-            margin: 0;
-        }
-
-        /* --- Image Styling --- */
-        .fe-image-container {
-            width: 100%;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            margin-top: auto; 
-        }
-
-        .fe-dashboard-img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-        
-        .fe-image-container:hover .fe-dashboard-img {
-            transform: scale(1.02);
-        }
-
-        /* --- Responsive --- */
-        @media (max-width: 900px) {
-            .fe-component-wrapper {
-                grid-template-columns: 1fr;
-            }
-            .fe-sidebar {
-                flex-direction: row;
-                overflow-x: auto;
-                border-right: none;
-                border-bottom: 1px solid var(--fe-tab-border);
-                padding: 0;
-            }
-            .fe-tab-btn {
-                white-space: nowrap;
-                padding: 1rem 1.5rem;
-            }
-            .fe-tab-btn.active::before {
-                width: 100%;
-                height: 3px;
-                top: auto;
-                bottom: 0;
-            }
-            .fe-features-grid {
-                grid-template-columns: 1fr; 
-            }
-            .fe-content-panel {
-                padding: 2rem;
-            }
-        }
-      `}} />
-
-      {/* Navigation Sidebar */}
-      <nav className="fe-sidebar">
-        {tabsData.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTabId(tab.id)}
-            className={`fe-tab-btn ${activeTabId === tab.id ? 'active' : ''}`}
-          >
-            {tab.label}
-          </button>
-        ))}
-      </nav>
-
-      {/* Main Content Area */}
-      <main className="fe-content-panel">
-        <div key={activeTabId} className="fe-tab-pane">
-          <span className="fe-subtitle">{activeContent.subtitle}</span>
-          
-          <h2 className="fe-heading-main">
-            {activeContent.titlePre} <span className="highlight-scratch">{activeContent.highlight}</span>
-          </h2>
-          
-          <p className="fe-intro-text">
-            {activeContent.intro}
-          </p>
-
-          <div className="fe-features-grid">
-            {activeContent.features.map((feature, idx) => (
-              <div key={idx} className="fe-feature-item">
-                <svg className="fe-feature-icon" fill="currentColor" viewBox="0 0 24 24">
-                  {feature.icon}
-                </svg>
-                <h3 className="fe-feature-title">{feature.title}</h3>
-                <p className="fe-feature-desc">{feature.desc}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="fe-image-container">
-            <img 
-              src="https://admin.wpfedev.com/wp-content/uploads/2026/02/WPsample2.webp" 
-              alt="Dashboard" 
-              className="fe-dashboard-img" 
-              loading="lazy"
-            />
-          </div>
+        {/* Title Body Content Added */}
+        <div className=" max-w-3xl">
+          <h2>Platform Mastery <span className="text-emerald"> Overview</span></h2>
+          <p>Explore the tools, architecture, and principles needed to build high-performance applications.</p>
         </div>
-      </main>
-    </div>
+
+        <div className="w-full text-left max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-[280px_1fr] overflow-hidden min-h-[600px] ">
+          <style dangerouslySetInnerHTML={{ __html: `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+          `}} />
+
+          {/* Navigation Sidebar */}
+          <nav className="flex flex-row lg:flex-col py-0 lg:py-8 overflow-x-auto lg:overflow-visible">
+            {tabsData.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTabId(tab.id)}
+                className={`
+                  bg-transparent border-none text-left px-6 py-4 lg:px-8 lg:py-5 cursor-pointer 
+                  font-inherit font-bold text-[1.1rem] transition-all duration-300 ease-in-out relative 
+                  whitespace-nowrap lg:whitespace-normal
+                  ${activeTabId === tab.id 
+                    ? 'text-[#10B981] bg-[#10B981]/[0.08] before:content-[""] before:absolute before:left-0 before:bg-[#10B981] before:shadow-[0_0_15px_#10B981] before:w-full before:h-[3px] before:top-auto before:bottom-0 lg:before:w-[4px] lg:before:h-auto lg:before:top-0 lg:before:bottom-0' 
+                    : 'text-white/60 hover:text-white hover:bg-[#10B981]/10'
+                  }
+                `}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </nav>
+
+          {/* Main Content Area */}
+          <main className="p-8 lg:p-[3rem_4rem] relative">
+            <div key={activeTabId} className="animate-[fadeIn_0.4s_ease-out]">
+              
+              <h2 className="text-[#10B981] mb-6 max-w-[800px]">
+                {activeContent.titlePre} <span className="text-[#10B981]">{activeContent.highlight}</span>
+              </h2>
+              
+              <p className="text-white text-[1.1rem] font-normal leading-[1.7] mb-12 max-w-[700px] opacity-[0.95]">
+                {activeContent.intro}
+              </p>
+
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+                {activeContent.features.map((feature, idx) => (
+                  <div key={idx} className="flex flex-col gap-3 group">
+                    <svg className="w-8 h-8 mb-2 text-[#10B981]" fill="currentColor" viewBox="0 0 24 24">
+                      {feature.icon}
+                    </svg>
+                    <h3 className="text-white m-0 flex items-center gap-2 after:content-['›'] after:text-[1.4rem] after:font-normal after:text-[#10B981] after:transition-transform after:duration-200 group-hover:after:translate-x-1">
+                      {feature.title}
+                    </h3>
+                    <p className="text-white text-[0.9rem] leading-[1.5] opacity-80 m-0">
+                      {feature.desc}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="w-full rounded-xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.4)] border border-white/10 relative mt-auto group/img">
+                <img 
+                  src="https://admin.wpfedev.com/wp-content/uploads/2026/02/WPsample2.webp" 
+                  alt="Dashboard" 
+                  className="w-full h-auto block transition-transform duration-500 ease-in-out group-hover/img:scale-[1.02]" 
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+    </section>
   );
 };

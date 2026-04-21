@@ -48,24 +48,26 @@ export const EngineeringApproach = () => {
   const activeContent = approachData[activeTab as keyof typeof approachData] || approachData.performance;
 
   return (
-    <section className="w-full pt-16 pb-16 relative overflow-hidden">
-      <div className="max-w-[1200px] mx-auto px-5 box-border relative z-10">
+    <section className="w-full pb-16 relative overflow-hidden">
+      <div className="max-w-[1400px] mx-auto px-5 box-border relative z-10">
         
         {/* --- SECTION HEADER --- */}
-        <div className="text-center max-w-[900px] mx-auto mb-[60px]">
-          <span className="block text-[#FFFFFF] font-bold text-sm uppercase tracking-widest mb-[15px]">
-            Our Engineering Methodology
-          </span>
-          
-          <h2 className="text-[#3F5CE0] font-black text-[clamp(1.5rem,3vw,2.5rem)] leading-[1.1] tracking-tight mb-5">
-            How We Engineer <br className="hidden md:block" />
-            <span className="relative inline-block px-2 z-10 text-[#FFFFFF]">
-              Digital Results
-              <span className="absolute left-0 right-0 bottom-[4px] h-[10px] bg-[#2E476E] -z-20 skew-x-[-12deg] rounded-sm"></span>
-              <span className="absolute left-0 right-0 bottom-[8px] h-[10px] bg-[#3C66A6] -z-10 skew-x-[-12deg] rounded-sm shadow-[0_2px_0_rgba(255,255,255,0.1)]"></span>
-            </span>
-          </h2>
-        </div>
+        <div className="text-center max-w-[900px] mx-auto mb-[10px]">
+  
+  {/* The H2 Heading */}
+  <h2 className="text-[#10B981] font-black mb-3"> {/* Added mb-6 for space below the heading */}
+    How We Engineer <br className="hidden md:block" />
+    <span className="relative inline-block px-2 z-10 text-[#FFFFFF]">
+      Digital Results
+    </span>
+  </h2>
+  
+  {/* The Paragraph (Moved outside the H2) */}
+  <p className="text-[#FFFFFF] opacity-80 mt-6 text-base md:text-lg font-normal">
+    It uses authoritative sources of system data and models to create a "digital thread," connecting data to applications in an efficient, repeatable, and auditable manner.
+  </p>
+
+</div>
 
         {/* --- TAB NAVIGATION --- */}
         <div className="flex justify-center gap-[10px] mb-[40px] flex-wrap">
@@ -73,14 +75,14 @@ export const EngineeringApproach = () => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`
-                px-[40px] py-[15px] text-[16px] font-extrabold rounded-[12px] transition-all duration-300 outline-none
-                ${
-                  activeTab === tab.id
-                    ? "bg-[#3F5CE0] text-white shadow-[0_0_20px_rgba(63,92,224,0.4)]"
-                    : "bg-transparent text-[#94a3b8] hover:text-white border border-white/10"
-                }
-              `}
+className={`
+  px-[40px] py-[15px] font-bold rounded-[12px] transition-all duration-300 outline-none bg-[#10B981]
+  ${
+    activeTab === tab.id
+      ? "text-white shadow-md" 
+      : "text-white/70 hover:text-white"
+  }
+`}
             >
               {tab.label}
             </button>
@@ -88,22 +90,20 @@ export const EngineeringApproach = () => {
         </div>
 
         {/* --- MAIN HERO CARD --- */}
-        <div className="bg-[#1a2436] border border-white/10 rounded-[24px] p-[40px_20px] md:p-[50px] flex flex-col lg:flex-row gap-[50px] items-center min-h-[480px] text-center lg:text-left transition-all duration-300 shadow-2xl relative overflow-hidden">
-          
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/5 to-transparent pointer-events-none"></div>
+<div className="bg-gradient-to-br from-[#10B981]/15 to-[#10B981]/20 backdrop-blur-md border border-white/10 rounded-[24px] p-[40px_20px] md:p-[50px] flex flex-col lg:flex-row gap-[50px] items-center min-h-[480px] text-center lg:text-left transition-all duration-300 shadow-2xl relative overflow-hidden">          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/5 to-transparent pointer-events-none"></div>
 
           <div className="flex-[1.2] w-full relative z-10">
-            <h3 key={activeContent.title + "-title"} className="animate-fade-in-right text-[#FFFFFF] font-black text-[clamp(1.0rem,1vw,1.2rem)] mb-[20px] tracking-tight uppercase">
+            <h3 key={activeContent.title + "-title"} className="animate-fade-in-right text-[#FFFFFF] font-black ">
               {activeContent.title}
             </h3>
 
-            <p key={activeContent.desc} className="animate-fade-in-right text-[#FFFFFF] text-[1.1rem] font-normal leading-[1.7] mb-[25px]">
+            <p key={activeContent.desc} className="animate-fade-in-right text-[#FFFFFF] ">
               {activeContent.desc}
             </p>
 
             <ul key={activeContent.title + "-list"} className="animate-fade-in-right list-none p-0 m-0 flex flex-col items-center lg:items-start">
               {activeContent.list.map((item, index) => (
-                <li key={index} className="mb-[12px] font-bold text-[#FFFFFF] flex items-center gap-[10px] text-[1rem]">
+                <li key={index} className="mb-[12px] font-bold text-[#FFFFFF] flex items-center gap-[10px]">
                   <span className="text-[#3F5CE0] font-black">→</span> {item}
                 </li>
               ))}
@@ -111,7 +111,7 @@ export const EngineeringApproach = () => {
           </div>
 
           <div className="flex-1 max-w-[400px] w-full order-first lg:order-last relative z-10">
-            <div className="relative w-full h-[300px] lg:h-[350px] rounded-[20px] overflow-hidden shadow-2xl border border-white/10">
+            <div className="relative w-full h-[300px] lg:h-[400px] overflow-hidden ">
                <Image
                 key={activeContent.img}
                 src={activeContent.img}

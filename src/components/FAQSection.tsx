@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 
 // FAQ Data - Tailored to Front End Engineering
 const faqData = [
@@ -29,205 +29,68 @@ export const FAQSection = () => {
   };
 
   return (
-    <section className="faq-section-wrapper">
-      {/* Scoped Styles */}
-      <style dangerouslySetInnerHTML={{ __html: `
-        :root {
-          --brand-blue: #3F5CE0;
-          --brand-blue-glow: rgba(63, 92, 224, 0.5);
-          --faq-bg: #0E1623;
-          --faq-card-bg: rgba(255, 255, 255, 0.03);
-          --faq-border: rgba(255, 255, 255, 0.1);
-          --text-white: #ffffff;
-          --text-gray: #cbd5e0;
-        }
-
-        .faq-section-wrapper {
-          position: relative;
-          padding: 100px 24px;
-          background-color: var(--faq-bg);
-          width: 100%;
-        }
-
-        .faq-container {
-          max-width: 900px;
-          margin: 0 auto;
-        }
-
-        /* --- Header Styling --- */
-        .faq-header {
-          text-align: center;
-          margin-bottom: 60px;
-        }
-
-        .faq-subtitle {
-          display: block;
-          font-size: 0.85rem;
-          font-weight: 700;
-          letter-spacing: 0.1em;
-          color: var(--text-white);
-          text-transform: uppercase;
-          margin-bottom: 16px;
-          opacity: 0.8;
-        }
-
-        .faq-title {
-          font-family: "Roboto Flex", sans-serif;
-          font-weight: 900;
-          font-size: clamp(2rem, 4vw, 3rem);
-          color: var(--text-white);
-          line-height: 1.1;
-        }
-
-        .highlight-blue {
-          color: var(--brand-blue);
-          position: relative;
-          display: inline-block;
-        }
-
-        /* --- Accordion Item --- */
-        .faq-item {
-          background-color: var(--faq-card-bg);
-          border: 1px solid var(--faq-border);
-          border-radius: 12px;
-          margin-bottom: 16px;
-          overflow: hidden;
-          transition: all 0.3s ease;
-          backdrop-filter: blur(10px);
-        }
-
-        .faq-item:hover {
-          border-color: rgba(255,255,255,0.2);
-          background-color: rgba(255, 255, 255, 0.05);
-        }
-
-        /* Active State Glow */
-        .faq-item.active {
-          border-color: var(--brand-blue);
-          box-shadow: 0 0 25px var(--brand-blue-glow);
-          background-color: rgba(63, 92, 224, 0.05);
-        }
-
-        /* --- Question Button --- */
-        .faq-question-btn {
-          width: 100%;
-          text-align: left;
-          background: none;
-          border: none;
-          padding: 24px 30px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          cursor: pointer;
-        }
-
-        .faq-question-text {
-          font-family: "Roboto Flex", sans-serif;
-          font-size: 1.15rem;
-          font-weight: 700;
-          color: var(--text-white);
-          margin-right: 20px;
-          transition: color 0.3s ease;
-        }
-
-        .faq-item.active .faq-question-text {
-          color: var(--brand-blue);
-        }
-
-        /* --- Icon Animation --- */
-        .faq-icon {
-          width: 24px;
-          height: 24px;
-          position: relative;
-          flex-shrink: 0;
-        }
+    <section className="w-full pt-2 pb-16 relative overflow-hidden">
+      <div className="max-w-[1400px] mx-auto px-5 relative z-10 items-center justify-center text-center">
         
-        .faq-icon::before, .faq-icon::after {
-          content: '';
-          position: absolute;
-          background-color: var(--text-white);
-          transition: transform 0.3s ease, background-color 0.3s ease;
-          border-radius: 2px;
-        }
+        <div className="max-w-[900px] mx-auto text-left">
+          
+          {/* Header */}
+          <div className="text-center mb-[60px]">
+            <h2 className="text-white mb-4">
+              Engineering <span className="text-emerald-500">Insights</span>
+            </h2>
+            <p className="text-white/70">
+              Explore our most frequently asked questions to understand our approach to front-end architecture, performance optimization, and scalable design systems.
+            </p>
+          </div>
 
-        /* Horizontal Line */
-        .faq-icon::before {
-          top: 50%; left: 0; width: 100%; height: 2px; margin-top: -1px;
-        }
-        /* Vertical Line */
-        .faq-icon::after {
-          top: 0; left: 50%; width: 2px; height: 100%; margin-left: -1px;
-        }
-
-        /* Rotate to Minus on Active */
-        .faq-item.active .faq-icon::after {
-          transform: rotate(90deg);
-          background-color: var(--brand-blue);
-        }
-        .faq-item.active .faq-icon::before {
-          background-color: var(--brand-blue);
-        }
-
-        /* --- Answer Area --- */
-        .faq-answer-wrapper {
-          max-height: 0;
-          overflow: hidden;
-          transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .faq-item.active .faq-answer-wrapper {
-          max-height: 300px; /* Arbitrary large height to allow expansion */
-        }
-
-        .faq-answer-content {
-          padding: 0 30px 30px 30px;
-          font-size: 1.05rem;
-          color: var(--text-gray);
-          line-height: 1.7;
-          font-weight: 400;
-        }
-
-      `}} />
-
-      <div className="faq-container">
-        
-        {/* Header */}
-        <div className="faq-header">
-          <span className="faq-subtitle">COMMON QUERIES</span>
-          <h2 className="faq-title">
-            Engineering <span className="highlight-blue">Insights</span>
-          </h2>
-        </div>
-
-        {/* FAQ List */}
-        <div className="faq-list">
-          {faqData.map((item, index) => {
-            const isActive = activeIndex === index;
-            
-            return (
-              <div 
-                key={index} 
-                className={`faq-item ${isActive ? 'active' : ''}`}
-              >
-                <button 
-                  className="faq-question-btn" 
-                  onClick={() => toggleAccordion(index)}
-                  aria-expanded={isActive}
+          {/* FAQ List */}
+          <div>
+            {faqData.map((item, index) => {
+              const isActive = activeIndex === index;
+              
+              return (
+                <div 
+                  key={index} 
+                  className={`rounded-xl mb-[16px] overflow-hidden transition-all duration-300 backdrop-blur-md border ${
+                    isActive 
+                      ? 'border-emerald-500 shadow-[0_0_25px_rgba(16,185,129,0.5)] bg-emerald-500/5' 
+                      : 'border-white/10 bg-white/5 hover:border-white/20 hover:bg-white/10'
+                  }`}
                 >
-                  <span className="faq-question-text">{item.question}</span>
-                  <div className="faq-icon" aria-hidden="true"></div>
-                </button>
-                
-                <div className="faq-answer-wrapper">
-                  <div className="faq-answer-content">
-                    {item.answer}
+                  <button 
+                    className="w-full text-left bg-transparent border-none px-[30px] py-[24px] flex justify-between items-center cursor-pointer"
+                    onClick={() => toggleAccordion(index)}
+                    aria-expanded={isActive}
+                  >
+                    <span className={`mr-[20px] transition-colors duration-300 ${isActive ? 'text-emerald-500' : 'text-white'}`}>
+                      {item.question}
+                    </span>
+                    <div 
+                      className={`w-[24px] h-[24px] relative shrink-0 before:absolute before:transition-all before:duration-300 before:rounded-[2px] before:top-1/2 before:left-0 before:w-full before:h-[2px] before:-mt-[1px] after:absolute after:transition-all after:duration-300 after:rounded-[2px] after:top-0 after:left-1/2 after:w-[2px] after:h-full after:-ml-[1px] ${
+                        isActive 
+                          ? 'before:bg-emerald-500 after:bg-emerald-500 after:rotate-90' 
+                          : 'before:bg-white after:bg-white'
+                      }`} 
+                      aria-hidden="true"
+                    ></div>
+                  </button>
+                  
+                  <div 
+                    className={`overflow-hidden transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] ${
+                      isActive ? 'max-h-[500px]' : 'max-h-0'
+                    }`}
+                  >
+                    <div className="px-[30px] pb-[30px] text-[#cbd5e0] leading-[1.7]">
+                      {item.answer}
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
 
+        </div>
       </div>
     </section>
   );

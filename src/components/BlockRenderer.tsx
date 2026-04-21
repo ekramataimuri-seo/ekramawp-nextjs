@@ -21,7 +21,6 @@ import { EngineeringApproach } from "./EngineeringApproach";
 import { EngineeringProcess } from "./EngineeringProcess";
 import { PentagonGrowthEngine } from "./PentagonGrowthEngine";
 import { WpHeroVisual } from "./WpHeroVisual"; // ✅ Correct Capital Import
-import { ArchitectureTabs } from "./ArchitectureTabs";
 import { Leftcolumntab } from "./Leftcolumntab";
 import { Threecolumnarch } from "./Threecolumnarch";
 import { SimpleContentSection } from "./SimpleContentSection";
@@ -43,8 +42,8 @@ import { FAQheadlesswp } from "./FAQheadlesswp";
 import { HtmlContent } from "./HtmlContent";
 import { HtmlSecondContent } from "./HtmlSecondContent";
 import { HtmlCheatsheet } from "./HtmlCheatsheet";
-
-
+import { Logoatfirst } from "./Logoatfirst";
+import { CaseStudyCard } from "./CaseStudyCard";
 
 interface Props {
   htmlContent: string;
@@ -96,7 +95,6 @@ export const BlockRenderer = ({ htmlContent }: Props) => {
         
         // 7. BOOKS & EXTRAS
         if (classes.includes("section-aifrontendeveloper-book")) return <AIfrontendeveloperBook />;
-        if (classes.includes("section-architecture-tabs")) return <ArchitectureTabs />;
         if (classes.includes("section-Leftcolumn-tab")) return <Leftcolumntab />;
         if (classes.includes("section-Threecolumn-arch")) return <Threecolumnarch />;
        if (classes.includes("section-Simple-Content")) return <SimpleContentSection />;
@@ -117,7 +115,8 @@ export const BlockRenderer = ({ htmlContent }: Props) => {
       if (classes.includes("section-FAQheadlesswp")) return <FAQheadlesswp/>;
       if (classes.includes("section-HtmlContent")) return <HtmlContent/>;
       if (classes.includes("section-HtmlSecondContent")) return <HtmlSecondContent/>;
-      if (classes.includes("section-HtmlCheatsheet")) return <HtmlCheatsheet/>;
+      if (classes.includes("section-Logoatfirst")) return <Logoatfirst/>;
+      if (classes.includes("section-CaseStudyCard")) return <CaseStudyCard/>;
 
 
       }

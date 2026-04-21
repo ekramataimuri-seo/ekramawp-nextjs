@@ -3,288 +3,113 @@ import React from 'react';
 
 export const ThreeColumnBar = () => {
   return (
-    <div className="three-column-main-wrapper">
-      {/* Scoped Component Styles */}
-      <style dangerouslySetInnerHTML={{ __html: `
-        .three-column-main-wrapper {
-            --white: #FFFFFF;
-            --primary-blue-03: #207DE9;
-            --gray-07: #FFFFFF;         
-            --gray-08: rgba(255, 255, 255, 0.9);         
-            --gray-list-text: rgba(255, 255, 255, 0.7);
-            
-            --green-06: #152238;      
-            --green-02: #D4EFE2;        
-            --green-04: #26B16D;        
-            --red-bg: #fbeaea;          
-            --vivid-red: #cf2e2e;
-            
-            --card-bg-standard: rgba(255, 255, 255, 0.03);
-
-            max-width: 1400px; 
-            width: 100%;
-            margin: 0 auto;
-            padding: 80px 20px;
-            font-family: 'Inter', sans-serif;
-            background-color: transparent;
-        }
-
-        .three-column-main-wrapper h1 {
-            text-align: center;
-            font-size: clamp(2rem, 3.5vw, 2.8rem);
-            font-weight: 900;
-            color: var(--gray-07);
-            margin-bottom: 70px;
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-        }
-
-        .three-column-main-wrapper .highlight {
-            color: var(--primary-blue-03);
-            position: relative;
-            display: inline-block;
-            z-index: 1;
-        }
-
-        .three-column-main-wrapper .features-comparison-table {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            align-items: stretch;
-        }
-
-        /* --- STANDARD CARD (Columns 2 & 4) --- */
-        .three-column-main-wrapper .card-content {
-            padding: 40px 30px;
-            height: 100%;
-            border-radius: 20px;
-            /* REMOVED BORDER */
-            background-color: var(--card-bg-standard);
-            display: flex;
-            flex-direction: column;
-            box-sizing: border-box;
-            transition: transform 0.3s ease;
-            /* REMOVED BOX SHADOW */
-        }
-
-        /* --- HIGHLIGHTED CARD (Columns 1 & 3) --- */
-        .three-column-main-wrapper .webfx-style {
-            background: linear-gradient(180deg, #1C2D47 0%, #0E1623 100%);
-            /* REMOVED BORDER */
-            /* REMOVED DEEP SHADOW */
-            transform: translateY(-10px);
-            position: relative;
-            z-index: 2;
-        }
-
-        /* REMOVED ::before pseudo-element (the top blue bar) */
-
-        .three-column-main-wrapper .card-header-area {
-            min-height: 60px;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            padding-bottom: 20px;
-            /* REMOVED BOTTOM BORDER LINE */
-        }
-
-        .three-column-main-wrapper .logo {
-            font-size: 26px;
-            font-weight: 900;
-            letter-spacing: -1px;
-            color: #FFFFFF;
-        }
-        .three-column-main-wrapper .logo span { color: var(--primary-blue-03); }
-
-        .three-column-main-wrapper h3 {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--gray-07);
-            margin: 0;
-            line-height: 1.3;
-        }
-
-        .three-column-main-wrapper ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            flex-grow: 1;
-        }
-
-        .three-column-main-wrapper li {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 25px;
-        }
-        .three-column-main-wrapper li:last-child {
-            margin-bottom: 0;
-        }
-
-        .three-column-main-wrapper li p {
-            font-size: 15px;
-            margin-left: 16px;
-            line-height: 1.6;
-            margin-top: -2px;
-            font-weight: 400;
-        }
-
-        .three-column-main-wrapper .webfx-style li p { color: var(--gray-08); }
-        .three-column-main-wrapper .card-content:not(.webfx-style) li p { color: var(--gray-list-text); }
-
-        /* Icons */
-        .three-column-main-wrapper .icon {
-            flex-shrink: 0;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 11px;
-            font-weight: 900;
-        }
-
-        .three-column-main-wrapper .icon-check { 
-            background-color: rgba(38, 177, 109, 0.15); 
-            color: var(--green-04); 
-        }
-        .three-column-main-wrapper .icon-cross { 
-            background-color: rgba(207, 46, 46, 0.15); 
-            color: var(--vivid-red); 
-            font-size: 10px; 
-        }
-
-        /* RESPONSIVE BREAKPOINTS */
-        @media (max-width: 1200px) {
-            .three-column-main-wrapper .features-comparison-table { 
-                grid-template-columns: repeat(2, 1fr); 
-                gap: 30px;
-            }
-            .three-column-main-wrapper .webfx-style {
-                transform: translateY(0);
-            }
-        }
-        @media (max-width: 768px) {
-            .three-column-main-wrapper .features-comparison-table { 
-                grid-template-columns: 1fr; 
-                gap: 20px;
-            }
-        }
-      `}} />
-
-      <h1>Unlock a <span className="highlight">10% increase</span> in organic traffic with our content marketing firm</h1>
-
-      <div className="features-comparison-table">
+    <section className="w-full pt-2 pb-16 relative overflow-hidden">
+      <div className="max-w-[1400px] mx-auto px-5 relative z-10 items-center justify-center text-center">
         
-        {/* Column 1: WPFEDEV (HIGHLIGHTED - No Border/Shadow/TopBar) */}
-        <div className="grid-column">
-          <div className="card-content webfx-style">
-            <div className="card-header-area">
-              <div className="logo">WPFEDEV<span>.com</span></div>
+        {/* Heading Section */}
+        <h2 className="mb-[20px]">
+          Unlock a <span className="text-[#10B981]">10% increase</span> in organic traffic with our content marketing firm
+        </h2>
+        
+        {/* Title Body Content */}
+        <div className="max-w-[800px] mx-auto mb-[70px]">
+          Our performance-driven approach ensures that your content doesn't just look good—it drives real, measurable revenue. Compare how our dedicated expertise stacks up against in-house teams and standard agencies.
+        </div>
+
+        {/* Features Comparison Table */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[24px] items-start text-left">
+          
+          {/* Column 1: WPFEDEV (Transparent) */}
+          <div className="flex flex-col h-full p-[35px_25px] bg-transparent">
+            <div className="min-h-[60px] mb-[25px] flex items-center">
+              <div className="text-[26px] font-black tracking-[-1px] text-white">
+                WPFEDEV<span className="text-[#10B981]">.com</span>
+              </div>
             </div>
-            <ul>
-              <li>
-                <div className="icon icon-check">✔</div>
-                <p>Dedicated account manager, interfacing with a team of 500+ digital marketing experts</p>
+            <ul className="list-none p-0 m-0 grow">
+              <li className="flex items-start mb-[25px]">
+                <div className="shrink-0 w-[24px] h-[24px] rounded-full flex items-center justify-center font-black text-[11px] bg-[#10B981]/15 text-[#10B981]">✔</div>
+                <p className="text-white/90 text-[15px] ml-[16px] leading-[1.6] -mt-[2px]">Dedicated account manager, interfacing with a team of 500+ digital marketing experts</p>
               </li>
-              <li>
-                <div className="icon icon-check">✔</div>
-                <p>RevenueCloudFX access for optimizing, measuring, and reporting ROI</p>
+              <li className="flex items-start mb-[25px]">
+                <div className="shrink-0 w-[24px] h-[24px] rounded-full flex items-center justify-center font-black text-[11px] bg-[#10B981]/15 text-[#10B981]">✔</div>
+                <p className="text-white/90 text-[15px] ml-[16px] leading-[1.6] -mt-[2px]">RevenueCloudFX access for optimizing, measuring, and reporting ROI</p>
               </li>
-              <li>
-                <div className="icon icon-check">✔</div>
-                <p>In-depth analysis of your business goals, industry, and competitors</p>
-              </li>
-              <li>
-                <div className="icon icon-check">✔</div>
-                <p>In-house project management software, 24/7 help desk, and direct client phone line</p>
+              <li className="flex items-start">
+                <div className="shrink-0 w-[24px] h-[24px] rounded-full flex items-center justify-center font-black text-[11px] bg-[#10B981]/15 text-[#10B981]">✔</div>
+                <p className="text-white/90 text-[15px] ml-[16px] leading-[1.6] -mt-[2px]">In-depth analysis of your business goals, industry, and competitors</p>
               </li>
             </ul>
           </div>
-        </div>
 
-        {/* Column 2: In-House (STANDARD - No Border/Shadow) */}
-        <div className="grid-column">
-          <div className="card-content">
-            <div className="card-header-area">
-              <h3>In-House Marketing</h3>
+          {/* Column 2: In-House (EMERALD GRADIENT + SHADOW) */}
+          <div className="flex flex-col h-full rounded-[20px] p-[35px_25px] bg-gradient-to-br from-[#10B981] to-[#064e3b] shadow-[0_20px_50px_rgba(16,185,129,0.3)]">
+            <div className="min-h-[60px] mb-[25px] flex items-center">
+              {/* Added font-bold */}
+              <p className="text-white font-bold">In-House Marketing</p>
             </div>
-            <ul>
-              <li>
-                <div className="icon icon-cross">✘</div>
-                <p>One or two team members trying to keep up with fast-paced marketing advancements</p>
+            <ul className="list-none p-0 m-0 grow">
+              <li className="flex items-start mb-[25px]">
+                <div className="shrink-0 w-[24px] h-[24px] rounded-full flex items-center justify-center font-black text-[10px] bg-white/20 text-white">✘</div>
+                <p className="text-white/90 text-[15px] ml-[16px] leading-[1.6] -mt-[2px]">One or two team members trying to keep up with fast-paced marketing advancements</p>
               </li>
-              <li>
-                <div className="icon icon-cross">✘</div>
-                <p>Analytics suite for measuring and improving campaign performance</p>
+              <li className="flex items-start mb-[25px]">
+                <div className="shrink-0 w-[24px] h-[24px] rounded-full flex items-center justify-center font-black text-[10px] bg-white/20 text-white">✘</div>
+                <p className="text-white/90 text-[15px] ml-[16px] leading-[1.6] -mt-[2px]">Analytics suite for measuring and improving campaign performance</p>
               </li>
-              <li>
-                <div className="icon icon-check">✔</div>
-                <p>S.M.A.R.T. goals, but limited resources needed to execute</p>
-              </li>
-              <li>
-                <div className="icon icon-cross">✘</div>
-                <p>Reporting roadblocks leading to project delays and wasted spend</p>
+              <li className="flex items-start">
+                <div className="shrink-0 w-[24px] h-[24px] rounded-full flex items-center justify-center font-black text-[11px] bg-white/20 text-white">✔</div>
+                <p className="text-white/90 text-[15px] ml-[16px] leading-[1.6] -mt-[2px]">S.M.A.R.T. goals, but limited resources needed to execute</p>
               </li>
             </ul>
           </div>
-        </div>
 
-        {/* Column 3: Typical Agency (HIGHLIGHTED - No Border/Shadow/TopBar) */}
-        <div className="grid-column">
-          <div className="card-content webfx-style">
-            <div className="card-header-area">
-              <h3>Typical Marketing Agency</h3>
+          {/* Column 3: Typical Agency (Transparent) */}
+          <div className="flex flex-col h-full p-[35px_25px] bg-transparent">
+            <div className="min-h-[60px] mb-[25px] flex items-center">
+              {/* Added font-bold */}
+              <p className="font-bold">Typical Marketing Agency</p>
             </div>
-            <ul>
-              <li>
-                <div className="icon icon-check">✔</div>
-                <p>Dedicated account manager responsible for strategy, but will need your help implementing solutions</p>
+            <ul className="list-none p-0 m-0 grow">
+              <li className="flex items-start mb-[25px]">
+                <div className="shrink-0 w-[24px] h-[24px] rounded-full flex items-center justify-center font-black text-[11px] bg-[#10B981]/15 text-[#10B981]">✔</div>
+                <p className="text-white/90 text-[15px] ml-[16px] leading-[1.6] -mt-[2px]">Dedicated account manager responsible for strategy, but will need your help implementing solutions</p>
               </li>
-              <li>
-                <div className="icon icon-cross">✘</div>
-                <p>Third-party tracking and analysis with subscription costs passed to you</p>
+              <li className="flex items-start mb-[25px]">
+                <div className="shrink-0 w-[24px] h-[24px] rounded-full flex items-center justify-center font-black text-[10px] bg-[#cf2e2e]/15 text-[#cf2e2e]">✘</div>
+                <p className="text-white/90 text-[15px] ml-[16px] leading-[1.6] -mt-[2px]">Third-party tracking and analysis with subscription costs passed to you</p>
               </li>
-              <li>
-                <div className="icon icon-cross">✘</div>
-                <p>Cookie-cutter checklists and solutions for optimizing your campaigns</p>
-              </li>
-              <li>
-                <div className="icon icon-check">✔</div>
-                <p>Regular, but unreliable support when issues arise with your account</p>
+              <li className="flex items-start">
+                <div className="shrink-0 w-[24px] h-[24px] rounded-full flex items-center justify-center font-black text-[10px] bg-[#cf2e2e]/15 text-[#cf2e2e]">✘</div>
+                <p className="text-white/90 text-[15px] ml-[16px] leading-[1.6] -mt-[2px]">Cookie-cutter checklists and solutions for optimizing your campaigns</p>
               </li>
             </ul>
           </div>
-        </div>
 
-        {/* Column 4: Standard Agency (STANDARD - No Border/Shadow) */}
-        <div className="grid-column">
-          <div className="card-content">
-            <div className="card-header-area">
-              <h3>Standard Agency</h3>
+          {/* Column 4: Standard Agency (EMERALD GRADIENT + SHADOW) */}
+          <div className="flex flex-col h-full rounded-[20px] p-[35px_25px] bg-gradient-to-br from-[#10B981] to-[#064e3b] shadow-[0_20px_50px_rgba(16,185,129,0.3)]">
+            <div className="min-h-[60px] mb-[25px] flex items-center">
+              {/* Swapped class for className to match React standards and kept it bold */}
+              <p className="text-white font-bold">Standard Agency</p>
             </div>
-            <ul>
-              <li>
-                <div className="icon icon-check">✔</div>
-                <p>Dedicated account manager responsible for strategy, but will need your help implementing solutions</p>
+            <ul className="list-none p-0 m-0 grow">
+              <li className="flex items-start mb-[25px]">
+                <div className="shrink-0 w-[24px] h-[24px] rounded-full flex items-center justify-center font-black text-[11px] bg-white/20 text-white">✔</div>
+                <p className="text-white/90 text-[15px] ml-[16px] leading-[1.6] -mt-[2px]">Dedicated account manager responsible for strategy, but will need your help implementing solutions</p>
               </li>
-              <li>
-                <div className="icon icon-cross">✘</div>
-                <p>Third-party tracking and analysis with subscription costs passed to you</p>
+              <li className="flex items-start mb-[25px]">
+                <div className="shrink-0 w-[24px] h-[24px] rounded-full flex items-center justify-center font-black text-[10px] bg-white/20 text-white">✘</div>
+                <p className="text-white/90 text-[15px] ml-[16px] leading-[1.6] -mt-[2px]">Third-party tracking and analysis with subscription costs passed to you</p>
               </li>
-              <li>
-                <div className="icon icon-cross">✘</div>
-                <p>Cookie-cutter checklists and solutions for optimizing your campaigns</p>
-              </li>
-              <li>
-                <div className="icon icon-check">✔</div>
-                <p>Regular, but unreliable support when issues arise with your account</p>
+              <li className="flex items-start">
+                <div className="shrink-0 w-[24px] h-[24px] rounded-full flex items-center justify-center font-black text-[10px] bg-white/20 text-white">✘</div>
+                <p className="text-white/90 text-[15px] ml-[16px] leading-[1.6] -mt-[2px]">Cookie-cutter checklists and solutions for optimizing your campaigns</p>
               </li>
             </ul>
           </div>
-        </div>
 
+        </div>
       </div>
-    </div>
+    </section>
   );
 };

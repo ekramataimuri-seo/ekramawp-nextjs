@@ -4,8 +4,9 @@
 
 :root {
   --primary-darkest-gray: #222222;
-  --gray-08: #a9b4bc; /* Lightened slightly so it's readable against the dark charcoal gradient */
+  --gray-08: #fefefe;
   --white: #ffffff;
+  --font-neuehaas: "NeueHaasGrotesk", "Helvetica", "Arial", sans-serif;
 }
 
 @layer base {
@@ -13,77 +14,71 @@
     margin: 0;
     min-height: 100vh;
     color: var(--white);
-    
-    /* Global Text Settings */
+    font-family: var(--font-neuehaas);
     font-size: 16px;
     font-weight: 400;
     
-    /* Mesh Gradient */
     background: linear-gradient(45deg, rgba(20, 20, 20, 1), rgba(40, 40, 40, 1), rgba(60, 60, 60, 1)) !important;
     background-attachment: fixed !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;
     animation: gradientShift 30s ease infinite;
+    -webkit-font-smoothing: antialiased;
   }
-p, li {  /* <--- ADD 'li' RIGHT HERE */
-    font-size: 18px;           
-    line-height: 1.7;         
-    font-weight: 400;          
-    letter-spacing: 0.02em;  
-    color: var(--gray-08);     
+
+  /* Paragraphs/Lists aligned with your AiShiftSection spec */
+  p, li {
+    /* clamp(1.125rem, 1.5vw, 1.25rem) matches text-[1.125rem] to md:text-[1.25rem] */
+    font-size: clamp(1.125rem, 1.5vw, 1.25rem); 
+    /* clamp(1.41rem, 2vw, 1.75rem) matches leading-[1.41rem] to md:leading-[1.75rem] */
+    line-height: clamp(1.41rem, 2vw, 1.75rem); 
+    font-weight: 300; /* font-medium */
+    letter-spacing: 0.015em; /* tracking-[.015em] */
+    color: #ffffff; /* text-[#a1a1aa] */
   }
+
   p {
-    /* Scaled down to 18px to create contrast with the massive H1 */
-    font-size: 19px;           
-    line-height: 1.7;         
-    font-weight: 400;          
-    letter-spacing: 0.02em;  
-    margin-bottom: 24px;       
-    color: var(--gray-08);     
+    margin-bottom: 24px;
+    max-width: 54rem; /* max-w-[34rem] from your p tag */
   }
 
   h1 {
-    /* Fluid typography: Mobile (40px) -> Desktop (80px) */
-    font-size: clamp(2.5rem, 4.5vw, 5rem);
-    font-weight: 800;          
-    line-height: 1.1;
+    font-size: clamp(3rem, 5vw, 6rem);
+    font-weight: 400;
+    line-height: 0.95;
     color: var(--white);
     margin-bottom: 1.5rem;
     letter-spacing: -0.02em;
   }
 
+  /* Updated H2 with your exact AiShiftSection specs */
   h2 {
-    /* Fluid typography: Mobile (28px) -> Desktop (40px) */
-font-size: clamp(2.25rem, 4vw, 3rem);
-      font-weight: 800;          
-    line-height: 1.2;
+    /* clamp(3rem, 5vw, 3.4375rem) matches text-[3rem] to md:text-[3.4375rem] */
+    font-size: clamp(3rem, 5vw, 3.4375rem); 
+    /* clamp(3.42rem, 6vw, 4rem) matches leading-[3.42rem] to md:leading-[4rem] */
+    line-height: clamp(3.42rem, 6vw, 4rem); 
+    font-weight: 400; /* font-normal */
     color: var(--white);
-    margin-bottom: 1.25rem;
-    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem; /* mb-6 */
+    letter-spacing: -0.025em; /* tracking-tight */
   }
-    h3 {
-    /* Fluid typography: Mobile (28px) -> Desktop (40px) */
-font-size: clamp(2rem, 3vw, 3rem);
-      font-weight: 800;          
+
+  h3 {
+    font-size: clamp(2rem, 3vw, 2.5rem);
+    font-weight: 400;
     line-height: 1.2;
     color: var(--white);
     margin-bottom: 1.25rem;
-    letter-spacing: -0.01em;
-  }
-    h4 {
-    /* Fluid typography: Mobile (28px) -> Desktop (40px) */
-font-size: clamp(1.5rem, 1.5vw, 2rem);
-      font-weight: 800;          
-    line-height: 1.2;
-    color: var(--white);
-    margin-bottom: 1.25rem;
-    letter-spacing: -0.01em;
   }
 }
 
 @layer components {
+  .section-container {
+    @apply w-full pt-2 pb-16 overflow-hidden box-border relative z-10;
+  }
+
   .global-grid-layout {
-    @apply max-w-[1440px] w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center relative z-10;
+    @apply max-w-[1400px] mx-auto px-5 box-border relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center;
   }
 }
 
