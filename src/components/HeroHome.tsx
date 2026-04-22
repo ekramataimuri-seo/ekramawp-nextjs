@@ -12,7 +12,7 @@ const RotatingGlobe = () => {
   const [rotation, setRotation] = useState(0);
 
   useEffect(() => {
-    let animationFrameId;
+let animationFrameId: number;
 
     const animate = () => {
       setRotation((prev) => (prev + 0.15) % 360); 
@@ -44,11 +44,11 @@ const RotatingGlobe = () => {
         <Graticule stroke="#34d399" strokeWidth={0.4} opacity={0.4} />
         
         <Geographies geography={geoUrl}>
-          {({ geographies }) =>
-            geographies.map((geo) => (
-              <Geography
-                key={geo.rsmKey}
-                geography={geo}
+  {({ geographies }: { geographies: any[] }) =>
+    geographies.map((geo: any) => (
+      <Geography 
+        key={geo.rsmKey} 
+        geography={geo}
                 fill="#34d399"
                 stroke="#064e3b"
                 strokeWidth={0.3}
