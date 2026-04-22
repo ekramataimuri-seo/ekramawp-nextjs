@@ -3,8 +3,8 @@ import React from 'react';
 
 export const TraditionalHeroArea = () => {
   // Helper to render the dense floating icons inside each glass box
-  const renderFloatingIcons = (count, seedOffset) => {
-    return Array.from({ length: count }).map((_, i) => {
+const renderFloatingIcons = (count: number, seedOffset: number) => {
+      return Array.from({ length: count }).map((_, i) => {
       const isVertical = i % 2 === 0;
       const iconType = (i + seedOffset) % 4;
       const size = 16 + ((i * 7) % 18); 
