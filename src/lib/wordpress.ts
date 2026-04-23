@@ -1,12 +1,11 @@
 // File: src/lib/wordpress.ts
 
-// 👇 THIS IS THE KEY FIX: Point directly to index.php
-// This bypasses the Nginx 405 error completely.
-const WP_GRAPHQL_URL = "https://admin.wpfedev.com/index.php?graphql";
+// 1. URL FIX: Pulls from Vercel settings so you can change it anytime.
+const WP_GRAPHQL_URL = process.env.NEXT_PUBLIC_WORDPRESS_API_URL as string;
 
-// Credentials
-const WP_USERNAME = "ekrama.taimuri"; 
-const WP_APP_PASSWORD = "stgp Se7X oe81 Mak9 A64W GO9y"; 
+// 2. SECURITY FIX: Pulls credentials from Vercel settings, hiding them from the public.
+const WP_USERNAME = process.env.WP_USERNAME as string; 
+const WP_APP_PASSWORD = process.env.WP_APP_PASSWORD as string; 
 
 export async function fetchGraphQL(query: string, variables?: any) {
   try {
@@ -25,7 +24,9 @@ export async function fetchGraphQL(query: string, variables?: any) {
         query,
         variables,
       }),
-      cache: 'no-store', 
+      // 3. SPEED FIX: Replaced 'cache: no-store' with this. 
+      // Builds a fast static page, checks for new posts every 1 hour (3600 seconds).
+      next: { revalidate: 3600 }, 
     });
 
     const text = await res.text();

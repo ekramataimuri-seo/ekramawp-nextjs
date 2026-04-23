@@ -6,16 +6,8 @@ loadEnvConfig(projectDir);
 
 const config: CodegenConfig = {
   overwrite: true,
-  schema: {
-    // REPLACED process.env WITH YOUR ACTUAL URL
-    ["https://admin.wpfedev.com/index.php?graphql"]: {
-      method: "GET",
-      headers: {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        "Content-Type": "application/json",
-      },
-    },
-  },
+  // UPDATED TO MATCH YOUR .ENV.LOCAL VARIABLE NAME
+  schema: process.env.NEXT_PUBLIC_WORDPRESS_API_URL, 
   generates: {
     "src/gql/": {
       preset: "client",
