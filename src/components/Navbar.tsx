@@ -392,8 +392,8 @@ export default function Navbar() {
             <a href="#" className="border-r border-white/20 pr-[15px] text-white no-underline">
               Client Login
             </a>
-            <a href="tel:888-601-5359" className="ml-[15px] text-white no-underline">
-              888-601-5359
+            <a href="tel:+92-324-256-8650" className="ml-[15px] text-white no-underline">
+              +92-324-256-8650
             </a>
           </div>
         </div>

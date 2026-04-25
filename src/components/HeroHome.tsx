@@ -2,69 +2,13 @@
 import React, { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { ComposableMap, Geographies, Geography, Sphere, Graticule } from "react-simple-maps";
+import dynamic from "next/dynamic";
 
-const geoUrl = "https://raw.githubusercontent.com/lotusms/world-map-data/main/world.json";
-
-// --- GLOBE SUB-COMPONENT (Using Custom Copied Styles & Fixed Rotation) ---
-// --- GLOBE SUB-COMPONENT (Fully Visible & Responsive) ---
-const RotatingGlobe = () => {
-  const [rotation, setRotation] = useState(0);
-
-  useEffect(() => {
-let animationFrameId: number;
-
-    const animate = () => {
-      setRotation((prev) => (prev + 0.15) % 360); 
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    animationFrameId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationFrameId);
-  }, []);
-
-  return (
-    <div 
-      /* THE FIX: 
-         1. Removed negative top/left pixels so it never bleeds off-screen.
-         2. Used 'max-w-[800px]' and 'w-full' so it shrinks nicely on mobile but stays huge on desktop.
-         3. 'aspect-square' keeps the bounding box a perfect circle container.
-      */
-      className="absolute left-0 lg:left-[-35%] top-1/2 -translate-y-1/2 w-full max-w-[450px] lg:max-w-[1200px] aspect-square z-0 pointer-events-none opacity-[0.35]"
-    >
-      <ComposableMap 
-        projection="geoOrthographic" 
-        projectionConfig={{ 
-          rotate: [rotation, -15, 0], 
-          scale: 280 // A safe scale ensuring the entire sphere fits inside the SVG viewBox
-        }}
-        style={{ width: "100%", height: "100%" }}
-      >
-        <Sphere stroke="#10b981" strokeWidth={0.8} fill="rgba(16, 185, 129, 0.03)" />
-        <Graticule stroke="#34d399" strokeWidth={0.4} opacity={0.4} />
-        
-        <Geographies geography={geoUrl}>
-  {({ geographies }: { geographies: any[] }) =>
-    geographies.map((geo: any) => (
-      <Geography 
-        key={geo.rsmKey} 
-        geography={geo}
-                fill="#34d399"
-                stroke="#064e3b"
-                strokeWidth={0.3}
-                style={{
-                  default: { outline: "none" },
-                  hover: { outline: "none" },
-                  pressed: { outline: "none" },
-                }}
-              />
-            ))
-          }
-        </Geographies>
-      </ComposableMap>
-    </div>
-  );
-};
+// THIS IS THE MAGIC FIX: 
+// It completely bans Next.js from rendering this component on the server.
+const RotatingGlobe = dynamic(() => import("./Globe"), { 
+  ssr: false,
+});
 
 // --- DATA ---
 const HERO_DATA: Record<string, any> = {
@@ -154,7 +98,7 @@ export const HeroHome = () => {
               src={content.image} 
               alt="Hero Visual" 
               fill
-              priority 
+              priority // FIX 2: Priority tag maintained here for LCP
               unoptimized
               className="object-contain object-bottom scale-110 lg:scale-125 origin-bottom"
               sizes="(max-width: 1024px) 50vw, 40vw"
