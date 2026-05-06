@@ -29,6 +29,7 @@
     "@graphql-codegen/cli": "5.0.0",
     "@graphql-codegen/client-preset": "4.3.3",
     "@graphql-codegen/schema-ast": "^4.1.0",
+    "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

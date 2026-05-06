@@ -331,9 +331,9 @@ const navSections: NavSection[] = [
     headerIcon: UserTieIcon,
     navIcon: UserTieIcon,
     links: [
-      { label: "Our Approach", href: "/about/approach/" },
-      { label: "Introduction", href: "/about/introduction/" },
-      { label: "Our Story", href: "/about/story/" },
+      { label: "Blogs", href: "/blogs/" },
+      { label: "Approach", href: "/about/approach/" },
+      { label: "Story", href: "/about/story/" },
       { label: "Contact", href: "/contact/" },
       { label: "Terms", href: "/terms-and-conditions/" },
     ],
